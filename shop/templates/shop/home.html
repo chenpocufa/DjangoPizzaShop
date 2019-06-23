@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "shop/base.html" %}
+{% block content %}
+<h1>Check out our pizzas!</h1>
+<div class="row">
+    <div class="col">
+        {% for pizza in pizzas %}
+            <div class="mt-4">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ pizza.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ pizza.size }}</h6>
+                    <p class="card-text">Price: {{ pizza.price }}.</p>
+                  </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col">
+        <p>Second Column</p>
+    </div>
+</div>
+{% endblock content %}
