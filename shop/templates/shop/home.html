@@ -1,22 +1,32 @@
 {% extends "shop/base.html" %}
+{% load static %}
 {% block content %}
 <h1>Check out our pizzas!</h1>
+
+ <!-- Control buttons -->
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btn" onclick="filterSelection('classic')"> Classic</button>
+  <button class="btn" onclick="filterSelection('vegetarian')"> Vegetarian</button>
+  <button class="btn" onclick="filterSelection('spicy')"> Spicy</button>
+</div>
+
 <div class="row">
-    <div class="col">
         {% for pizza in pizzas %}
-            <div class="mt-4">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ pizza.name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ pizza.size }}</h6>
-                    <p class="card-text">Price: {{ pizza.price }}.</p>
-                  </div>
+            <div class="mt-4 mr-4">
+                <!-- <div class="filterDiv {{ pizza.categories_display }}"> -->
+                    <div class="card">
+                      <div class="card-body">
+                        <img class="img-thumbnail" src="{{ pizza.photo.url }}" alt="{{ post.name }}">
+                        <h5 class="card-title">{{ pizza.name }} pizza</h5>
+                        <p class="card-text">{{ pizza.description }}</p>
+                        <p class="card-text">Prices: small {{ pizza.price_small }}, large {{ pizza.price_large }}</p>
+                      </div>
                 </div>
             </div>
         {% endfor %}
-    </div>
-    <div class="col">
-        <p>Second Column</p>
-    </div>
 </div>
 {% endblock content %}
+{% block head_extra %}
+    <link rel="stylesheet" href="{% static 'shop/css/styles.css'%}">
+{% endblock head_extra %}
