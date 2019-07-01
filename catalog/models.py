@@ -4,40 +4,12 @@ Catalogue models.
 from django.db import models
 
 
-class Size(models.Model):
-    SMALL = 'Small'
-    LARGE = 'Large'
-    SIZE = [
-        (SMALL, 'Small'),
-        (LARGE, 'Large')
-    ]
-
-    size = models.CharField(
-        max_length=5,
-        choices=SIZE,
-        default=LARGE
-    )
-
-    def __str__(self):
-        return self.size
-
-
 class Category(models.Model):
     """
     Category model.
     """
-    CLASSIC = 'classic'
-    VEGETARIAN = 'vegetarian'
-    SPICY = 'spicy'
-    TYPE = [
-        (CLASSIC, 'classic'),
-        (VEGETARIAN, 'vegetarian'),
-        (SPICY, 'spicy')
-    ]
-
     type = models.CharField(
         max_length=100,
-        choices=TYPE
     )
 
     def __str__(self):

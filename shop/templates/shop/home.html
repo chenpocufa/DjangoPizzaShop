@@ -1,17 +1,17 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% block content %}
-<h1>Check out our pizzas!</h1>
+<h1>Check out our pizzas! {{ text }}</h1>
 
 <!-- Control buttons -->
-<div id="myBtnContainer">
-    <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-    <button class="btn" onclick="filterSelection('classic')"> Classic</button>
-    <button class="btn" onclick="filterSelection('vegetarian')"> Vegetarian</button>
-    <button class="btn" onclick="filterSelection('spicy')"> Spicy</button>
+<div id="category-filter">
+    <button class="btn active" filter="all"> Show all</button>
+    <button class="btn" filter="classic"> Classic</button>
+    <button class="btn" filter="vegetarian"> Vegetarian</button>
+    <button class="btn" filter="spicy"> Spicy</button>
 </div>
 
-<div class="row">
+<div class="row" id="catalog">
     {% for pizza in pizzas %}
     <div class="mt-4 mr-4 filterDiv {{ pizza.categories_display }} show">
         <div class="card">
@@ -19,7 +19,38 @@
                 <img class="img-thumbnail" src="{{ pizza.photo.url }}" alt="{{ post.name }}">
                 <h5 class="card-title">{{ pizza.name }} pizza</h5>
                 <p class="card-text">{{ pizza.description }}</p>
-                <p class="card-text">Prices: small {{ pizza.price_small }}, large {{ pizza.price_large }}</p>
+                <table class="table" id="selection">
+                  <tbody>
+                    <tr>
+                      <td colspan="2">
+                          <button type="button" class="btn btn-secondary"
+                                  data-id="{{ pizza.id }}"
+                                  data-name="{{ pizza.name }}"
+                                  data-size="small"
+                                  data-price="{{ pizza.price_small }}"
+                                  data-quantity="1">
+                              Small
+                          </button>
+                      </td>
+                      <td colspan="2">
+                          <button type="button" class="btn btn-secondary"
+                                  data-id="{{ pizza.id }}"
+                                  data-name="{{ pizza.name }}"
+                                  data-size="large"
+                                  data-price="{{ pizza.price_large }}">
+                              Large
+                          </button>
+                      </td>
+                    </tr>
+                  <tbody>
+                    <tr class="calculator" pizza-id="{{ pizza.id }}">
+                      <td id="sel-price"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -28,5 +59,4 @@
 {% endblock content %}
 {% block head_extra %}
 <link rel="stylesheet" href="{% static 'shop/css/styles.css'%}">
-<script src="{% static 'shop/js/filter.js'%}"></script>
 {% endblock head_extra %}
