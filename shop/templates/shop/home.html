@@ -14,42 +14,39 @@
 <div class="row" id="catalog">
     {% for pizza in pizzas %}
     <div class="mt-4 mr-4 filterDiv {{ pizza.categories_display }} show">
-        <div class="card">
+        <div class="card" id="card-{{ pizza.id }}">
             <div class="card-body">
                 <img class="img-thumbnail" src="{{ pizza.photo.url }}" alt="{{ post.name }}">
                 <h5 class="card-title">{{ pizza.name }} pizza</h5>
                 <p class="card-text">{{ pizza.description }}</p>
-                <table class="table" id="selection">
-                  <tbody>
+                <table class="table" id="size">
+                    <tbody>
                     <tr>
-                      <td colspan="2">
-                          <button type="button" class="btn btn-secondary"
-                                  data-id="{{ pizza.id }}"
-                                  data-name="{{ pizza.name }}"
-                                  data-size="small"
-                                  data-price="{{ pizza.price_small }}"
-                                  data-quantity="1">
-                              Small
-                          </button>
-                      </td>
-                      <td colspan="2">
-                          <button type="button" class="btn btn-secondary"
-                                  data-id="{{ pizza.id }}"
-                                  data-name="{{ pizza.name }}"
-                                  data-size="large"
-                                  data-price="{{ pizza.price_large }}">
-                              Large
-                          </button>
-                      </td>
+                        <td colspan="2">
+                            <button type="button" class="btn btn-secondary active"
+                                    data-id="{{ pizza.id }}"
+                                    data-name="{{ pizza.name }}"
+                                    data-size="small"
+                                    data-price="{{ pizza.price_small }}"
+                                    data-quantity="1">
+                                Small
+                            </button>
+                        </td>
+                        <td colspan="2">
+                            <button type="button" class="btn btn-secondary"
+                                    data-id="{{ pizza.id }}"
+                                    data-name="{{ pizza.name }}"
+                                    data-size="large"
+                                    data-price="{{ pizza.price_large }}"
+                                    data-quantity="1">
+                                Large
+                            </button>
+                        </td>
                     </tr>
-                  <tbody>
-                    <tr class="calculator" pizza-id="{{ pizza.id }}">
-                      <td id="sel-price"></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                    <tr class="calculator" id="{{ pizza.id }}">
+                        <td>{{ pizza.price_small }}</td>
                     </tr>
-                  </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -58,5 +55,5 @@
 </div>
 {% endblock content %}
 {% block head_extra %}
-<link rel="stylesheet" href="{% static 'shop/css/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
 {% endblock head_extra %}
