@@ -61,7 +61,8 @@ class Pizza {
         let sizeBtn = $(event.target);
         let pizza = sizeBtn.closest(this.itemSelector);
         let priceArea = pizza.find(".calculator");
-        let data = sizeBtn.data();
+        let data = pizza.data();
+        $.extend(data, sizeBtn.data());
         let sizeButtons = pizza.find(this.sizeBtnSelector);
 
         sizeButtons.removeClass('active');
