@@ -1,55 +1,83 @@
-$(function() {
-      // filter script
-  let categoryBtn = $('#category-filter .btn');
-  let items = $('#catalog .filterDiv');
+class Filter {
 
-  categoryBtn.on('click', function(){
-    let clickedBtn = $(this);  // wrap `this` to be able to call jquery methods
-    let activeBtn = $('.btn.active');
-    activeBtn.removeClass('active');
-    clickedBtn.addClass('active');
+    constructor(btnSelector, itemsSelector) {
+        this.btnSelector = btnSelector;
+        this.itemAttrName = 'filter';
 
-    let category = clickedBtn.attr('filter');
-    filterSelection(category);
-  });
+        this.categoryBtn = $(btnSelector);
+        this.items = $(itemsSelector);
 
-  let filterSelection = function(categoryName) {
-  	// if show all, add `show` class to all items and return
-    if (categoryName === 'all') {
-      items.addClass('show');
-      return;
+        this.processFilterClick = this.processFilterClick.bind(this);
+        this.filterSelection = this.filterSelection.bind(this);
+
+        this.categoryBtn.on('click', this.processFilterClick);
     }
 
-    // hide all by default
-    items.removeClass('show');
+    processFilterClick(event) {
+        // Get clicked element from `event.target` as `this` is overrided by Filter object
+        let clickedBtn = $(event.target);
+        let activeBtn = $(this.btnSelector + '.active');
+        let category = clickedBtn.attr(this.itemAttrName);
 
-    // show only items which have `categoryName` class
-  	items.map(function(idx, item){
-      let elem = $(item);
-      if (elem.hasClass(categoryName)){
-        elem.addClass('show');
-      }
-    });
-  };
+        activeBtn.removeClass('active');
+        clickedBtn.addClass('active');
 
-  // do initial filtering
-  filterSelection('all');
+        this.filterSelection(category);
+    }
 
-let sizeBtn = $('#selection .btn');
+    filterSelection (categoryName) {
+        // if show all, add `show` class to all items and return
+        if (categoryName === 'all') {
+            this.items.addClass('show');
+            return;
+        }
 
-  sizeBtn.on('click', function(){
-      let selBtn = $(this);
-      let selInfo = [{
-        'id': selBtn.data('id'),
-        'name': selBtn.data('name'),
-        'size': selBtn.data('size'),
-        'price': selBtn.data('price'),
-        'quantity': 1}
-        ]
-      console.log(selInfo)
+        // hide all by default
+        this.items.removeClass('show');
 
-      $(".calculator").data("item-price", selInfo[0].price);
-      $(".calculator #sel-price").text($(".calculator").data("item-price"));
-      })
+        // show only items which have `categoryName` class
+        this.items.map(function (idx, item) {
+            let elem = $(item);
+            if (elem.hasClass(categoryName)) {
+                elem.addClass('show');
+            }
+        });
+    };
 
+}
+
+
+class Pizza {
+    constructor() {
+        this.itemSelector = '.card';
+        this.sizeBtnSelector = '#size button';
+
+        this.showPrice = this.showPrice.bind(this);
+
+        $(this.sizeBtnSelector).on('click', this.showPrice);
+    }
+
+    showPrice (event) {
+        let sizeBtn = $(event.target);
+        let pizza = sizeBtn.closest(this.itemSelector);
+        let priceArea = pizza.find(".calculator");
+        let data = pizza.data();
+        $.extend(data, sizeBtn.data());
+        let sizeButtons = pizza.find(this.sizeBtnSelector);
+
+        sizeButtons.removeClass('active');
+        sizeBtn.addClass('active');
+
+        priceArea.html(`<td>${data.price}</td>`);
+    }
+}
+
+
+// Document ready logic
+$(function () {
+
+    let filter = new Filter('#category-filter .btn', '#catalog .filterDiv');
+    filter.filterSelection('all');  // do initial filtering
+
+    new Pizza();
 });

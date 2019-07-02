@@ -8,12 +8,12 @@ class Category(models.Model):
     """
     Category model.
     """
-    type = models.CharField(
+    name = models.CharField(
         max_length=100,
     )
 
     def __str__(self):
-        return self.type
+        return self.name
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -37,4 +37,5 @@ class Pizza(models.Model):
     def __str__(self):
         #    return "name = {}, size = {}".format(self.name, self.size)
         #    return "name = %s, size = %s" % (self.name, self.size)
-        return f"name = {self.name}, prices = {self.price_small}, {self.price_large}, category = {', '.join(str(cat) for cat in self.category.all())}"
+        return f"name = {self.name}, prices = {self.price_small}, {self.price_large}, " \
+               f"category = {self.categories_display}"
