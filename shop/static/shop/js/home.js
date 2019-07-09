@@ -51,6 +51,8 @@ class Pizza {
     constructor() {
         this.itemSelector = '.card';
         this.sizeBtnSelector = '#size button';
+        this.minusBtn = '.btn-minus';
+        this.plusBtn = '.btn-plus';
 
         this.showPrice = this.showPrice.bind(this);
 
@@ -58,20 +60,58 @@ class Pizza {
     }
 
     showPrice (event) {
-        let sizeBtn = $(event.target);
-        let pizza = sizeBtn.closest(this.itemSelector);
-        let priceArea = pizza.find(".calculator");
+        let Btn = $(event.target);
+        let pizza = Btn.closest(this.itemSelector);
+        let priceArea = pizza.find(".calculator-price");
+        let quantityArea = pizza.find(".calculator-quantity");
         let data = pizza.data();
-        $.extend(data, sizeBtn.data());
         let sizeButtons = pizza.find(this.sizeBtnSelector);
+        let minusButtons = pizza.find(this.minusBtn);
+        let plusButtons = pizza.find(this.plusBtn);
+        let calculatorPrice = data.price;
 
-        sizeButtons.removeClass('active');
-        sizeBtn.addClass('active');
+        if (Btn.is(".btn-secondary")){
+            sizeButtons.removeClass('active');
+            Btn.addClass('active');
+            $.extend(data, Btn.data());
+            priceArea.html(`${data.price}`);
+            calculatorPrice = data.price * data.quantity;
+            priceArea.html(`${calculatorPrice}`);
+        }
 
-        priceArea.html(`<td>${data.price}</td>`);
+        if (Btn.is(".btn-plus")){
+            data.quantity = data.quantity + 1;
+            quantityArea.html(`${data.quantity}`);
+            calculatorPrice = data.price * data.quantity;
+            priceArea.html(`${calculatorPrice}`);
+        }
+
+        if (Btn.is(".btn-minus")){
+            if (data.quantity === 1){
+            }
+            else {
+                data.quantity = data.quantity - 1;
+            }
+            quantityArea.html(`${data.quantity}`);
+            calculatorPrice = data.price * data.quantity;
+            priceArea.html(`${calculatorPrice}`);
+        }
+
+        if (Btn.is(".add-cart")){
+            if (localStorage.getItem('order') === null){
+                localStorage.setItem('order', JSON.stringify({}));
+            }
+
+            let order = JSON.parse(localStorage.getItem('order'));
+            order[data.id] = data;
+            localStorage.setItem('order', JSON.stringify(order));
+        }
+
+//        console.log(data);
+//        localStorage.clear();
+//        console.log(localStorage);
     }
 }
-
 
 // Document ready logic
 $(function () {
@@ -80,4 +120,5 @@ $(function () {
     filter.filterSelection('all');  // do initial filtering
 
     new Pizza();
+    });
 });

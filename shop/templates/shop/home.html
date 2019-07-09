@@ -17,13 +17,16 @@
         <div class="card" id="card-{{ pizza.id }}"
              data-id="{{ pizza.id }}"
              data-name="{{ pizza.name }}"
-             data-quantity="1">
+             data-quantity="1"
+             data-size="small"
+             data-price="{{ pizza.price_small }}">
 
             <div class="card-body">
                 <img class="img-thumbnail" src="{{ pizza.photo.url }}" alt="{{ post.name }}">
                 <h5 class="card-title">{{ pizza.name }} pizza</h5>
                 <p class="card-text">{{ pizza.description }}</p>
                 <table class="table" id="size">
+<!--                    change id to class-->
                     <tbody>
                     <tr>
                         <td colspan="2">
@@ -42,7 +45,15 @@
                         </td>
                     </tr>
                     <tr class="calculator" id="{{ pizza.id }}">
-                        <td>{{ pizza.price_small }}</td>
+                        <td class="calculator-price">{{ pizza.price_small }}</td>
+                        <td>
+                            <button type="button" class="btn-minus">-</button>
+                            <button type="button" class="btn-plus">+</button>
+                        </td>
+                        <td class="calculator-quantity">1</td>
+                        <td>
+                            <button type="button" class="add-cart">Add to cart</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -55,3 +66,6 @@
 {% block head_extra %}
     <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
 {% endblock head_extra %}
+{% block body_extra %}
+    <script type="text/javascript" src="{% static 'shop/js/home.js'%}" defer='defer'></script>
+{% endblock body_extra %}

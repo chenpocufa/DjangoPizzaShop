@@ -1,0 +1,15 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Details:</h1>
+    <div class="container">
+        <form action="/your-name/" method="post" id="order-form">
+            {% csrf_token %}
+            {{ form }}
+            <input type="button" id="order-submit" value="Submit">
+        </form>
+    </div>
+{% endblock content %}
+{% block body_extra %}
+    <script type="text/javascript" src="{% static 'shop/js/order.js'%}"></script>
+{% endblock body_extra %}

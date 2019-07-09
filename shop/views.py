@@ -1,8 +1,11 @@
 """
 Page views.
 """
+import json
 from django.shortcuts import render
 from catalog.models import Pizza
+from .forms import OrderForm
+
 
 pizzas = Pizza.objects.all()
 
@@ -32,3 +35,23 @@ def cart(request):
     """
     template_name = 'shop/cart.html'
     return render(request, template_name)
+
+
+def order(request):
+    """
+    Order form page view.
+    """
+    template_name = 'shop/order.html'
+    if request.method == 'POST':
+        # form = OrderForm(request.POST)
+        # if form.is_valid():
+        #
+        data = dict(request.POST)
+        order = json.loads(data.pop('order')[0])
+        print(order)
+        form = OrderForm(data)
+        if form.is_valid():
+            print('valid')
+    else:
+        form = OrderForm()
+    return render(request, template_name, {'form': form})
