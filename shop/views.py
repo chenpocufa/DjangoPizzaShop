@@ -2,7 +2,7 @@
 Page views.
 """
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from catalog.models import Pizza
 from .forms import OrderForm
 
@@ -37,21 +37,28 @@ def cart(request):
     return render(request, template_name)
 
 
+# def order(request):
+#     """
+#     Order form page view.
+#     """
+#     template_name = 'shop/order.html'
+#     if request.method == 'POST':
+#         data = dict(request.POST)
+#         order = json.loads(data.pop('order')[0])
+#         print(order)
+#         form = OrderForm()
+#         if form.is_valid():
+#             print('valid')
+#     else:
+#         form = OrderForm()
+#     return render(request, template_name, {'form': form})
+
 def order(request):
-    """
-    Order form page view.
-    """
-    template_name = 'shop/order.html'
     if request.method == 'POST':
-        # form = OrderForm(request.POST)
-        # if form.is_valid():
-        #
-        data = dict(request.POST)
-        order = json.loads(data.pop('order')[0])
-        print(order)
-        form = OrderForm(data)
+        form = OrderForm(request.POST)
         if form.is_valid():
-            print('valid')
+            form.save()
+        return redirect('shop-home')
     else:
         form = OrderForm()
-    return render(request, template_name, {'form': form})
+    return render(request, 'shop/order.html', {"form": form})

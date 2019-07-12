@@ -11,5 +11,5 @@ $(function () {
                     `<td>${pizza.quantity}</td>` +
                     `<td>${pizza.quantity * pizza.price}</td>` +
                   "</tr>"
-            );
+            )};
 });

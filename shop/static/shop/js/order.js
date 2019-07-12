@@ -16,15 +16,15 @@
 //    });
 //});
 
-let submitBtn = document.getElementById('order-submit');
-submitBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    let order = localStorage.getItem('order');
-    let form = new FormData(document.querySelector("#order-form"));
-
-    form.append("order", order);
-
-    var request = new XMLHttpRequest();
-    request.open("POST", "/order/");
-    request.send(form);
-});
+//let submitBtn = document.getElementById('order-submit');
+//submitBtn.addEventListener('click', function(event){
+//    event.preventDefault();
+//    let order = localStorage.getItem('order');
+//    let form = new FormData(document.querySelector("#order-form"));
+//
+//    form.append("order", order);
+//
+//    var request = new XMLHttpRequest();
+//    request.open("POST", "/order/");
+//    request.send(form);
+//});

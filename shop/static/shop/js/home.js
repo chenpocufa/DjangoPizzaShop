@@ -120,5 +120,4 @@ $(function () {
     filter.filterSelection('all');  // do initial filtering
 
     new Pizza();
-    });
 });
