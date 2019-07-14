@@ -28,6 +28,13 @@
           <li id="cart" class="nav-item">
             <a class="nav-link" href="{% url 'shop-cart' %}">Cart</a>
           </li>
+          {% if messages %}
+            {% for message in messages %}
+              <li class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </li>
+            {% endfor %}
+          {% endif %}
         </ul>
       </div>
     </nav>

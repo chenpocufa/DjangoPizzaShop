@@ -5,6 +5,7 @@ import json
 from django.shortcuts import render, redirect
 from catalog.models import Pizza
 from .forms import OrderForm
+from django.contrib import messages
 
 
 pizzas = Pizza.objects.all()
@@ -58,7 +59,8 @@ def order(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('shop-home')
+            messages.success(request, f'Thank you!')
+            return redirect('shop-home')
     else:
         form = OrderForm()
-    return render(request, 'shop/order.html', {"form": form})
+    return render(request, 'shop/order.html', {'form': form})
