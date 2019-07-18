@@ -106,10 +106,6 @@ class Pizza {
             order[data.id] = data;
             localStorage.setItem('order', JSON.stringify(order));
         }
-
-//        console.log(data);
-//        localStorage.clear();
-//        console.log(localStorage);
     }
 }
 

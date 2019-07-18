@@ -6,8 +6,8 @@
         <form action="/order/" method="POST" id="order-form">
             {% csrf_token %}
             {{ form.as_p }}
-            <div id="order-submit">
-                <button class="btn btn-secondary" type="submit">Submit</button>
+            <div>
+                <button id="order-submit" class="btn btn-secondary" type="submit">Submit</button>
             </div>
         </form>
     </div>

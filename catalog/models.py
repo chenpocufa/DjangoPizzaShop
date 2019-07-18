@@ -2,6 +2,7 @@
 Catalogue models.
 """
 from django.db import models
+from django.forms.models import model_to_dict
 
 
 class Category(models.Model):
@@ -39,3 +40,7 @@ class Pizza(models.Model):
         #    return "name = %s, size = %s" % (self.name, self.size)
         return f"name = {self.name}, prices = {self.price_small}, {self.price_large}, " \
                f"category = {self.categories_display}"
+
+    def order(self, fields=None):
+        _fields = ['name', 'price_small', 'price_large'] if fields is None else fields
+        return model_to_dict(self, fields=_fields)

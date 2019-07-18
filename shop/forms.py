@@ -4,22 +4,15 @@ import string
 
 
 class OrderForm(forms.ModelForm):
-    # def clean_order(self):
-    #     form_data = self.cleaned_data
-    #     if len(form_data['name']) < 3:
-    #         self._errors['name'] = ['Too short']  # Will raise a error message
-    #         del form_data['name']
-    #     return form_data
-
     class Meta:
         model = Order
         fields = ['name', 'phone']
 
     def clean(self):
         name = self.cleaned_data.get('name')
-        letters = set(string.ascii_letters) # To validate name
+        letters = set(string.ascii_letters)     # To validate name
         phone = self.cleaned_data.get('phone')
-        digits = set(string.digits) # To validate phone
+        digits = set(string.digits)     # To validate phone
         '''
         name validation
         '''
