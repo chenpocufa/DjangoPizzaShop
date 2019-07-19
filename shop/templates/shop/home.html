@@ -18,7 +18,7 @@
              data-id="{{ pizza.id }}"
              data-name="{{ pizza.name }}"
              data-quantity="1"
-             data-size="small"
+             data-size="Small"
              data-price="{{ pizza.price_small }}">
 
             <div class="card-body">
@@ -29,20 +29,15 @@
 <!--                    change id to class-->
                     <tbody>
                     <tr>
-                        <td colspan="2">
-                            <button type="button" class="btn btn-secondary active"
-                                    data-size="small"
-                                    data-price="{{ pizza.price_small }}">
-                                Small
+                        {% for size in pizza.sizes.all %}
+                        <td>
+                            <button type="button" class="btn btn-secondary {% if size.active %}active{% endif %}"
+                                    data-size="{{ size.type }}"
+                                    data-price="{{ size.price }}">
+                                {{ size.type }}
                             </button>
                         </td>
-                        <td colspan="2">
-                            <button type="button" class="btn btn-secondary"
-                                    data-size="large"
-                                    data-price="{{ pizza.price_large }}">
-                                Large
-                            </button>
-                        </td>
+                        {% endfor %}
                     </tr>
                     <tr class="calculator" id="{{ pizza.id }}">
                         <td class="calculator-price">{{ pizza.price_small }}</td>

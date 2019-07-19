@@ -26,8 +26,6 @@ class Pizza(models.Model):
     """
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-    price_small = models.IntegerField()
-    price_large = models.IntegerField()
     category = models.ManyToManyField(Category)
     photo = models.ImageField(upload_to='images/')
 
@@ -38,9 +36,22 @@ class Pizza(models.Model):
     def __str__(self):
         #    return "name = {}, size = {}".format(self.name, self.size)
         #    return "name = %s, size = %s" % (self.name, self.size)
-        return f"name = {self.name}, prices = {self.price_small}, {self.price_large}, " \
-               f"category = {self.categories_display}"
+        return f"name = {self.name}, category = {self.categories_display}"
 
     def order(self, fields=None):
         _fields = ['name', 'price_small', 'price_large'] if fields is None else fields
         return model_to_dict(self, fields=_fields)
+
+    # @property
+    # def sizes(self):
+    #     return self.size_set.all()
+
+
+class Size(models.Model):
+    type = models.CharField(max_length=20)
+    price = models.FloatField(default=0)
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, related_name='sizes')
+    active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Size {self.type} = {self.price}"

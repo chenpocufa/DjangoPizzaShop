@@ -1,4 +1,5 @@
 from django.db import models
+from catalog.models import Pizza
 
 
 class Order(models.Model):
@@ -10,12 +11,14 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    user_form = models.CharField(max_length=100)
-    item_name = models.CharField(max_length=100)
-    item_price = models.CharField(max_length=100)
+    user_form = models.ForeignKey(Order, on_delete=models.CASCADE)
+    item = models.ForeignKey(Pizza, on_delete=models.DO_NOTHING)
     size = models.CharField(max_length=100)
     quantity = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"name = {self.item_name}, price = {self.item_price}, size = {self.size}, quantity = {self.quantity}" \
+        return f"item = {self.item}, size = {self.size}, quantity = {self.quantity}" \
             f", order = {self.user_form}"
+
+    # def get_price(self):
+        # if size ==
