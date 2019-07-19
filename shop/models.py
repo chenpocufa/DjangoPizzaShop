@@ -17,8 +17,4 @@ class OrderItem(models.Model):
     quantity = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"item = {self.item}, size = {self.size}, quantity = {self.quantity}" \
-            f", order = {self.user_form}"
-
-    # def get_price(self):
-        # if size ==
+        return f"Item"

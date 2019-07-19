@@ -53,15 +53,9 @@ def order(request):
             for i in order_content.items():
                 order_item = i[1]
                 item = Pizza.objects.get(id=order_item['id'])
-                item_price_check = 'none'
-                if order_item['size'] == 'small':
-                    item_price_check = item.order(['price_small'])['price_small']
-                elif order_item['size'] == 'large':
-                    item_price_check = item.order(['price_large'])['price_large']
                 params = dict(
                     user_form=form,
-                    item_name=item.order(['name'])['name'],
-                    item_price=item_price_check,
+                    item=item,
                     size=order_item['size'],
                     quantity=order_item['quantity'],
                 )

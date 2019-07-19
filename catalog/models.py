@@ -36,10 +36,10 @@ class Pizza(models.Model):
     def __str__(self):
         #    return "name = {}, size = {}".format(self.name, self.size)
         #    return "name = %s, size = %s" % (self.name, self.size)
-        return f"name = {self.name}, category = {self.categories_display}"
+        return f"{self.name} pizza"
 
     def order(self, fields=None):
-        _fields = ['name', 'price_small', 'price_large'] if fields is None else fields
+        _fields = ['name'] if fields is None else fields
         return model_to_dict(self, fields=_fields)
 
     # @property
@@ -54,4 +54,4 @@ class Size(models.Model):
     active = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Size {self.type} = {self.price}"
+        return f"Size {self.id}"
