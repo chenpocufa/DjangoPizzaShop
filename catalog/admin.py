@@ -4,6 +4,8 @@ from .models import Category, Pizza, Size
 
 class SizeInline(admin.TabularInline):
     model = Size
+    extra = 0
+    max_num = 2
 
 
 class PizzaAdmin(admin.ModelAdmin):

@@ -18,29 +18,27 @@
              data-id="{{ pizza.id }}"
              data-name="{{ pizza.name }}"
              data-quantity="1"
-             data-size="Small"
-             data-price="{{ pizza.price_small }}">
+             data-size="small"
+             data-price="{{ pizza.default_price }}">
 
             <div class="card-body">
                 <img class="img-thumbnail" src="{{ pizza.photo.url }}" alt="{{ post.name }}">
                 <h5 class="card-title">{{ pizza.name }} pizza</h5>
                 <p class="card-text">{{ pizza.description }}</p>
-                <table class="table" id="size">
+                <div class="size">
+                    {% for size in pizza.sizes.all %}
+                        <button type="button" class="btn btn-secondary {% if size.active %}active{% endif %}"
+                                data-size="{{ size.type }}"
+                                data-price="{{ size.price }}">
+                            {{ size.type }}
+                        </button>
+                    {% endfor %}
+                </div>
+                <table class="table">
 <!--                    change id to class-->
                     <tbody>
-                    <tr>
-                        {% for size in pizza.sizes.all %}
-                        <td>
-                            <button type="button" class="btn btn-secondary {% if size.active %}active{% endif %}"
-                                    data-size="{{ size.type }}"
-                                    data-price="{{ size.price }}">
-                                {{ size.type }}
-                            </button>
-                        </td>
-                        {% endfor %}
-                    </tr>
                     <tr class="calculator" id="{{ pizza.id }}">
-                        <td class="calculator-price">{{ pizza.price_small }}</td>
+                        <td class="calculator-price">{{ pizza.default_price }}</td>
                         <td>
                             <button type="button" class="btn-minus">-</button>
                             <button type="button" class="btn-plus">+</button>
