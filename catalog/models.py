@@ -2,6 +2,7 @@
 Catalogue models.
 """
 from django.db import models
+from django.forms.models import model_to_dict
 
 
 class Category(models.Model):
@@ -25,8 +26,6 @@ class Pizza(models.Model):
     """
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-    price_small = models.IntegerField()
-    price_large = models.IntegerField()
     category = models.ManyToManyField(Category)
     photo = models.ImageField(upload_to='images/')
 
@@ -37,5 +36,33 @@ class Pizza(models.Model):
     def __str__(self):
         #    return "name = {}, size = {}".format(self.name, self.size)
         #    return "name = %s, size = %s" % (self.name, self.size)
-        return f"name = {self.name}, prices = {self.price_small}, {self.price_large}, " \
-               f"category = {self.categories_display}"
+        return f"{self.name} pizza"
+
+    def order(self, fields=None):
+        _fields = ['name'] if fields is None else fields
+        return model_to_dict(self, fields=_fields)
+
+    @property
+    def default_price(self):
+        active = self.sizes.filter(active=True).first()
+        if not active:
+            raise Exception(f'Active size not set. {self}')
+        return active.price
+
+    # @property
+    # def sizes(self):
+    #     return self.size_set.all()
+
+
+class Size(models.Model):
+    CHOICES = (
+        ('small', 'Small'),
+        ('large', 'Large'),
+    )
+    type = models.CharField(max_length=20, choices=CHOICES)
+    price = models.FloatField(default=0)
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, related_name='sizes')
+    active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Size {self.id}"

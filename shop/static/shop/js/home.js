@@ -50,7 +50,7 @@ class Filter {
 class Pizza {
     constructor() {
         this.itemSelector = '.card';
-        this.sizeBtnSelector = '#size button';
+        this.sizeBtnSelector = '.card button';
         this.minusBtn = '.btn-minus';
         this.plusBtn = '.btn-plus';
 
@@ -71,7 +71,8 @@ class Pizza {
         let calculatorPrice = data.price;
 
         if (Btn.is(".btn-secondary")){
-            sizeButtons.removeClass('active');
+            let sizeChoice = Btn.closest('.size');
+            sizeChoice.find('button').removeClass('active');
             Btn.addClass('active');
             $.extend(data, Btn.data());
             priceArea.html(`${data.price}`);
@@ -106,10 +107,6 @@ class Pizza {
             order[data.id] = data;
             localStorage.setItem('order', JSON.stringify(order));
         }
-
-//        console.log(data);
-//        localStorage.clear();
-//        console.log(localStorage);
     }
 }
 
