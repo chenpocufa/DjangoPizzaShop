@@ -31,5 +31,6 @@ function postData(url = '', data = {}) {
         redirect: 'manual',
         body: data,
     })
+    .then(localStorage.clear())
     .then(response => {window.location="/"});
 }

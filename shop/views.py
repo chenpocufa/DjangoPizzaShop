@@ -50,8 +50,7 @@ def order(request):
             messages.success(request, f'Thank you!')
 
             # create object OrderItem item for each item in the order
-            for i in order_content.items():
-                order_item = i[1]
+            for order_item in order_content:
                 item = Pizza.objects.get(id=order_item['id'])
                 params = dict(
                     user_form=form,

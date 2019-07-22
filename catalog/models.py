@@ -38,9 +38,9 @@ class Pizza(models.Model):
         #    return "name = %s, size = %s" % (self.name, self.size)
         return f"{self.name} pizza"
 
-    def order(self, fields=None):
-        _fields = ['name'] if fields is None else fields
-        return model_to_dict(self, fields=_fields)
+    # def order(self, fields=None):
+    #     _fields = ['name'] if fields is None else fields
+    #     return model_to_dict(self, fields=_fields)
 
     @property
     def default_price(self):
@@ -49,10 +49,6 @@ class Pizza(models.Model):
             raise Exception(f'Active size not set. {self}')
         return active.price
 
-    # @property
-    # def sizes(self):
-    #     return self.size_set.all()
-
 
 class Size(models.Model):
     CHOICES = (
@@ -60,7 +56,7 @@ class Size(models.Model):
         ('large', 'Large'),
     )
     type = models.CharField(max_length=20, choices=CHOICES)
-    price = models.FloatField(default=0)
+    price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, related_name='sizes')
     active = models.BooleanField(default=False)
 

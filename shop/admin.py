@@ -4,10 +4,11 @@ from .models import OrderItem, Order
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
+    readonly_fields = ('price',)
 
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone')
+    list_display = ('name', 'phone', 'total_price')
     inlines = (OrderItemInline,)
 
 

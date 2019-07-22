@@ -77,14 +77,14 @@ class Pizza {
             $.extend(data, Btn.data());
             priceArea.html(`${data.price}`);
             calculatorPrice = data.price * data.quantity;
-            priceArea.html(`${calculatorPrice}`);
+            priceArea.html(`${calculatorPrice.toFixed(2)}`);
         }
 
         if (Btn.is(".btn-plus")){
             data.quantity = data.quantity + 1;
             quantityArea.html(`${data.quantity}`);
             calculatorPrice = data.price * data.quantity;
-            priceArea.html(`${calculatorPrice}`);
+            priceArea.html(`${calculatorPrice.toFixed(2)}`);
         }
 
         if (Btn.is(".btn-minus")){
@@ -95,17 +95,29 @@ class Pizza {
             }
             quantityArea.html(`${data.quantity}`);
             calculatorPrice = data.price * data.quantity;
-            priceArea.html(`${calculatorPrice}`);
+            priceArea.html(`${calculatorPrice.toFixed(2)}`);
         }
 
         if (Btn.is(".add-cart")){
             if (localStorage.getItem('order') === null){
-                localStorage.setItem('order', JSON.stringify({}));
+                localStorage.setItem('order', JSON.stringify([]));
             }
-
             let order = JSON.parse(localStorage.getItem('order'));
-            order[data.id] = data;
+            let exist = $.grep(order, function(item, idx) {
+                console.log(item, idx);
+                if (data.size === item.size) {
+                    item.quantity += data.quantity;
+                    return item;
+                }
+            });
+            if (!exist.length)
+                order.push(data);
             localStorage.setItem('order', JSON.stringify(order));
+
+//            reset quantity and price of selected pizza
+            data.quantity = 1
+            quantityArea.html(`${data.quantity}`);
+            priceArea.html(`${data.price}`);
         }
     }
 }
