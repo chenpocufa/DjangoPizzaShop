@@ -104,8 +104,8 @@ class Pizza {
             }
             let order = JSON.parse(localStorage.getItem('order'));
             let exist = $.grep(order, function(item, idx) {
-                console.log(item, idx);
-                if (data.size === item.size) {
+//                console.log(item, idx);
+                if (data.size === item.size, data.id === item.id) {
                     item.quantity += data.quantity;
                     return item;
                 }

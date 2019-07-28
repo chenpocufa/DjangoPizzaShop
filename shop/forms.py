@@ -1,18 +1,24 @@
 from django import forms
 from .models import Order
 import string
+# from django.utils.translation import gettext_lazy as _
 
 
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['name', 'phone']
+        fields = ['phone', 'name']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['phone'].initial = '123'
+        self.fields['name'].initial = 'user'
 
     def clean(self):
-        name = self.cleaned_data.get('name')
-        letters = set(string.ascii_letters)     # To validate name
         phone = self.cleaned_data.get('phone')
         digits = set(string.digits)     # To validate phone
+        name = self.cleaned_data.get('name')
+        letters = set(string.ascii_letters)  # To validate name
         '''
         name validation
         '''

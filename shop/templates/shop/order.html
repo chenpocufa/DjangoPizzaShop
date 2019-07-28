@@ -1,7 +1,7 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% block content %}
-    <h1>Details:</h1>
+    <h1>Order details:</h1>
     <div class="container">
         <form action="/order/" method="POST" id="order-form">
             {% csrf_token %}

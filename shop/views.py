@@ -2,11 +2,16 @@
 Page views.
 """
 import json
+
 from django.shortcuts import render, redirect
-from catalog.models import Pizza
-from .models import OrderItem, Order
-from .forms import OrderForm
 from django.contrib import messages
+# from django.contrib.auth import login, authenticate
+
+from .models import OrderItem
+from .forms import OrderForm
+
+from catalog.models import Pizza
+from accounts.forms import UserCreationForm, UserChangeForm
 
 
 pizzas = Pizza.objects.all()
@@ -63,3 +68,21 @@ def order(request):
     else:
         form = OrderForm()
     return render(request, 'shop/order.html', {'form': form})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'You can log in now')
+            # phone = form('phone')
+            # raw_password = form.cleaned_data.get('password1')
+            # user = authenticate(phone=phone, password=raw_password)
+            # login(request, user)
+            return redirect('shop-home')
+
+    else:
+        form = UserCreationForm()
+    return render(request, 'shop/registration.html', {'form': form})

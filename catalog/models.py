@@ -2,7 +2,7 @@
 Catalogue models.
 """
 from django.db import models
-from django.forms.models import model_to_dict
+# from django.forms.models import model_to_dict
 
 
 class Category(models.Model):
@@ -38,9 +38,6 @@ class Pizza(models.Model):
         #    return "name = %s, size = %s" % (self.name, self.size)
         return f"{self.name} pizza"
 
-    # def order(self, fields=None):
-    #     _fields = ['name'] if fields is None else fields
-    #     return model_to_dict(self, fields=_fields)
 
     @property
     def default_price(self):
@@ -61,4 +58,4 @@ class Size(models.Model):
     active = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Size {self.id}"
+        return f"Size"

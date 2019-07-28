@@ -18,14 +18,13 @@ class UserAdmin(BaseUserAdmin):
     add_form = UserAdminCreationForm
     change_password_form = AdminPasswordChangeForm
     fieldsets = (
-        (None, {'fields': ('phone', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
+        (_('Personal info'), {'fields': ('phone', 'first_name', 'email')}),
         (_('Permissions'), {'fields': ('is_superuser', 'is_staff')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('phone', 'password1', 'password2'),
+            'fields': ('phone', 'first_name', 'password1', 'password2'),
         }),
     )
 

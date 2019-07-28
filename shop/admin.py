@@ -5,10 +5,11 @@ from .models import OrderItem, Order
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     readonly_fields = ('price',)
+    extra = 0
 
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone', 'total_price')
+    list_display = ('phone', 'name', 'total_price')
     inlines = (OrderItemInline,)
 
 

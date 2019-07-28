@@ -3,11 +3,11 @@ from catalog.models import Pizza, Size
 
 
 class Order(models.Model):
-    name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.name}, {self.phone}"
+        return f"{self.phone}, {self.name}"
 
     @property
     def total_price(self):
