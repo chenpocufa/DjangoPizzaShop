@@ -9,16 +9,11 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = ['phone', 'name']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['phone'].initial = '123'
-        self.fields['name'].initial = 'user'
-
     def clean(self):
         phone = self.cleaned_data.get('phone')
-        digits = set(string.digits)     # To validate phone
+        digits = set(string.digits)             # To validate phone
         name = self.cleaned_data.get('name')
-        letters = set(string.ascii_letters)  # To validate name
+        letters = set(string.ascii_letters)     # To validate name
         '''
         name validation
         '''

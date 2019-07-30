@@ -8,6 +8,24 @@ from django.utils.translation import gettext_lazy as _
 
 from accounts.models import User
 from accounts.forms import UserAdminCreationForm, UserAdminChangeForm
+from django.forms.models import BaseInlineFormSet
+from shop.models import Order
+
+
+class UserOrders(BaseInlineFormSet):
+
+    def __init__(self, *args, **qwargs):
+        super(UserOrders, self).__init__(*args, **qwargs)
+        user = qwargs['instance']
+        self.queryset = Order.objects.filter(phone=user.phone)
+    # OrderFormSet = modelformset_factory(Order, fields=('name',))
+
+
+class OrderInline(admin.TabularInline):
+    model = Order
+    formset = UserOrders
+    extra = 1
+    show_change_link = True
 
 
 class UserAdmin(BaseUserAdmin):
@@ -32,6 +50,8 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_active', 'is_staff')
     search_fields = ('phone', 'name', 'email')
     readonly_fields = ('is_superuser', 'is_staff')
+
+    inlines = (OrderInline,)
 
 
 admin.site.register(User, UserAdmin)

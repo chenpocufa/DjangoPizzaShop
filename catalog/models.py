@@ -2,7 +2,6 @@
 Catalogue models.
 """
 from django.db import models
-# from django.forms.models import model_to_dict
 
 
 class Category(models.Model):
@@ -37,7 +36,6 @@ class Pizza(models.Model):
         #    return "name = {}, size = {}".format(self.name, self.size)
         #    return "name = %s, size = %s" % (self.name, self.size)
         return f"{self.name} pizza"
-
 
     @property
     def default_price(self):

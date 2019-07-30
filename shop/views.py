@@ -5,13 +5,12 @@ import json
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
-# from django.contrib.auth import login, authenticate
 
 from .models import OrderItem
 from .forms import OrderForm
 
 from catalog.models import Pizza
-from accounts.forms import UserCreationForm, UserChangeForm
+from accounts.forms import UserCreationForm
 
 
 pizzas = Pizza.objects.all()
@@ -66,7 +65,10 @@ def order(request):
                 OrderItem.objects.create(**params)
 
     else:
+        user = request.user
         form = OrderForm()
+        if not user.is_anonymous and user.is_authenticated:
+            form = OrderForm(initial={'phone': user.phone, 'name': user.first_name})
     return render(request, 'shop/order.html', {'form': form})
 
 
@@ -77,10 +79,6 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, f'You can log in now')
-            # phone = form('phone')
-            # raw_password = form.cleaned_data.get('password1')
-            # user = authenticate(phone=phone, password=raw_password)
-            # login(request, user)
             return redirect('shop-home')
 
     else:
