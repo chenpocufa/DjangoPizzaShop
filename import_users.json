@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "phone": 1234,
+      "password": "1234",
+      "first_name": "admin",
+      "is_staff": true,
+      "is_superuser": true
+    },
+    {
+      "phone": 123,
+      "password": "123",
+      "first_name": "user"
+    }
+  ]
+}

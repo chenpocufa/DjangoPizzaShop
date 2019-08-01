@@ -16,8 +16,9 @@ class UserOrders(BaseInlineFormSet):
 
     def __init__(self, *args, **qwargs):
         super(UserOrders, self).__init__(*args, **qwargs)
-        user = qwargs['instance']
-        self.queryset = Order.objects.filter(phone=user.phone)
+        # user = qwargs['instance']
+        print(qwargs)
+        self.queryset = Order.objects.all()
     # OrderFormSet = modelformset_factory(Order, fields=('name',))
 
 
