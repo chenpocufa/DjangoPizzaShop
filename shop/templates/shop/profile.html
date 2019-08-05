@@ -1,24 +1,28 @@
 {% extends "shop/base.html" %}
 {% load static %}
+
 {% block content %}
     {% if user.is_authenticated %}
         <h1>User profile</h1>
         <p>Phone: {{ user.phone }}</p>
         <p>Name: {{ user.first_name }}</p>
         <div class="spoiler">
-            <input type="button" onclick="showSpoiler(this);" value="Change password" />
+            <input type="button" onclick="showSpoiler(this);" value="Change password"/>
             <div class="inner" style="display:none;">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div>
-                    <button id="order-submit" class="btn btn-secondary" type="submit">Submit</button>
-                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div>
+                        <button id="order-submit" class="btn btn-secondary" type="submit">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     {% else %}
-        <meta http-equiv="refresh" content="0; URL='/accounts/login/'" />
+        <meta http-equiv="refresh" content="0; URL={% url 'accounts:login' %}"/>
     {% endif %}
 {% endblock content %}
+
 {% block body_extra %}
-    <script type="text/javascript" src="{% static 'shop/js/profile.js'%}" defer='defer'></script>
+    <script type="text/javascript" src="{% static 'shop/js/profile.js' %}" defer='defer'></script>
 {% endblock body_extra %}
