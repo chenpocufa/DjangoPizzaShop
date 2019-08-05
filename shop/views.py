@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
+from django.urls import reverse
 
 from .models import OrderItem
 from .forms import OrderForm
@@ -54,7 +55,7 @@ def profile(request):
     template_name = 'shop/profile.html'
 
     if not User.is_authenticated:
-        return redirect('/accounts/login/')
+        return redirect(reverse('accounts:login'))
 
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -64,10 +65,10 @@ def profile(request):
             messages.success(request, 'Your password was successfully updated!')
             return redirect('shop-home')
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, f'Please correct errors {form.errors}.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, template_name, {'form': form}, {'orders': orders})
+    return render(request, template_name, {'form': form}, {'orders': []})
 
 
 def order(request):
