@@ -10,6 +10,7 @@ class OrderItemInline(admin.TabularInline):
 
 class OrdersAdmin(admin.ModelAdmin):
     list_display = ('phone', 'name', 'total_price')
+    exclude = ('user',)
     inlines = (OrderItemInline,)
 
 

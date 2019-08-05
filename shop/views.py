@@ -5,11 +5,14 @@ import json
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
 
 from .models import OrderItem
 from .forms import OrderForm
 
 from catalog.models import Pizza
+from accounts.models import User
 from accounts.forms import UserCreationForm
 
 
@@ -41,6 +44,29 @@ def cart(request):
     """
     template_name = 'shop/cart.html'
     return render(request, template_name)
+
+
+def profile(request):
+    """
+    User profile page view.
+    """
+    template_name = 'shop/profile.html'
+
+    if not User.is_authenticated:
+        return redirect('/accounts/login/')
+
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('shop-home')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, template_name, {'form': form})
 
 
 def order(request):

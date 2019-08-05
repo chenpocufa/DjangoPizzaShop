@@ -1,6 +1,16 @@
 from django.db import models
+from django.db.models.signals import pre_save
+
 from catalog.models import Pizza, Size
 from accounts.models import User
+
+
+def check_phone(sender, instance, **kwargs):
+    user = User.objects.filter(phone=instance.phone).first()
+    if user:
+        instance.user = user
+    else:
+        instance.user = None
 
 
 class Order(models.Model):
@@ -9,11 +19,14 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.phone}, {self.name}"
+        return f""
 
     @property
     def total_price(self):
         return sum([item.price for item in self.orderitem_set.all()])
+
+
+pre_save.connect(check_phone, sender=Order)
 
 
 class OrderItem(models.Model):

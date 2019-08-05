@@ -43,7 +43,10 @@ class Command(BaseCommand):
         users = data.get('users')
         if users:
             print('Loading users')
-            for user in users:
-                User.objects.get_or_create(**user)
+            for item in users:
+                password = item.pop('password')
+                user, created = User.objects.get_or_create(**item)
+                user.set_password(password)
+                user.save()
         else:
             self.stdout.write('No User field')
