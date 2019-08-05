@@ -14,6 +14,7 @@ from .forms import OrderForm
 from catalog.models import Pizza
 from accounts.models import User
 from accounts.forms import UserCreationForm
+from shop.models import Order
 
 
 pizzas = Pizza.objects.all()
@@ -66,7 +67,7 @@ def profile(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, template_name, {'form': form})
+    return render(request, template_name, {'form': form}, {'orders': orders})
 
 
 def order(request):
