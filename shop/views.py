@@ -3,10 +3,11 @@ Page views.
 """
 import json
 
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.db import transaction
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import OrderItem
@@ -73,24 +74,27 @@ def profile(request):
 
 def order(request):
     if request.method == 'POST':
-        form_content = request.POST.copy()
-        order_content = json.loads(form_content.pop('order')[0])
-        form = OrderForm(form_content)
+        mutable_request_data = request.POST.copy()
+        order_items = json.loads(mutable_request_data.pop('order')[0])
+        order_details = OrderForm(mutable_request_data)
 
-        if form.is_valid():
-            form = form.save()
+        if order_details.is_valid():
+
+            with transaction.atomic():
+                order_obj = order_details.save()
+
+                # create object OrderItem item for each item in the order
+                for order_item in order_items:
+                    item = Pizza.objects.get(id=order_item['id'])
+                    params = dict(
+                        order=order_obj,
+                        item=item,
+                        size=order_item['size'],
+                        quantity=order_item['quantity'],
+                    )
+                    OrderItem.objects.create(**params)
+
             messages.success(request, f'Thank you!')
-
-            # create object OrderItem item for each item in the order
-            for order_item in order_content:
-                item = Pizza.objects.get(id=order_item['id'])
-                params = dict(
-                    user_form=form,
-                    item=item,
-                    size=order_item['size'],
-                    quantity=order_item['quantity'],
-                )
-                OrderItem.objects.create(**params)
 
     else:
         user = request.user
