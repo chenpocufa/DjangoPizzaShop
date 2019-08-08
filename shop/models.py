@@ -30,7 +30,7 @@ pre_save.connect(check_phone, sender=Order)
 
 
 class OrderItem(models.Model):
-    user_form = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     item = models.ForeignKey(Pizza, on_delete=models.DO_NOTHING)
     size = models.CharField(max_length=100, choices=Size.CHOICES)
     quantity = models.PositiveSmallIntegerField()
