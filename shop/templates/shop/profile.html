@@ -21,6 +21,10 @@
     {% else %}
         <meta http-equiv="refresh" content="0; URL={% url 'accounts:login' %}"/>
     {% endif %}
+
+    {% for order in orders %}
+        <h6>Order {{ order.phone }}, sum: {{ order.total_price }}</h6>
+    {% endfor %}
 {% endblock content %}
 
 {% block body_extra %}

@@ -69,7 +69,14 @@ def profile(request):
             messages.error(request, f'Please correct errors {form.errors}.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, template_name, {'form': form}, {'orders': []})
+
+    user = User.objects.get(phone=request.user.phone)
+    context = {
+        'orders': Order.objects.filter(phone=user.phone),
+        'form': form
+    }
+
+    return render(request, template_name, context)
 
 
 def order(request):
@@ -93,8 +100,6 @@ def order(request):
                         quantity=order_item['quantity'],
                     )
                     OrderItem.objects.create(**params)
-
-            messages.success(request, f'Thank you!')
 
     else:
         user = request.user

@@ -17,6 +17,9 @@ class Order(models.Model):
     phone = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    delivery_date = models.DateField()
+    delivery_time = models.TimeField()
 
     def __str__(self):
         return f""

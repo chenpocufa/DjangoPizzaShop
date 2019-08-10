@@ -24,7 +24,8 @@ class Pizza(models.Model):
     Pizza model.
     """
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=300)
+    content = models.CharField(max_length=100)
+    description = models.TextField(max_length=300)
     category = models.ManyToManyField(Category)
     photo = models.ImageField(upload_to='images/', blank=True, null=True)
 
@@ -53,7 +54,7 @@ class Size(models.Model):
     type = models.CharField(max_length=20, choices=CHOICES)
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, related_name='sizes')
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=False,)
 
     def __str__(self):
         return f"Size"

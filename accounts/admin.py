@@ -25,7 +25,8 @@ class OrderInline(admin.TabularInline):
     formset = UserOrders
     extra = 0
     show_change_link = True
-    readonly_fields = ('name', 'phone', 'total_price')
+    readonly_fields = ('created_at', 'name', 'delivery_date', 'delivery_time', 'total_price')
+    exclude = ('phone',)
 
     # def link(self, obj):
     #     url = reverse('admin:%s_%s_change' % (obj._meta.app_label, obj._meta.model_name), args=[obj.id])

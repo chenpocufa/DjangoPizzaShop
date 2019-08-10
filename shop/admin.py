@@ -5,6 +5,7 @@ from .models import OrderItem, Order
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
+    exclude = ('phone',)
     readonly_fields = ('price',)
     extra = 0
 
@@ -28,9 +29,9 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ('phone', 'name', 'total_price')
+    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'name', 'total_price')
     exclude = ('user',)
-    inlines = (OrderItemInline, )
+    inlines = (OrderItemInline,)
 
 
 admin.site.register(Order, OrdersAdmin)

@@ -15,6 +15,7 @@
           "active": false
         }
       ],
+      "content": "content",
       "description": "description",
       "photo": "import_dummy/chicken.jpg"
     },
@@ -33,6 +34,7 @@
           "active": false
         }
       ],
+      "content": "content",
       "description": "description",
       "photo": "import_dummy/pepperoni.jpg"
     }
