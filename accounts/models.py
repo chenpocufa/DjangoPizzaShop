@@ -5,6 +5,7 @@ import re
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
+from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -50,6 +51,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=100, unique=True)
     username = models.CharField(max_length=150, unique=False, blank=True, null=True)
     first_name = models.CharField(_('first name'), max_length=30)
+    language = models.CharField(max_length=20, choices=settings.LANGUAGES)
 
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name']
