@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
 
+from django.db import models
+from django.forms import CheckboxSelectMultiple
+
 from .models import Category, Pizza, Size
 
 
@@ -30,6 +33,11 @@ class PizzaAdmin(admin.ModelAdmin):
     list_display = ('name',)
     fields = ('name', 'content', 'description', 'category', 'photo')
     list_filter = ('category__name',)
+
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
+
     inlines = (SizeInline,)
 
 

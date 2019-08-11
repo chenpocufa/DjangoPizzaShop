@@ -27,7 +27,7 @@ class Pizza(models.Model):
     content = models.CharField(max_length=100)
     description = models.TextField(max_length=300)
     category = models.ManyToManyField(Category)
-    photo = models.ImageField(upload_to='images/', blank=True, null=True)
+    photo = models.ImageField(upload_to='images/')
 
     @property
     def categories_display(self):
