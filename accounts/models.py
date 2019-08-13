@@ -6,6 +6,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.dispatch import receiver
+from django.contrib.auth.signals import user_logged_in
 
 
 class UserManager(BaseUserManager):
@@ -48,10 +50,10 @@ class User(AbstractUser):
     """
     Custom user model.
     """
-    phone = models.CharField(max_length=100, unique=True)
+    phone = models.CharField(max_length=100, unique=True, verbose_name=_('phone'))
     username = models.CharField(max_length=150, unique=False, blank=True, null=True)
-    first_name = models.CharField(_('first name'), max_length=30)
-    language = models.CharField(max_length=20, choices=settings.LANGUAGES)
+    first_name = models.CharField(max_length=30, verbose_name=_('name'))
+    language = models.CharField(max_length=20, choices=settings.LANGUAGES, verbose_name=_('language'))
 
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name']
@@ -68,3 +70,9 @@ class User(AbstractUser):
         """
         _normalize_phone = re.compile(r'(\s{2,}|[a-zA-Z]+)').sub
         return _normalize_phone('', phone)
+
+
+@receiver(user_logged_in)
+def lang(sender, **kwargs):
+    lang_code = kwargs['user'].language
+    kwargs['request'].session['django_language'] = lang_code
