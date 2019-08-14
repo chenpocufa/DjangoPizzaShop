@@ -1,8 +1,9 @@
 {% extends "shop/base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
-<h1>Check out our pizzas! {{ text }}</h1>
+<h1>{% trans "Check out our pizzas! " %}{{ text }}</h1>
 
 <!-- Control buttons -->
 <div id="category-filter">
