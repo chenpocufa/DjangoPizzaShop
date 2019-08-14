@@ -1,0 +1,17 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Your cart items:</h1>
+    <div class="container">
+        <table class="table" id="cartTable">
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="totalPrice">Total price: </div>
+    <button class="btn btn-secondary confirm-order">
+        <a href="{% url 'shop-order' %}">Confirm</a>
+    </button>
+{% endblock content %}
+{% block body_extra %}
+    <script type="text/javascript" src="{% static 'shop/js/cart.js'%}" defer='defer'></script>
+{% endblock body_extra %}
