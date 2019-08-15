@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_save
+from django.utils.translation import gettext_lazy as _
 
 from catalog.models import Pizza, Size
 from accounts.models import User
@@ -14,15 +15,19 @@ def check_phone(sender, instance, **kwargs):
 
 
 class Order(models.Model):
-    phone = models.CharField(max_length=100)
-    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100, verbose_name=_('phone'))
+    name = models.CharField(max_length=100, verbose_name=_('name'))
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    delivery_date = models.DateField()
-    delivery_time = models.TimeField()
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('created at'))
+    delivery_date = models.DateField(verbose_name=_('delivery date'))
+    delivery_time = models.TimeField(verbose_name=_('delivery time'))
 
     def __str__(self):
         return f""
+
+    class Meta:
+        verbose_name = _('order')
+        verbose_name_plural = _('orders')
 
     @property
     def total_price(self):
