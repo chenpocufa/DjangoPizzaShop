@@ -50,10 +50,10 @@ class User(AbstractUser):
     """
     Custom user model.
     """
-    phone = models.CharField(max_length=100, unique=True, verbose_name=_('phone'))
+    phone = models.CharField(max_length=100, unique=True, verbose_name=_('Phone'))
     username = models.CharField(max_length=150, unique=False, blank=True, null=True)
-    first_name = models.CharField(max_length=30, verbose_name=_('name'))
-    language = models.CharField(max_length=20, choices=settings.LANGUAGES, verbose_name=_('language'))
+    first_name = models.CharField(max_length=30, verbose_name=_('Name'))
+    language = models.CharField(max_length=20, choices=settings.LANGUAGES, verbose_name=_('Language'))
 
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name']

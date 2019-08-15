@@ -55,12 +55,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-MIDDLEWARE_CLASSES = [
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocalMiddleware',
-    'django.middleware.common.CommonMiddleware',
-]
-
 ROOT_URLCONF = 'DjangoPizzaShop.urls'
 
 TEMPLATES = [
@@ -120,11 +114,6 @@ AUTHENTICATION_BACKENDS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGES = (
-    ('en', _('English')),
-    ('ru', _('Russian')),
-)
-
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
@@ -134,11 +123,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
-)
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
