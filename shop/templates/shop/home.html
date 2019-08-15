@@ -1,0 +1,66 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans "Check out our pizzas! " %}{{ text }}</h1>
+
+<!-- Control buttons -->
+<div id="category-filter">
+    <button class="btn active" filter="all"> Show all</button>
+    <button class="btn" filter="classic"> Classic</button>
+    <button class="btn" filter="vegetarian"> Vegetarian</button>
+    <button class="btn" filter="spicy"> Spicy</button>
+</div>
+
+<div class="row" id="catalog">
+    {% for pizza in pizzas %}
+    <div class="mt-4 mr-4 filterDiv {{ pizza.categories_display }} show">
+        <div class="card" id="card-{{ pizza.id }}"
+             data-id="{{ pizza.id }}"
+             data-name="{{ pizza.name }}"
+             data-quantity="1"
+             data-size="small"
+             data-price="{{ pizza.default_price }}">
+
+            <div class="card-body">
+                <img class="img-thumbnail" src="{{ pizza.photo.url }}" alt="{{ post.name }}">
+                <h5 class="card-title">{{ pizza.name }} pizza</h5>
+                <p class="card-text">{{ pizza.description }}</p>
+                <div class="size">
+                    {% for size in pizza.sizes.all %}
+                        <button type="button" class="btn btn-secondary {% if size.active %}active{% endif %}"
+                                data-size="{{ size.type }}"
+                                data-price="{{ size.price }}">
+                            {{ size.type }}
+                        </button>
+                    {% endfor %}
+                </div>
+                <table class="table">
+<!--                    change id to class-->
+                    <tbody>
+                    <tr class="calculator" id="{{ pizza.id }}">
+                        <td class="calculator-price">{{ pizza.default_price }}</td>
+                        <td>
+                            <button type="button" class="btn-minus">-</button>
+                            <button type="button" class="btn-plus">+</button>
+                        </td>
+                        <td class="calculator-quantity">1</td>
+                        <td>
+                            <button type="button" class="add-cart">Add to cart</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+{% block head_extra %}
+    <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
+{% endblock head_extra %}
+{% block body_extra %}
+    <script type="text/javascript" src="{% static 'shop/js/home.js'%}" defer='defer'></script>
+{% endblock body_extra %}
