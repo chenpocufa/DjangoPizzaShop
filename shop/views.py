@@ -19,14 +19,12 @@ from accounts.forms import UserCreationForm
 from shop.models import Order
 
 
-pizzas = Pizza.objects.all()
-
-
 def home(request):
     """
     Home page view.
     """
     template_name = 'shop/home.html'
+    pizzas = Pizza.objects.all()
     context = {
         'pizzas': pizzas
     }

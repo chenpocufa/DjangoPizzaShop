@@ -33,7 +33,7 @@
           </li>
 
           <li id="cart" class="nav-item">
-            <a class="nav-link" href="{% url 'shop-cart' %}">Cart</a>
+            <a class="nav-link" href="{% url 'shop-cart' %}">{% trans 'Cart' %}</a>
           </li>
 
           {% if user.is_authenticated %}
