@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-16 03:30+0300\n"
+"POT-Creation-Date: 2019-08-16 06:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,9 +48,7 @@ msgstr "Персональная информация"
 msgid "Permissions"
 msgstr "Доступы"
 
-#: .\accounts\apps.py:7
-#, fuzzy
-#| msgid "accounts"
+#: .\accounts\apps.py:6
 msgid "accounts"
 msgstr "пользователи"
 
@@ -60,7 +58,7 @@ msgstr "Телефон"
 
 #: .\accounts\models.py:55 .\catalog\models.py:12 .\catalog\models.py:26
 msgid "Name"
-msgstr "Название"
+msgstr "Имя"
 
 #: .\accounts\models.py:56
 msgid "Language"
@@ -161,6 +159,3 @@ msgstr "Корзина"
 #: .\shop\templates\shop\home.html:6
 msgid "Check out our pizzas! "
 msgstr "Зацените наши пиццы!"
-
-#~ msgid "total price"
-#~ msgstr "общая стоимость"
