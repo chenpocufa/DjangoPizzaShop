@@ -29,9 +29,14 @@ class Order(models.Model):
         verbose_name = _('order')
         verbose_name_plural = _('orders')
 
+    # def _total_price(self):
+    #     return sum([item.price for item in self.orderitem_set.all()])
+
     @property
     def total_price(self):
         return sum([item.price for item in self.orderitem_set.all()])
+
+    # _total_price.short_description = _('Total price')
 
 
 pre_save.connect(check_phone, sender=Order)

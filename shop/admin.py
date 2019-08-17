@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from .models import OrderItem, Order
+from django.utils.translation import gettext_lazy as _
 
 
 class OrderItemInline(admin.TabularInline):
@@ -32,6 +33,14 @@ class OrdersAdmin(admin.ModelAdmin):
     list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'name', 'total_price')
     exclude = ('user',)
     inlines = (OrderItemInline,)
+
+    # def _total_price(self):
+    #     return sum([item.price for item in self.orderitem_set.all()])
+
+    def total_price(self):
+        return sum([item.price for item in self.orderitem_set.all()])
+
+    total_price.short_description = _('Total price')
 
 
 admin.site.register(Order, OrdersAdmin)
