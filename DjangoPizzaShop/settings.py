@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog',
     'shop',
-    # 'accounts',
     'accounts.apps.UsersConfig',
 ]
 
@@ -130,6 +129,10 @@ TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 
 USE_L10N = True
+
+FORMAT_MODULE_PATH = [
+    'catalog.formats',
+]
 
 USE_TZ = True
 
