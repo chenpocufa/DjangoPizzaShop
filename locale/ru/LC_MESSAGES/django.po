@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-17 13:27+0300\n"
+"POT-Creation-Date: 2019-08-18 05:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,99 +22,110 @@ msgstr ""
 
 #: .\DjangoPizzaShop\settings.py:122
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: .\DjangoPizzaShop\settings.py:123
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: .\DjangoPizzaShop\urls.py:41
 msgid "DjangoPizzaShop"
-msgstr ""
+msgstr "ДжангоПиццаШоп"
 
 #: .\DjangoPizzaShop\urls.py:42
 msgid "DjangoPizzaShop Administration"
-msgstr ""
+msgstr "Админка ДжангоПиццаШоп"
 
 #: .\DjangoPizzaShop\urls.py:43
 msgid "Administration"
-msgstr ""
+msgstr "Админка"
 
 #: .\accounts\admin.py:42
 msgid "Personal info"
-msgstr ""
+msgstr "Персональные данные"
 
 #: .\accounts\admin.py:43
 msgid "Permissions"
-msgstr ""
+msgstr "Доспуты"
 
 #: .\accounts\apps.py:7
 msgid "Users"
-msgstr ""
+msgstr "Пользователи"
 
 #: .\accounts\models.py:56
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
-#: .\accounts\models.py:58 .\catalog\models.py:12 .\catalog\models.py:26
+#: .\accounts\models.py:58
+msgctxt "User|Name"
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 #: .\accounts\models.py:59
 msgid "Language"
-msgstr ""
+msgstr "Язык"
 
 #: .\catalog\apps.py:7
 msgid "catalog"
-msgstr ""
+msgstr "каталог"
+
+#: .\catalog\models.py:12
+msgctxt "Category|Name"
+msgid "Name"
+msgstr "Название"
 
 #: .\catalog\models.py:18 .\catalog\models.py:29
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: .\catalog\models.py:19
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
+
+#: .\catalog\models.py:26
+msgctxt "Pizza|Name"
+msgid "Name"
+msgstr "Название"
 
 #: .\catalog\models.py:27
 msgid "Content"
-msgstr ""
+msgstr "Состав"
 
 #: .\catalog\models.py:28
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: .\catalog\models.py:30
 msgid "Image"
-msgstr ""
+msgstr "Изображение"
 
 #: .\catalog\models.py:33
 msgid "Pizzas"
-msgstr ""
+msgstr "Пиццы"
 
 #: .\catalog\models.py:54
 msgid "Small"
-msgstr ""
+msgstr "Маленькая"
 
 #: .\catalog\models.py:55
 msgid "Large"
-msgstr ""
+msgstr "Большая"
 
 #: .\catalog\models.py:57
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: .\catalog\models.py:58
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
 #: .\catalog\models.py:59
 msgid "Pizza"
-msgstr ""
+msgstr "Пицца"
 
 #: .\catalog\models.py:60
 msgid "Active"
-msgstr ""
+msgstr "Активна"
 
 #: .\shop\admin.py:43
 msgid "Total price"
@@ -122,27 +133,27 @@ msgstr "Общая стоимость"
 
 #: .\shop\apps.py:7
 msgid "shop"
-msgstr ""
+msgstr "магазин"
 
 #: .\shop\models.py:18
 msgid "phone"
-msgstr ""
+msgstr "телефон"
 
 #: .\shop\models.py:19
 msgid "name"
-msgstr ""
+msgstr "имя"
 
 #: .\shop\models.py:21
 msgid "created at"
-msgstr ""
+msgstr "создан"
 
 #: .\shop\models.py:22
 msgid "delivery date"
-msgstr ""
+msgstr "дата доставки"
 
 #: .\shop\models.py:23
 msgid "delivery time"
-msgstr ""
+msgstr "время доставки"
 
 #: .\shop\models.py:29
 msgid "order"
@@ -154,8 +165,8 @@ msgstr "заказы"
 
 #: .\shop\templates\shop\base.html:36
 msgid "Cart"
-msgstr ""
+msgstr "Корзина"
 
 #: .\shop\templates\shop\home.html:6
 msgid "Check out our pizzas! "
-msgstr ""
+msgstr "Зацените наши пиццы!"

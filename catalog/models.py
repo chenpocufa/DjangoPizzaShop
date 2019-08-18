@@ -2,14 +2,14 @@
 Catalogue models.
 """
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, pgettext_lazy
 
 
 class Category(models.Model):
     """
     Category model.
     """
-    name = models.CharField(verbose_name=_('Name'), max_length=100)
+    name = models.CharField(verbose_name=pgettext_lazy('Category|Name', 'Name'), max_length=100)
 
     def __str__(self):
         return self.name
@@ -23,7 +23,7 @@ class Pizza(models.Model):
     """
     Pizza model.
     """
-    name = models.CharField(verbose_name=_('Name'), max_length=100)
+    name = models.CharField(verbose_name=pgettext_lazy('Pizza|Name', 'Name'), max_length=100)
     content = models.CharField(verbose_name=_('Content'), max_length=100)
     description = models.TextField(verbose_name=_('Description'))
     category = models.ManyToManyField(Category, verbose_name=_('Category'))

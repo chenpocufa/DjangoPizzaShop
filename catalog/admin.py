@@ -1,6 +1,8 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
+
 
 from django.db import models
 from django.forms import CheckboxSelectMultiple
@@ -43,3 +45,4 @@ class PizzaAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(Pizza, PizzaAdmin)
+admin.site.unregister(Group)
