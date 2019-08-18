@@ -2,12 +2,15 @@
 Accounts models.
 """
 import re
-from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
-from django.utils.translation import gettext_lazy as _
+
 from django.conf import settings
-from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
+from django.db.models import signals
+from django.core.mail import send_mail
+from django.db import models
+from django.dispatch import receiver
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 
 
 class UserManager(BaseUserManager):
@@ -52,7 +55,7 @@ class User(AbstractUser):
     """
     phone = models.CharField(max_length=100, unique=True, verbose_name=_('Phone'))
     username = models.CharField(max_length=150, unique=False, blank=True, null=True)
-    first_name = models.CharField(max_length=30, verbose_name=_('Name'))
+    first_name = models.CharField(max_length=30, verbose_name=pgettext_lazy('User|Name', 'Name'))
     language = models.CharField(max_length=20, choices=settings.LANGUAGES, verbose_name=_('Language'))
 
     USERNAME_FIELD = 'phone'
@@ -76,3 +79,15 @@ class User(AbstractUser):
 def lang(sender, **kwargs):
     lang_code = kwargs['user'].language
     kwargs['request'].session['django_language'] = lang_code
+
+
+@receiver(signals.post_save, sender=User)
+def email(sender, instance, **kwargs):
+    if instance.email:
+        send_mail(
+            'Subject',
+            'Message',
+            'DjangoPizzaShop',
+            [instance.email],
+            fail_silently=False,
+        )
