@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-18 05:58+0300\n"
+"POT-Creation-Date: 2019-08-19 12:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\DjangoPizzaShop\settings.py:122
+#: .\DjangoPizzaShop\settings.py:121
 msgid "English"
 msgstr "English"
 
-#: .\DjangoPizzaShop\settings.py:123
+#: .\DjangoPizzaShop\settings.py:122
 msgid "Russian"
 msgstr "Русский"
 
@@ -52,7 +52,7 @@ msgstr "Доспуты"
 msgid "Users"
 msgstr "Пользователи"
 
-#: .\accounts\models.py:56
+#: .\accounts\models.py:56 .\shop\models.py:18
 msgid "Phone"
 msgstr "Телефон"
 
@@ -127,6 +127,26 @@ msgstr "Пицца"
 msgid "Active"
 msgstr "Активна"
 
+#: .\catalog\models.py:67
+msgid "Batch"
+msgstr ""
+
+#: .\catalog\models.py:68
+msgid "Code"
+msgstr ""
+
+#: .\catalog\models.py:69
+msgid "Discount percent"
+msgstr ""
+
+#: .\catalog\models.py:70
+msgid "Discount value"
+msgstr ""
+
+#: .\catalog\models.py:77
+msgid "Promo code groups"
+msgstr ""
+
 #: .\shop\admin.py:43
 msgid "Total price"
 msgstr "Общая стоимость"
@@ -135,31 +155,40 @@ msgstr "Общая стоимость"
 msgid "shop"
 msgstr "магазин"
 
-#: .\shop\models.py:18
-msgid "phone"
-msgstr "телефон"
-
 #: .\shop\models.py:19
-msgid "name"
-msgstr "имя"
+#, fuzzy
+#| msgctxt "User|Name"
+#| msgid "Name"
+msgid "Name"
+msgstr "Имя"
 
 #: .\shop\models.py:21
-msgid "created at"
+#, fuzzy
+#| msgid "created at"
+msgid "Created at"
 msgstr "создан"
 
 #: .\shop\models.py:22
-msgid "delivery date"
+#, fuzzy
+#| msgid "delivery date"
+msgid "Delivery date"
 msgstr "дата доставки"
 
 #: .\shop\models.py:23
-msgid "delivery time"
+#, fuzzy
+#| msgid "delivery time"
+msgid "Delivery time"
 msgstr "время доставки"
 
-#: .\shop\models.py:29
+#: .\shop\models.py:24
+msgid "Address"
+msgstr ""
+
+#: .\shop\models.py:30
 msgid "order"
 msgstr "заказ"
 
-#: .\shop\models.py:30
+#: .\shop\models.py:31
 msgid "orders"
 msgstr "заказы"
 
@@ -170,3 +199,9 @@ msgstr "Корзина"
 #: .\shop\templates\shop\home.html:6
 msgid "Check out our pizzas! "
 msgstr "Зацените наши пиццы!"
+
+#~ msgid "phone"
+#~ msgstr "телефон"
+
+#~ msgid "name"
+#~ msgstr "имя"

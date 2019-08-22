@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
+from .models import PromoCodeGroup
 
 
 from django.db import models
@@ -43,6 +44,11 @@ class PizzaAdmin(admin.ModelAdmin):
     inlines = (SizeInline,)
 
 
+class PromoCodeBatchAdmin(admin.ModelAdmin):
+    model = PromoCodeGroup
+
+
 admin.site.register(Category)
 admin.site.register(Pizza, PizzaAdmin)
+# admin.site.register(PromoCodeGroups)
 admin.site.unregister(Group)

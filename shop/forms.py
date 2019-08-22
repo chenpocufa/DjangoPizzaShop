@@ -7,7 +7,7 @@ import string
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['phone', 'name', 'delivery_date', 'delivery_time']
+        fields = ['phone', 'name', 'delivery_date', 'delivery_time', 'address']
 
     def clean(self):
         phone = self.cleaned_data.get('phone')

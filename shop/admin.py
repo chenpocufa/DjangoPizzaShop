@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
-from .models import OrderItem, Order
+from .models import OrderItem, Order, PageText, PageTextGroup
 from django.utils.translation import gettext_lazy as _
 
 
@@ -34,13 +34,22 @@ class OrdersAdmin(admin.ModelAdmin):
     exclude = ('user',)
     inlines = (OrderItemInline,)
 
-    # def _total_price(self):
-    #     return sum([item.price for item in self.orderitem_set.all()])
-
     def total_price(self):
         return sum([item.price for item in self.orderitem_set.all()])
 
     total_price.short_description = _('Total price')
 
 
+class PageTextInline(admin.TabularInline):
+    model = PageText
+    list_display = ('page_name',)
+
+
+class PageTextAdmin(admin.ModelAdmin):
+    model = PageTextGroup
+    list_display = ('page_name', 'id')
+    inlines = (PageTextInline,)
+
+
 admin.site.register(Order, OrdersAdmin)
+admin.site.register(PageTextGroup, PageTextAdmin)

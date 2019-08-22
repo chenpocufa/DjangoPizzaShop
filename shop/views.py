@@ -16,7 +16,8 @@ from .forms import OrderForm
 from catalog.models import Pizza
 from accounts.models import User
 from accounts.forms import UserCreationForm
-from shop.models import Order
+from .models import Order
+from .models import PageText
 
 
 def home(request):
@@ -36,7 +37,14 @@ def about(request):
     About page view.
     """
     template_name = 'shop/about.html'
-    return render(request, template_name)
+    texts = PageText.objects.filter(group=1)
+    context = {'page_name': 'about'}
+    text_id = 0
+    for text in texts:
+        text_id += 1
+        context[f"text_{text_id}"] = text.text
+    print(context)
+    return render(request, template_name, context)
 
 
 def cart(request):
