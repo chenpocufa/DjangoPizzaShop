@@ -43,6 +43,8 @@ class OrdersAdmin(admin.ModelAdmin):
 class PageTextInline(admin.TabularInline):
     model = PageText
     list_display = ('page_name',)
+    extra = 0
+    min_num = 2
 
 
 class PageTextAdmin(admin.ModelAdmin):

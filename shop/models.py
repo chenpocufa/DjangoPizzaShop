@@ -60,8 +60,8 @@ class PageTextGroup(models.Model):
 
 
 class PageText(models.Model):
-    text = models.TextField(max_length=100)
-    group = models.ForeignKey(PageTextGroup, on_delete=models.CASCADE, related_name='texts')
+    text = models.TextField(max_length=255)
+    group = models.ForeignKey(PageTextGroup, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.text}, {self.group}"
+        return f"Page text"
