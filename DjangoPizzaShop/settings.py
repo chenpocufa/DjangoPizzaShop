@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'catalog',
     'shop',
     'accounts.apps.UsersConfig',
+    'timetable',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

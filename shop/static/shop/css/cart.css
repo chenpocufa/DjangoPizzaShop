@@ -1,0 +1,46 @@
+.btn-small{
+    font-weight: bold;
+    padding: 0 0 10px 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: #ff5500;
+    border: 1px solid #ffbc80;
+    background-color: white;
+    border-radius: 0.45rem;
+}
+.btn-small:hover{
+    font-weight: bolder;
+    color: #7f2e00;
+    border-color: #ff5500;
+}
+.btn-small:active{
+    font-weight: bolder;
+    color: #7f2e00;
+    border-color: #ff5500;
+}
+
+
+.confirm-order {
+    padding: 5px 5px;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #ff5500;
+    border-color: rgba(255, 85, 0, 0.99);
+    cursor: pointer;
+}
+.confirm-order href{
+    padding: 5px 5px;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #ff5500;
+    border-color: rgba(255, 85, 0, 0.99);
+    cursor: pointer;
+}
+
+.small-Img{
+    outline: none;
+    height: 4rem;
+}

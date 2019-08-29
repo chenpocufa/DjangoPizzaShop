@@ -3,6 +3,7 @@ Catalogue models.
 """
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
+from django.utils.timezone import localtime, now
 
 
 class Category(models.Model):
@@ -61,3 +62,19 @@ class Size(models.Model):
 
     def __str__(self):
         return f"Size"
+
+
+class PromoCodeGroup(models.Model):
+    name = models.CharField(max_length=10, verbose_name=_('Name'))
+    disc_percent = models.IntegerField(verbose_name=_('Discount percent'), blank=True, null=True)
+    disc_value = models.IntegerField(verbose_name=_('Discount value'), blank=True, null=True)
+    start_date = models.DateField(verbose_name=_('Start date'), default=now)
+    expiration_date = models.DateField(verbose_name=_('Expiration date'), blank=True, null=True, default=None)
+
+    class Meta:
+        verbose_name_plural = _('Promo code groups')
+
+
+class PromoCode(models.Model):
+    code = models.CharField(max_length=10, verbose_name=_('Code'))
+    group = models.ForeignKey(PromoCodeGroup, on_delete=models.CASCADE, related_name='codes')

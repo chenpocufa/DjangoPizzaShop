@@ -16,7 +16,9 @@ from .forms import OrderForm
 from catalog.models import Pizza
 from accounts.models import User
 from accounts.forms import UserCreationForm
-from shop.models import Order
+from .models import Order
+from .models import PageTextGroup
+from timetable.models import Date
 
 
 def home(request):
@@ -36,7 +38,11 @@ def about(request):
     About page view.
     """
     template_name = 'shop/about.html'
-    return render(request, template_name)
+    path = request.path.strip('/')
+    text_group = PageTextGroup.objects.filter(page_name=path).first()
+    variables = [(text.text_name, text.text) for text in text_group.texts.all()]
+    context = {'text': text_group, **dict(variables)}
+    return render(request, template_name, context)
 
 
 def cart(request):
@@ -44,7 +50,11 @@ def cart(request):
     Cart page view.
     """
     template_name = 'shop/cart.html'
-    return render(request, template_name)
+    pizzas = Pizza.objects.all()
+    context = {
+        'pizzas': pizzas
+    }
+    return render(request, template_name, context)
 
 
 def profile(request):
@@ -119,3 +129,15 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'shop/registration.html', {'form': form})
+
+
+def timetable(request):
+    """
+    Timetable page view.
+    """
+    template_name = 'shop/timetable.html'
+    dates = Date.objects.all()
+    context = {
+        'dates': dates
+    }
+    return render(request, template_name, context)

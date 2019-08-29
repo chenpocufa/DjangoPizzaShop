@@ -1,7 +1,12 @@
+import re
+
 from django.contrib import admin
 from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
-from .models import OrderItem, Order
 from django.utils.translation import gettext_lazy as _
+from django.forms import BaseInlineFormSet
+from django.core.exceptions import ValidationError
+
+from .models import OrderItem, Order, PageText, PageTextGroup
 
 
 class OrderItemInline(admin.TabularInline):
@@ -30,12 +35,9 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'name', 'total_price')
+    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'name')
     exclude = ('user',)
     inlines = (OrderItemInline,)
-
-    # def _total_price(self):
-    #     return sum([item.price for item in self.orderitem_set.all()])
 
     def total_price(self):
         return sum([item.price for item in self.orderitem_set.all()])
@@ -43,4 +45,30 @@ class OrdersAdmin(admin.ModelAdmin):
     total_price.short_description = _('Total price')
 
 
+class PageTextFormset(BaseInlineFormSet):
+    def clean(self):
+        super(PageTextFormset, self).clean()
+        names = [item['text_name'] for item in self.cleaned_data]
+        if len(names) != len(set(names)):
+            raise ValidationError(_('Text names must be unique'))
+        for name in names:
+            if not re.match(r"^[a-z0-9_]+$", name):
+                raise ValidationError(_('Text name must consist of small letters and digits'))
+
+
+class PageTextInline(admin.TabularInline):
+    model = PageText
+    formset = PageTextFormset
+    list_display = ('page_name',)
+    extra = 0
+    min_num = 2
+
+
+class PageTextAdmin(admin.ModelAdmin):
+    model = PageTextGroup
+    list_display = ('page_name', 'id')
+    inlines = (PageTextInline,)
+
+
 admin.site.register(Order, OrdersAdmin)
+admin.site.register(PageTextGroup, PageTextAdmin)
