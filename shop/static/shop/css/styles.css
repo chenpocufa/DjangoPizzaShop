@@ -6,35 +6,7 @@ body{
 .all-body{
     overflow: inherit!important;
 }
-button.focus {
-    padding: 0;
-    border: none;
-    font: inherit;
-    color: inherit;
-    background-color: transparent;
-    cursor: pointer;
-}
-/* Style the buttons */
 
-
-/* Add a light background on mouse-over */
-
-/* Add a dark background to the active button */
-
-
-button {
-    border-radius: 0.65rem;
-    padding: 0;
-    border: none;
-    font: inherit;
-    color: inherit;
-    background-color: transparent;
-    cursor: pointer;
-}
-button.active{
-    font-weight: 700;
-    color: #7f2e00!important;
-}
 
 .page-footer img{
     max-width: 7rem;
@@ -62,7 +34,7 @@ button.active{
     border-radius: 1px;
 
     /* размер строится из текста и отступов (без width/height) */
-    padding: 0.5em 1em;
+    padding: 0!important;
 
     /* убедитесь, что достаточно контраста! */
     color: #ff5500;
@@ -514,7 +486,7 @@ button.active{
 }
 .btn-small{
     font-weight: bold;
-    padding: 0 0 10px 0;
+    padding: 0 0 10px 0!important;
     width: 30px;
     height: 30px;
     text-align: center;

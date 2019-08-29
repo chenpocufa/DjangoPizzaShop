@@ -156,23 +156,23 @@ function displayCart() {
     var cartArray = shoppingCart.listCart();
     var output = "";
     for(var i in cartArray) {
-        output += "<tr>"
-            + "<td><img class=\"rounded mx-auto d-block small-Img\" src=" + cartArray[i].image + "></td>"
-            + "<td>" + cartArray[i].name + "</td>"
-            + "<td>" + cartArray[i].size + "</td>"
-            + "<td>(" + cartArray[i].price + ")</td>"
-            + "<td><div class='input-group'><button class='minus-item btn btn-small'" +
-            " data-id=" + cartArray[i].id + " data-size=" + cart[i].size + ">-</button>"
+        output += "<tr class='cart-row'>"
+            + "<td class='align-middle'><img class=\"rounded mx-auto d-block small-Img\" src=" + cartArray[i].image + "></td>"
+            + "<td class='align-middle'><div><h5>" + cartArray[i].name + "</h5><p class='font-italic'>" + cartArray[i].size + "</p></div></td>"
+            + "<td class='align-middle'>" + cartArray[i].price + "</td>"
+            + "<td class='align-middle'><div class='input-group'><span class='minus-item btn btn-small font-weight-bold'" +
+            " data-id=" + cartArray[i].id + " data-size=" + cart[i].size + ">-</span>"
             + "<span type='number' " +
-            "class='item-count' data-id='" + cartArray[i].id + "'>" + cartArray[i].quantity + "</span>"
-            + "<button " +
-            "class='plus-item btn btn-small input-group-addon' data-id=" + cartArray[i].id + "" +
-            " data-size=" + cartArray[i].size + ">+</button></div></td>"
-            + "<td><button class='delete-item btn btn-small' data-id=" + cartArray[i].id + "" +
+            "class='item-count font-weight-bold' data-id='" + cartArray[i].id + "'>" + cartArray[i].quantity + "</span>"
+            + "<span " +
+            "class='plus-item btn btn-small font-weight-bold' data-id=" + cartArray[i].id + "" +
+            " data-size=" + cartArray[i].size + ">+</span></div></td>"
+            + "<td class='align-middle font-weight-bold'>" + cartArray[i].total + "</td>"
+            + "<td class='align-middle'>\ BYN \</td>"
+            + "<td class='align-middle'><button class='delete-item' data-id=" + cartArray[i].id + "" +
             " data-size=" + cart[i].size + ">X</button></td>"
-            + " = "
-            + "<td>" + cartArray[i].total + "</td>"
-            +  "</tr>";
+            +  "</tr>"
+        ;
     }
     $('.show-cart').html(output);
     $('.total-cart').html(shoppingCart.totalCart());
