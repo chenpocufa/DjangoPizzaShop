@@ -15,13 +15,30 @@ def check_phone(sender, instance, **kwargs):
 
 
 class Order(models.Model):
+    DELIVERY_TIME_CHOICES = [
+        ('9-10', '9-10'),
+        ('10-11', '10-11'),
+        ('11-12', '11-12'),
+        ('12-13', '12-13'),
+        ('13-14', '13-14'),
+        ('14-15', '14-15'),
+        ('15-16', '15-16'),
+        ('16-17', '16-17'),
+        ('17-18', '17-18'),
+        ('18-18.30', '18-18.30'),
+    ]
     phone = models.CharField(max_length=100, verbose_name=_('Phone'))
     name = models.CharField(max_length=100, verbose_name=_('Name'))
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created at'))
     delivery_date = models.DateField(verbose_name=_('Delivery date'))
-    delivery_time = models.TimeField(verbose_name=_('Delivery time'))
+    delivery_time = models.CharField(
+        max_length=10,
+        choices=DELIVERY_TIME_CHOICES,
+        verbose_name=_('Delivery time')
+    )
     address = models.CharField(max_length=100, verbose_name=_('Address'))
+    comment = models.CharField(max_length=100, verbose_name=_('Comment'), blank=True, null=True)
 
     def __str__(self):
         return f""
@@ -54,6 +71,7 @@ class OrderItem(models.Model):
 
 class PageTextGroup(models.Model):
     page_name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
 
     def __str__(self):
         return self.page_name
@@ -61,7 +79,8 @@ class PageTextGroup(models.Model):
 
 class PageText(models.Model):
     text = models.TextField(max_length=255)
-    group = models.ForeignKey(PageTextGroup, on_delete=models.CASCADE)
+    text_name = models.CharField(max_length=100, blank=True, null=True)
+    group = models.ForeignKey(PageTextGroup, on_delete=models.CASCADE, related_name='texts')
 
     def __str__(self):
         return f"Page text"

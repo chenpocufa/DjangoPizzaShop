@@ -15,9 +15,9 @@ class Filter {
 
     processFilterClick(event) {
         // Get clicked element from `event.target` as `this` is overrided by Filter object
-        let clickedBtn = $(event.target);
-        let activeBtn = $(this.btnSelector + '.active');
-        let category = clickedBtn.attr(this.itemAttrName);
+        var clickedBtn = $(event.target);
+        var activeBtn = $(this.btnSelector + '.active');
+        var category = clickedBtn.attr(this.itemAttrName);
 
         activeBtn.removeClass('active');
         clickedBtn.addClass('active');
@@ -70,7 +70,9 @@ class Pizza {
         let plusButtons = pizza.find(this.plusBtn);
         let calculatorPrice = data.price;
 
-        if (Btn.is(".btn-secondary")){
+
+
+        if (Btn.is(".btn-size.notDisabled")){
             let sizeChoice = Btn.closest('.size');
             sizeChoice.find('button').removeClass('active');
             Btn.addClass('active');
@@ -78,6 +80,7 @@ class Pizza {
             priceArea.html(`${data.price}`);
             calculatorPrice = data.price * data.quantity;
             priceArea.html(`${calculatorPrice.toFixed(2)}`);
+//            console.log(Btn.data(), data,)
         }
 
         if (Btn.is(".btn-plus")){
@@ -105,7 +108,7 @@ class Pizza {
             let order = JSON.parse(localStorage.getItem('order'));
             let exist = $.grep(order, function(item, idx) {
 //                console.log(item, idx);
-                if (data.size === item.size, data.id === item.id) {
+                if (data.size === item.size && data.id === item.id) {
                     item.quantity += data.quantity;
                     return item;
                 }
@@ -119,6 +122,7 @@ class Pizza {
             quantityArea.html(`${data.quantity}`);
             priceArea.html(`${data.price}`);
         }
+        parseCart();
     }
 }
 

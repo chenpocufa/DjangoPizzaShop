@@ -1,16 +1,37 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% block content %}
+
+<div class="container mt-5">
+
     <h1>Order details:</h1>
+
     <div class="container">
         <form action="/order/" method="POST" id="order-form">
             {% csrf_token %}
-            {{ form.as_p }}
+            <div>
+                {{ form.first_name }}
+            </div>
+            <div>
+                {{ form.email }}
+            </div>
+            <div>
+                {{ form.password }}
+            </div>
+            <div>
+                {{ form.name }}
+            </div>
+            <div>
+                {{ form.as_p }}
+            </div>
+
             <div>
                 <button id="order-submit" class="btn btn-secondary" type="submit">Submit</button>
             </div>
         </form>
     </div>
+</div>
+
 {% endblock content %}
 {% block body_extra %}
     <script type="text/javascript" src="{% static 'shop/js/order.js'%}"></script>

@@ -6,9 +6,6 @@
         <h1>User profile</h1>
         <p>Phone: {{ user.phone }}</p>
         <p>Name: {{ user.first_name }}</p>
-        {% if user.email %}
-            <p>Email: {{ user.email }}</p>
-        {% endif %}
         <div class="spoiler">
             <input type="button" onclick="showSpoiler(this);" value="Change password"/>
             <div class="inner" style="display:none;">

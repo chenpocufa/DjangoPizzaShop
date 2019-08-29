@@ -1,17 +1,29 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% block content %}
+
+
+<div class="container mt-5">
     <h1>Your cart items:</h1>
-    <div class="container">
-        <table class="table" id="cartTable">
-            <tbody></tbody>
+
+    <div class="container ">
+        <table class="show-cart table">
+
         </table>
     </div>
-    <div class="totalPrice">Total price: </div>
-    <button class="btn btn-secondary confirm-order">
-        <a href="{% url 'shop-order' %}">Confirm</a>
-    </button>
+    <div>Total price: $<span class="total-cart"></span></div>
+    <a class="btn add-cart confirm-order" href="{% url 'shop-order' %}">
+        Confirm
+    </a>
+</div>
+
+
+</div>
+
+
+
 {% endblock content %}
 {% block body_extra %}
+    <link rel="stylesheet" href="{% static 'shop/css/cart.css' %}">
     <script type="text/javascript" src="{% static 'shop/js/cart.js'%}" defer='defer'></script>
 {% endblock body_extra %}

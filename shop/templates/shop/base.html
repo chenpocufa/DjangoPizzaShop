@@ -3,72 +3,295 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+<!--    <script src="https://kit.fontawesome.com/f5d7648fa8.js"></script>-->
+
+    <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
     {% block head_extra %}
     {% endblock head_extra %}
-
     <title>Django Pizza Shop</title>
-  </head>
+</head>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Django Pizza Shop</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link">{% trans English %}</a>
-          </li>
+<body>
+<div class="container all-body">
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'shop-about' %}">About</a>
-          </li>
 
-          <li id="cart" class="nav-item">
-            <a class="nav-link" href="{% url 'shop-cart' %}">{% trans 'Cart' %}</a>
-          </li>
+    <header>
 
-          {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'shop-profile' %}">Hi {{ user.first_name }}!</a>
-            </li>
+        <div class="row">
+            <div class="col-brand_Special small_Screen-hide">
+                <a class="brand-block" href="/">
+                    <div class="size-max_150">
+                        <img src="/media/images/logo.svg" class="" alt="...">
+                    </div>
+                </a>
+            </div>
+            <div class="f-auto navbar-margin_Left ">
+                <div class="row shadow-navbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="navbar-row_Custom">
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">(Log out)</a>
-            </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'shop-register' %}">Register</a>
-            </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">(Log in)</a>
-            </li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
+                            <div class="navbar-buttons_Custom" data-target="#navbarSupportedContent">
+                                <div class="row">
+                                    <div class="col-6 orders-custom_Cart">
+                                        {% if request.path == '/cart/' %}
+                                        <span>asdasdasd {{ request.path }}</span>
+                                        {% else %}
+                                        <span class="nav-item">
+                                        <a id="cart" class="nav-link cart flex-row mr-3 justify-content-around"
+                                           href="/cart">
+                                            <span class="pr-2">{% trans 'Cart' %}</span>
+                                            <span class="totalQuantity pl-2"> </span>
+                                        </a>
+                                    </span>
 
-  <body>
-    <div class="container">
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="col-6 orders-custom_Toggler">
+                                        <button class="navbar-toggler align_Text-right "
+                                                type="button"
+                                                data-toggle="collapse"
+                                                data-target="#navbarSupportedContent"
+                                                aria-controls="navbarSupportedContent"
+                                                aria-expanded="false"
+                                                aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navbar-content_Custom">
+                                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                                    <ul class="navbar-nav mr-auto bg-alert centering row justify-content-between">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link centering" href="{% url 'shop-about' %}">About</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link centering" href="{% url 'shop-cart' %}">cart</a>
+                                        </li>
+                                        {% if user.is_authenticated %}
+                                        <li class="nav-item">
+                                            <a class="nav-link centering" href="{% url 'shop-profile' %}">Hi {{
+                                                user.first_name }}!</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link centering" href="{% url 'logout' %}">(Log out)</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="nav-item">
+                                            <a class="nav-link centering" href="{% url 'shop-register' %}">Register</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link centering" href="{% url 'login' %}">(Log in)</a>
+                                        </li>
+                                        {% endif %}
+
+                                        <li class="centering">
+                                            <div class="container information_On-navbar centering">
+                                                <p>Доставка рожок в пирожок</p>
+                                                <p>8 800 302-00-60</p>
+                                            </div>
+
+                                        </li>
+                                        <li class="centering justify-end">
+                                            <tr>
+                                                <th><a href="/"><i class="fas fa-camera fa-sm"
+                                                                   aria-hidden="true"></i></a>
+                                                </th>
+                                                <th><a href="/"><i class="fas fa-camera fa-sm"
+                                                                   aria-hidden="true"></i></a>
+                                                </th>
+                                                <th><a href="/"><i class="fas fa-camera fa-sm"
+                                                                   aria-hidden="true"></i></a>
+                                                </th>
+                                                <th><a href="/"><i class="fas fa-camera fa-sm"
+                                                                   aria-hidden="true"></i></a>
+                                                </th>
+                                            </tr>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="row min-High-bar">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+    <div class="content-margin_Top min-vh-100">
         {% block content %}{% endblock %}
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small stylish-color-dark pt-4 mt-5 bg-dark text-footer">
+    <div class="container">
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-8 mx-auto">
+
+                    <!-- Content -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Реквизиты компании</h5>
+                    <p>Общество с ограниченной ответственностью «Печь Орин»</p>
+                    <p>220035, г. Минск, ул. Бачило, д. 18</p>
+                    <p>УНП 192810299</p>
+                    <p>Регистрационный номер в ТР РБ: 402852</p>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-4 mx-auto">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Контакты</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <p>Телефон: +375 33 6580220</p>
+                        </li>
+                        <li>
+                            <a>E-mail: </a> <a>info@pechorin.by</a>
+                        </li>
+                        <li>
+                            <a>Сайт: </a> <a href="http://pechorin.by/">pechorin.by</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <hr>
+
+        <div class="cards-images py-2 row justify-content-around align-items-center mx-5">
+            <a>
+                <img alt="visa" src="/media/hardcode/640px-MasterCard_logo.png">
+            </a>
+            <a>
+                <img alt="master" src="/media/hardcode/bel.png">
+            </a>
+            <a>
+                <img alt="bel" src="/media/hardcode/visa_PNG30.png">
+            </a>
+            <a>
+                <img alt="maestro" src="/media/hardcode/H_mastercard_b.png">
+            </a>
+            <a>
+                <img alt="halva" src="/media/hardcode/Maestro_logo.svg.png">
+            </a>
+            <a>
+                <img alt="halva" src="/media/hardcode/mtbank.png">
+            </a>
+
+            <a target="_blank" href="https://bepaid.by/">
+                <img alt="bepaid" src="/media/hardcode/bePaid.png">
+            </a>
+        </div>
+
+        <hr>
+
+        <!-- Social buttons -->
+        <ul class="list-unstyled list-inline text-center">
+            <li class="list-inline-item">
+                <a class="btn-floating btn-fb mx-1" href="/">
+                    <i class="fab fa-facebook-f"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-tw mx-1" href="/">
+                    <i class="fab fa-twitter"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-gplus mx-1" href="/">
+                    <i class="fab fa-google-plus-g"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-li mx-1" href="/">
+                    <i class="fab fa-linkedin-in"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-dribbble mx-1" href="/">
+                    <i class="fab fa-dribbble"> </i>
+                </a>
+            </li>
+        </ul>
+        <!-- Social buttons -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="http://pechorin.by/"> pechorin.by</a>
+        </div>
+        <!-- Copyright -->
+    </div>
+
+
+</footer>
+<!-- Footer -->
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!--    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer='defer'></script>-->
 <!--    Fall back to a local copy of jQuery if the CDN fails-->
-    <script type="text/javascript" src="{% static 'shop/js/jquery-3.4.1.min.js'%}" defer='defer'></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    {% block body_extra %}{% endblock body_extra %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="{% static 'shop/js/base.js' %}"></script>
+{% block body_extra %}{% endblock body_extra %}
 
-  </body>
+</body>
 </html>
