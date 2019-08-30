@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog',
-    'shop',
-    'accounts.apps.UsersConfig',
-    'timetable',
+    'catalog.apps.CatalogConfig',
+    'shop.apps.ShopConfig',
+    'accounts.apps.AccountsConfig',
+    'timetable.apps.TimetableConfig',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

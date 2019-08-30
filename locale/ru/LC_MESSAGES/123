@@ -184,9 +184,11 @@ msgid "Shop"
 msgstr "Магазин"
 
 #: .\shop\models.py:31
+#, fuzzy
+#| msgid "Order"
 msgctxt "Order|Name"
 msgid "Order"
-msgstr "Имя"
+msgstr "Заказ"
 
 #: .\shop\models.py:33
 msgid "Created at"
@@ -285,3 +287,7 @@ msgstr "Дата"
 msgctxt "Meta|Dates"
 msgid "Dates"
 msgstr "Даты"
+
+#~ msgctxt "Name|Order"
+#~ msgid "Order"
+#~ msgstr "Заказ"

@@ -28,7 +28,7 @@ class Order(models.Model):
         ('18-18.30', '18-18.30'),
     ]
     phone = models.CharField(max_length=100, verbose_name=_('Phone'))
-    name = models.CharField(max_length=100, verbose_name=_('Name'))
+    name = models.CharField(max_length=100, verbose_name=pgettext_lazy('Order|Name', 'Order'))
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created at'))
     delivery_date = models.DateField(verbose_name=_('Delivery date'))
@@ -44,8 +44,8 @@ class Order(models.Model):
         return f""
 
     class Meta:
-        verbose_name = _('order')
-        verbose_name_plural = _('orders')
+        verbose_name = _('Order')
+        verbose_name_plural = _('Orders')
 
     @property
     def total_price(self):
@@ -72,6 +72,10 @@ class OrderItem(models.Model):
 class PageTextGroup(models.Model):
     page_name = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = _('Page text')
+        verbose_name_plural = _('Page text')
 
     def __str__(self):
         return self.page_name

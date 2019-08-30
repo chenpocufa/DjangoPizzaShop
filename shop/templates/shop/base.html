@@ -22,21 +22,18 @@
     <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
     {% block head_extra %}
     {% endblock head_extra %}
-    <title>Django Pizza Shop</title>
+    <title>{% trans "Page title" %}</title>
 </head>
 
 
 <body>
 <div class="container all-body">
-
-
     <header>
-
         <div class="row">
             <div class="col-brand_Special small_Screen-hide">
                 <a class="brand-block" href="/">
                     <div class="size-max_150">
-                        <img src="/media/images/logo.svg" class="" alt="...">
+                        <img src="/media/images/logo.svg" class="" alt="logo">
                     </div>
                 </a>
             </div>
@@ -44,14 +41,16 @@
                 <div class="row shadow-navbar">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <div class="navbar-row_Custom">
-
-
                             <div class="navbar-buttons_Custom" data-target="#navbarSupportedContent">
                                 <div class="row">
                                     <div class="col-6 orders-custom_Cart">
+
                                         {% if request.path == '/cart/' %}
+
                                         <span>asdasdasd {{ request.path }}</span>
+
                                         {% else %}
+
                                         <span class="nav-item">
                                         <a id="cart" class="nav-link cart flex-row mr-3 justify-content-around"
                                            href="/cart">
