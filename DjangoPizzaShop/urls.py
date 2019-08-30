@@ -38,6 +38,6 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-admin.site.index_title = _('DjangoPizzaShop')
-admin.site.site_header = _('DjangoPizzaShop Administration')
-admin.site.site_title = _('Administration')
+admin.site.index_title = _('Admin index title')
+admin.site.site_header = _('Admin site header')
+admin.site.site_title = _('Admin title')
