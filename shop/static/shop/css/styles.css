@@ -234,7 +234,6 @@ body{
     .cards-images{
         flex-direction: column!important;
     }
-
     .shadow-navbar{
         width: 100%;
         box-shadow: 0 8px 10px rgba(159, 90, 12, 0.13);
@@ -276,6 +275,10 @@ body{
 }
 
 @media (max-width: 991px) {
+    .instruction{
+        flex-wrap: initial;
+        display: initial;
+    }
     body{
         width: 100%!important;
         margin: 0;
@@ -308,6 +311,8 @@ body{
     }
 
     .navbar-buttons_Custom {
+        justify-content: space-around;
+        margin-right: 1em;
         max-width: max-content;
         min-width: 180px;
     }
@@ -319,7 +324,11 @@ body{
         margin-left: 10px;
     }
     .orders-custom_Cart{
+        display: contents;
         order: 1;
+    }
+    .small-screen-orders-custom {
+        justify-content: space-around;
     }
     .orders-custom_Toggler{
         order: 2;

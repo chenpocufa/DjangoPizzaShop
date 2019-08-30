@@ -1,3 +1,8 @@
+@media (max-width: 400px) {
+.byn-text {
+    display: none;
+}
+}
 .input-group{
     flex-direction: column-reverse;
     align-content: center;

@@ -168,7 +168,7 @@ function displayCart() {
             "class='plus-item btn btn-small font-weight-bold' data-id=" + cartArray[i].id + "" +
             " data-size=" + cartArray[i].size + ">+</span></div></td>"
             + "<td class='align-middle font-weight-bold'>" + cartArray[i].total + "</td>"
-            + "<td class='align-middle'>\ BYN \</td>"
+            + "<td class='align-middle byn-text'>\ BYN \</td>"
             + "<td class='align-middle'><button class='delete-item' data-id=" + cartArray[i].id + "" +
             " data-size=" + cart[i].size + ">X</button></td>"
             +  "</tr>"
