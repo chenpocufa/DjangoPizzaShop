@@ -102,6 +102,7 @@ class Pizza {
         }
 
         if (Btn.is(".add-cart")){
+        debugger;
             if (localStorage.getItem('order') === null){
                 localStorage.setItem('order', JSON.stringify([]));
             }

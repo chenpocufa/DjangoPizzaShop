@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-29 21:45+0300\n"
+"POT-Creation-Date: 2019-08-31 01:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,7 +123,7 @@ msgstr "Отсутствует"
 msgid "Type"
 msgstr "Тип"
 
-#: .\catalog\models.py:61
+#: .\catalog\models.py:61 .\shop\models.py:78
 msgid "Price"
 msgstr "Цена"
 
@@ -131,7 +131,7 @@ msgstr "Цена"
 msgid "Active"
 msgstr "Основной"
 
-#: .\catalog\models.py:66
+#: .\catalog\models.py:66 .\shop\models.py:67
 msgid "Size"
 msgstr "Размер"
 
@@ -167,15 +167,11 @@ msgstr "Группы промо кодов"
 msgid "Code"
 msgstr "Код"
 
-#: .\shop\admin.py:45
-msgid "Total price"
-msgstr "Общая стоимость"
-
-#: .\shop\admin.py:53
+#: .\shop\admin.py:48
 msgid "Text names must be unique"
 msgstr "Текст должен быть уникален"
 
-#: .\shop\admin.py:56
+#: .\shop\admin.py:51
 msgid "Text name must consist of small letters and digits"
 msgstr "Текст должен состоять только из маленьких латинских букв и цифр"
 
@@ -208,23 +204,59 @@ msgstr "Адрес"
 msgid "Comment"
 msgstr "Комментарий"
 
-#: .\shop\models.py:47
+#: .\shop\models.py:51
+msgid "Total price"
+msgstr "Общая стоимость"
+
+#: .\shop\models.py:57 .\shop\models.py:65
 msgid "Order"
 msgstr "Заказ"
 
-#: .\shop\models.py:48
+#: .\shop\models.py:58
 msgid "Orders"
 msgstr "Заказы"
 
-#: .\shop\models.py:77 .\shop\models.py:78
-msgid "Page text"
-msgstr "Текст на страницах"
+#: .\shop\models.py:66 .\shop\models.py:84
+msgid "Item"
+msgstr "Товар"
 
-#: .\shop\templates\shop\base.html:25
+#: .\shop\models.py:68
+msgid "Quantity"
+msgstr "Количество"
+
+#: .\shop\models.py:85
+msgid "Items"
+msgstr "Товары"
+
+#: .\shop\models.py:89
+msgid "Page name"
+msgstr "Заголовок страницы"
+
+#: .\shop\models.py:90
+msgid "Title"
+msgstr "Название страницы"
+
+#: .\shop\models.py:96 .\shop\models.py:109
+msgid "Page text"
+msgstr "Текст HTML"
+
+#: .\shop\models.py:97 .\shop\models.py:110
+msgid "Page texts"
+msgstr "Текст HTML"
+
+#: .\shop\models.py:101
+msgid "Text"
+msgstr "Текст"
+
+#: .\shop\models.py:102
+msgid "Text name"
+msgstr "Название текста"
+
+#: .\shop\templates\shop\base.html:36
 msgid "Page title"
 msgstr "Пекарня Печорин"
 
-#: .\shop\templates\shop\base.html:57 .\shop\templates\shop\home.html:61
+#: .\shop\templates\shop\base.html:68 .\shop\templates\shop\home.html:61
 msgid "Cart"
 msgstr "Корзина"
 
