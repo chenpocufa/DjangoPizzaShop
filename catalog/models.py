@@ -31,6 +31,7 @@ class Pizza(models.Model):
     photo = models.ImageField(upload_to='images/', verbose_name=_('Image'))
 
     class Meta:
+        verbose_name = _("Pizza")
         verbose_name_plural = _("Pizzas")
 
     @property
@@ -54,14 +55,19 @@ class Size(models.Model):
     CHOICES = (
         ('small', _('Small')),
         ('large', _('Large')),
+        ('none', _('None')),
     )
     type = models.CharField(max_length=20, choices=CHOICES, verbose_name=_('Type'))
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name=_('Price'))
     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, related_name='sizes', verbose_name=_('Pizza'))
     active = models.BooleanField(default=False, verbose_name=_('Active'))
 
+    class Meta:
+        verbose_name = _("Size")
+        verbose_name_plural = _("Sizes")
+
     def __str__(self):
-        return f"Size"
+        return f""
 
 
 class PromoCodeGroup(models.Model):
