@@ -9,29 +9,27 @@
         <h3>Заполните данные</h3>
         <hr>
 
-        <form>
+        <form action="/order/" method="POST" id="order-form">
+            {{ scrf_token }}
             <div class="form">
-                <div class="col-md-4 mb-3">
-                    <label for="validationServer013">Телефон</label>
-                    <input type="number" class="form-control" id="validationServer013" placeholder="First name"
-                           value="Mark" required>
+                <div class="col-md-4 mb-3 form-group">
+                    <label for="phone">Телефон</label>
+                        {{ form.phone }}
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="validationServer023">Имя</label>
-                    <input type="text" class="form-control is-valid" id="validationServer023" placeholder="Last name"
-                           value="Otto" required>
+                    <label for="name">Имя</label>
+                        {{ form.name }}
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationServer033">Адрес</label>
-                    <input type="text" class="form-control is-valid" id="validationServer033" placeholder="City"
-                           required>
-                    <div class="invalid-feedback">
+                    <label for="address">Адрес</label>
+                    {{ form.address }}
+                    <div class="invalid-feedback">address
                         Please provide a valid city.
                     </div>
                 </div>
@@ -39,22 +37,18 @@
                     <div class="row">
 
                         <div class="col-md-6 mb-3">
-                            <label for="validationServer043">Время</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer043" placeholder="State"
-                                   required>
+                            <label for="time">Время</label>
+                            {{ form.delivery_time }}
                             <div class="invalid-feedback">
                                 Please provide a valid state.
                             </div>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="validationServer053">Дата</label>
+                            <label for="datetimepicker9">Дата</label>
                             <div>
                                 <div class="row">
-                                    <input type="text"
-                                           class="form-control is-invalid datetimepicker-input"
-                                           id="datetimepicker9" data-toggle="datetimepicker"
-                                           data-target="#datetimepicker9"/>
+                                    {{ form.delivery_date }}
                                 </div>
                                 <script type="text/javascript">
                                     $(function () {
@@ -75,59 +69,26 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="validationServer063">Комментарий</label>
-                    <textarea type="text" class="form-control" rows="5" id="validationServer063" placeholder=""></textarea>
+                    <label for="comment">Комментарий</label>
+                    {{ form.comment }}
                 </div>
             </div>
             <div class="form-group">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input is-invalid" id="invalidCheck33" required>
-                    <label class="custom-control-label" for="invalidCheck33">Agree to terms and conditions</label>
-                    <div class="invalid-feedback">
-                        You must agree before submitting.
-                    </div>
-                </div>
-                <div class="invalid-feedback">
-                    You must agree before submitting.
-                </div>
+                <button id="order-submit" class="btn confirm-order" type="submit">Подтвердить Заказ</button>
             </div>
         </form>
 
-        <hr>
-        <button class="btn confirm-order" type="submit">Подтвердить</button>
 
         <hr>
 
-        <div class="container mt-3">
-            <form action="/order/" method="POST" id="order-form">
-                {% csrf_token %}
-                <div>
-                    {{ form.first_name }}
-                </div>
-                <div>
-                    {{ form.email }}
-                </div>
-                <div>
-                    {{ form.password }}
-                </div>
-                <div>
-                    {{ form.name }}
-                </div>
-                <div>
-                    {{ form.as_p }}
-                </div>
-
-                <div>
-                    <button id="order-submit" class="btn confirm-order" type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
 
     </div>
 
 
 <hr>
 
+
+</div>
 
 {% endblock content %}
 

@@ -1,23 +1,7 @@
-
-
-
-//$(function () {
-//    $('#order-submit').on('click', function(event){
-//        event.preventDefault();
-//        let order = localStorage.getItem('order');
-//        let form = new FormData(document.querySelector("#order-form"));
-//
-//        form.append("order", order);
-//
-//        $.ajax({
-//            url: "/order/",
-//            type: "POST",
-//            data: form,
-//            processData: false,  // tell jQuery not to process the data
-//            contentType: false   // tell jQuery not to set contentType
-//        });
-//    });
-//});
+$(document).ready(function(){
+    $('#birth-date').mask('00-00-0000');
+    $('#phone').mask('(00)000-00-00');
+});
 
 let submitBtn = document.getElementById('order-submit');
 submitBtn.addEventListener('click', function(event){
@@ -37,3 +21,9 @@ function postData(url = '', data = {}) {
     .then(localStorage.clear())
     .then(response => {window.location="/"});
 }
+
+
+
+
+
+

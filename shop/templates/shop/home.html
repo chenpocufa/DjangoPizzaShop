@@ -170,7 +170,11 @@
                                 class="btn btn-size {% if size.active %}active{% endif %}{% if size.price == 0 %}disabled{% endif %} {% if size.price > 0 %}notDisabled{% endif %}"
                                 data-size="{{ size.type }}"
                                 data-price="{{ size.price }}">
-                            {{ size.type }}
+                            {% if size.type == 'small' %}
+                            {% trans "Small" %}
+                            {% elif size.type == 'large' %}
+                            {% trans "Large" %}
+                            {% endif %}
                         </button>
                         {% endfor %}
                     </div>
