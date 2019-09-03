@@ -264,7 +264,6 @@ body{
 
     .navbar-buttons_Custom {
         width: auto;
-        display: flex;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         order: 1;
@@ -611,6 +610,7 @@ body{
 
 .minus-item{
     text-shadow:0px 0px 2px #ff5500;
+    color: #ff5500;
     border: none;
     font-weight: 800;
     font-size: larger;
@@ -625,6 +625,7 @@ body{
     text-align: center;
     margin-block-start: -7px;
     margin-block-end: 9px;
+    color: #ff5500;
     text-shadow:0px 0px 2px #ff5500;
     border: none;
     font-size: larger;
@@ -632,7 +633,14 @@ body{
     height: 1.3rem;
     cursor: pointer;
 }
-
+.plus-item:hover, .minus-item:hover{
+    text-shadow:0px 0px 4px #ff5500;
+    color: #7f2e00;
+}
+.plus-item:active, .minus-item:active{
+    text-shadow:0px 0px 1px #ff5500;
+    color: #7f2e00;
+}
 .btn-small:hover{
     font-weight: bolder;
     color: #7f2e00;
@@ -691,6 +699,20 @@ body{
 }
 
 .small-Img{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    overflow: hidden;
+    border-radius: 5%;
+    border: 1px solid #adb5bd;
+    cursor: pointer;
+    outline-offset: -20px;
+    outline: none;
+    width: 4rem;
+    height: 4rem;
+}
+.small-Img > img{
     outline: none;
     height: 4rem;
 }

@@ -93,9 +93,6 @@
                                         <li class="nav-item">
                                             <a class="nav-link centering" href="{% url 'shop-about' %}">About</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'shop-cart' %}">cart</a>
-                                        </li>
                                         {% if user.is_authenticated %}
                                         <li class="nav-item">
                                             <a class="nav-link centering" href="{% url 'shop-profile' %}">Hi {{
