@@ -80,7 +80,6 @@ class Pizza {
             priceArea.html(`${data.price}`);
             calculatorPrice = data.price * data.quantity;
             priceArea.html(`${calculatorPrice.toFixed(2)}`);
-//            console.log(Btn.data(), data,)
         }
 
         if (Btn.is(".btn-plus")){
@@ -102,7 +101,6 @@ class Pizza {
         }
 
         if (Btn.is(".add-cart")){
-        debugger;
             if (localStorage.getItem('order') === null){
                 localStorage.setItem('order', JSON.stringify([]));
             }
@@ -119,7 +117,7 @@ class Pizza {
             localStorage.setItem('order', JSON.stringify(order));
 
 //            reset quantity and price of selected pizza
-            data.quantity = 1
+            data.quantity = 1;
             quantityArea.html(`${data.quantity}`);
             priceArea.html(`${data.price}`);
         }

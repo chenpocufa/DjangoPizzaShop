@@ -90,6 +90,7 @@ def profile(request):
 def order(request):
     if request.method == 'POST':
         mutable_request_data = request.POST.copy()
+        print(mutable_request_data)
         order_items = json.loads(mutable_request_data.pop('order')[0])
         order_details = OrderForm(mutable_request_data)
 

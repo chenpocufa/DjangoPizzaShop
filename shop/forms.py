@@ -5,6 +5,15 @@ import string
 
 
 class OrderForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['phone'].widget.attrs.update({'class': 'form-control', 'type': 'number'})
+        self.fields['name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['delivery_date'].widget.attrs.update({'class': 'form-control'})
+        self.fields['delivery_time'].widget.attrs.update({'class': 'form-control'})
+        self.fields['address'].widget.attrs.update({'class': 'form-control'})
+        self.fields['comment'].widget.attrs.update({'class': 'form-control'})
+
     class Meta:
         model = Order
         fields = ['phone', 'name', 'delivery_date', 'delivery_time', 'address', 'comment']

@@ -163,10 +163,10 @@
                         <p class="card-text">{{ pizza.content }}</p>
 
                     </div>
+                    {% if pizza.sizes.all|length > 1 %}
 
                     <div class="size btn-group shadow-sm border-Usual_color row" role="group"
                          aria-label="Basic example">
-                        {% if pizza.sizes.all|length > 1 %}
                         {% for size in pizza.sizes.all %}
                         <button type="button"
                                 class="btn btn-size {% if size.active %}active{% endif %}{% if size.price == 0 %}disabled{% endif %} {% if size.price > 0 %}notDisabled{% endif %}"
@@ -175,8 +175,9 @@
                             {{ size.type }}
                         </button>
                         {% endfor %}
-                        {% endif %}
                     </div>
+
+                    {% endif %}
 
                     <div class="pizza_calculator-item table container">
                         <div class="calculator row" id="{{ pizza.id }}">

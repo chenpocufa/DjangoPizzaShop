@@ -58,12 +58,10 @@
 
                                         {% if request.path == '/cart/' %}
 
-                                        <p class=" row instruction"> 1 -- 2 -- 3</p>
-
                                         {% else %}
 
                                         <span class="nav-item">
-                                        <a id="cart" class="nav-link cart flex-row mr-3 justify-content-around"
+                                        <a id="cart" class="cart flex-row mr-3 justify-content-around"
                                            href="/cart">
                                             <span class="pr-2">{% trans 'Cart' %}</span>
                                             <span class="totalQuantity pl-2"> </span>
@@ -292,7 +290,7 @@
 <!--    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer='defer'></script>-->
 <!--    Fall back to a local copy of jQuery if the CDN fails-->
 
-<script src="{% static 'shop/js/base.js' %}"></script>
+<script type="text/javascript" src="{% static 'shop/js/base.js' %}"></script>
 {% block body_extra %}{% endblock body_extra %}
 
 </body>

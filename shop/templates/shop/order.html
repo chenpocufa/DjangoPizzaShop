@@ -4,127 +4,133 @@
 
 <div class="container mt-5">
 
-    <h3>Заполните данные</h3>
-    <hr>
+    <div class="container mt-5">
 
-    <form>
-        <div class="form">
-            <div class="col-md-4 mb-3">
-                <label for="validationServer013">Телефон</label>
-                <input type="text" class="form-control is-valid" id="validationServer013" placeholder="First name"
-                       value="Mark" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="validationServer023">Имя</label>
-                <input type="text" class="form-control is-valid" id="validationServer023" placeholder="Last name"
-                       value="Otto" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="validationServer033">Адрес</label>
-                <input type="text" class="form-control is-valid" id="validationServer033" placeholder="City"
-                       required>
-                <div class="invalid-feedback">
-                    Please provide a valid city.
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
+        <h3>Заполните данные</h3>
+        <hr>
 
-                    <div class="col-md-6 mb-3">
-                        <label for="validationServer043">Время</label>
-                        <input type="text" class="form-control is-invalid" id="validationServer043" placeholder="State"
-                               required>
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
+        <form>
+            <div class="form">
+                <div class="col-md-4 mb-3">
+                    <label for="validationServer013">Телефон</label>
+                    <input type="number" class="form-control" id="validationServer013" placeholder="First name"
+                           value="Mark" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="validationServer023">Имя</label>
+                    <input type="text" class="form-control is-valid" id="validationServer023" placeholder="Last name"
+                           value="Otto" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="validationServer033">Адрес</label>
+                    <input type="text" class="form-control is-valid" id="validationServer033" placeholder="City"
+                           required>
+                    <div class="invalid-feedback">
+                        Please provide a valid city.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <label for="validationServer043">Время</label>
+                            <input type="text" class="form-control is-invalid" id="validationServer043" placeholder="State"
+                                   required>
+                            <div class="invalid-feedback">
+                                Please provide a valid state.
+                            </div>
                         </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="validationServer053">Дата</label>
+                            <div>
+                                <div class="row">
+                                    <input type="text"
+                                           class="form-control is-invalid datetimepicker-input"
+                                           id="datetimepicker9" data-toggle="datetimepicker"
+                                           data-target="#datetimepicker9"/>
+                                </div>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#datetimepicker9').datetimepicker({
+                                            format: 'L'
+                                        });
+                                    });
+                                </script>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid state.
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label for="validationServer053">Дата</label>
-                        <div>
-                            <div class="row">
-                                <input type="text"
-                                       class="form-control is-invalid datetimepicker-input"
-                                       id="datetimepicker9" data-toggle="datetimepicker"
-                                       data-target="#datetimepicker9"/>
-                            </div>
-                            <script type="text/javascript">
-                                $(function () {
-                                    $('#datetimepicker9').datetimepicker({
-                                        format: 'L'
-                                    });
-                                });
-                            </script>
-                        </div>
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
-                        </div>
-
                 </div>
 
+                <div class="col-md-6 mb-3">
+                    <label for="validationServer063">Комментарий</label>
+                    <textarea type="text" class="form-control" rows="5" id="validationServer063" placeholder=""></textarea>
                 </div>
-
             </div>
-
-            <div class="col-md-6 mb-3">
-                <label for="validationServer063">Комментарий</label>
-                <textarea type="text" class="form-control" rows="5" id="validationServer063" placeholder=""></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input is-invalid" id="invalidCheck33" required>
-                <label class="custom-control-label" for="invalidCheck33">Agree to terms and conditions</label>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input is-invalid" id="invalidCheck33" required>
+                    <label class="custom-control-label" for="invalidCheck33">Agree to terms and conditions</label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
                 <div class="invalid-feedback">
                     You must agree before submitting.
                 </div>
             </div>
-            <div class="invalid-feedback">
-                You must agree before submitting.
-            </div>
-        </div>
-    </form>
-
-    <hr>
-    <button class="btn confirm-order" type="submit">Подтвердить</button>
-
-    <hr>
-
-    <div class="container mt-3">
-        <form action="/order/" method="POST" id="order-form">
-            {% csrf_token %}
-            <div>
-                {{ form.first_name }}
-            </div>
-            <div>
-                {{ form.email }}
-            </div>
-            <div>
-                {{ form.password }}
-            </div>
-            <div>
-                {{ form.name }}
-            </div>
-            <div>
-                {{ form.as_p }}
-            </div>
-
-            <div>
-                <button id="order-submit" class="btn confirm-order" type="submit">Submit</button>
-            </div>
         </form>
-    </div>
 
-</div>
+        <hr>
+        <button class="btn confirm-order" type="submit">Подтвердить</button>
+
+        <hr>
+
+        <div class="container mt-3">
+            <form action="/order/" method="POST" id="order-form">
+                {% csrf_token %}
+                <div>
+                    {{ form.first_name }}
+                </div>
+                <div>
+                    {{ form.email }}
+                </div>
+                <div>
+                    {{ form.password }}
+                </div>
+                <div>
+                    {{ form.name }}
+                </div>
+                <div>
+                    {{ form.as_p }}
+                </div>
+
+                <div>
+                    <button id="order-submit" class="btn confirm-order" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
 
 
 <hr>
 
 
 {% endblock content %}
+
+{% block head_extra %}
+    <script type="text/javascript" src="{% static 'shop/js/order.js'%}" defer='defer'></script>
+{% endblock head_extra %}
