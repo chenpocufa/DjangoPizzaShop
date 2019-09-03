@@ -33,24 +33,22 @@ $(document).ready(function(){
 
 function addThisOrder (){
     let order = localStorage.getItem('order');
+    alert(order);
     let form = new FormData(document.querySelector("#order-form"));
-    alert(form);
     form.append("order", order);
-    debugger;
+        debugger;
     postData("/order/", form);
 };
 //  'id': 'phone', , 'id': 'text', 'id': 'time', 'id': 'address', 'id': 'comment'
 
 function postData(url = '', data = {}) {
-    alert(data);
     return fetch(url, {
         method: 'POST',
         redirect: 'manual',
         body: data,
     })
-
         .then(localStorage.clear())
-        .then(response => {window.location="/"});
+       // .then(response => {window.location="/"});
 }
 
 
