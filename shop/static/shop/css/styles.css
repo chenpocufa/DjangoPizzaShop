@@ -5,14 +5,26 @@ body{
 body * {
     font-family: Vollkorn !important;
 }
-
+.mt-5{
+    margin-top: 5rem!important;
+}
+.text-al-web-center{
+    text-align: -webkit-center;
+}
+.text-al-justif{
+    text-align: justify;
+}
 .g-font {
     font-family: Pattaya !important;
 }
 .all-body{
     overflow: inherit!important;
 }
-
+.cart-row{text-align: -webkit-center;}
+.for-font_sht{
+    text-align: -webkit-center;
+    width: 5rem;
+}
 
 .page-footer img{
     max-width: 7rem;
@@ -690,6 +702,18 @@ body * {
     border-color: rgba(255, 159, 0, 0.99);
     cursor: pointer;
 }
+.confirm-order:hover {
+    display: block;
+    max-width: 6em;
+    min-width: min-content;
+    padding: 0.4rem 1rem!important;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: rgba(249, 249, 249, 0.73);
+    color: #ff9f00;
+    border-color: rgba(255, 159, 0, 0.99);
+    cursor: pointer;
+}
 .confirm-order href{
     padding: 5px 5px;
     font-weight: 600;
@@ -702,8 +726,8 @@ body * {
 
 .back-menu {
     background-color: rgba(255, 255, 255, 0.73);
-    color: #ff9f00;
-    border-color: rgba(255, 197, 156, 0.34);
+    color: #3f3f3f;
+    border-color: rgba(63, 63, 63, 0.34);
 }
 
 .small-Img{

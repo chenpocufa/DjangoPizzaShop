@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    <div class="container mt-5">
     {% if user.is_authenticated %}
         <h1>User profile</h1>
         <p>Phone: {{ user.phone }}</p>
@@ -25,6 +26,7 @@
     {% for order in orders %}
         <h6>Order {{ order.phone }}, sum: {{ order.total_price }}</h6>
     {% endfor %}
+    </div>
 {% endblock content %}
 
 {% block body_extra %}

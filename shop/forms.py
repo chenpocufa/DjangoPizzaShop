@@ -9,7 +9,7 @@ class OrderForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['phone'].widget.attrs.update({'class': 'form-control', 'type': 'phone', 'id': 'phone', 'placeholder': '(xx)xx-xx-xx'})
         self.fields['name'].widget.attrs.update({'class': 'form-control is-valid', 'type': 'text', 'id': 'text', 'placeholder': 'Имя'})
-        self.fields['delivery_date'].widget.attrs.update({'class': 'form-control datetimepicker-input', 'type': 'date', 'id': 'datetimepicker9', 'placeholder': 'Дата доставки', 'data-toggle': 'datetimepicker', 'data-target': '#datetimepicker9'})
+    #   self.fields['delivery_date'].widget.attrs.update({'class': 'form-control datetimepicker-input', 'type': 'text', 'id': 'datetimepicker9', 'placeholder': 'Дата доставки', 'data-toggle': 'datetimepicker', 'data-target': '#datetimepicker9'})
         self.fields['delivery_time'].widget.attrs.update({'class': 'form-control', 'type': '', 'id': 'time', 'placeholder': 'Время доставки'})
         self.fields['address'].widget.attrs.update({'class': 'form-control', 'type': 'text', 'id': 'address', 'placeholder': 'Адрес'})
         self.fields['comment'].widget.attrs.update({'class': 'form-control', 'type': 'text', 'rows': '5', 'id': 'comment', 'placeholder': 'Комментарий'})

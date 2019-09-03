@@ -7,41 +7,29 @@
     <div class="container mt-5">
 
         <h3>Заполните данные</h3>
+
         <hr>
 
         <form action="/order/" method="POST" id="order-form">
-            {{ scrf_token }}
+            {% csrf_token %}
             <div class="form">
                 <div class="col-md-4 mb-3 form-group">
                     <label for="phone">Телефон</label>
                         {{ form.phone }}
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="name">Имя</label>
                         {{ form.name }}
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="address">Адрес</label>
                     {{ form.address }}
-                    <div class="invalid-feedback">address
-                        Please provide a valid city.
-                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-
                         <div class="col-md-6 mb-3">
                             <label for="time">Время</label>
                             {{ form.delivery_time }}
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
-                            </div>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -50,44 +38,29 @@
                                 <div class="row">
                                     {{ form.delivery_date }}
                                 </div>
-                                <script type="text/javascript">
-                                    $(function () {
-                                        $('#datetimepicker9').datetimepicker({
-                                            format: 'L'
-                                        });
-                                    });
-                                </script>
+<!--                                <script type="text/javascript">-->
+<!--                                    $(function () {-->
+<!--                                        $('#datetimepicker9').datetimepicker({-->
+<!--                                            daysOfWeekDisabled: [0, 6],-->
+<!--                                            format: 'DD/MM/YYYY'-->
+<!--                                        });-->
+<!--                                    });-->
+<!--                                </script>-->
                             </div>
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
-                            </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="comment">Комментарий</label>
                     {{ form.comment }}
                 </div>
             </div>
             <div class="form-group">
-                <button id="order-submit" class="btn confirm-order" type="submit">Подтвердить Заказ</button>
+                <button class="btn order-submit" onclick="addThisOrder()" type="submit">Подтвердить Заказ</button>
             </div>
         </form>
-
-
         <hr>
-
-
     </div>
-
-
-<hr>
-
-
 </div>
 
 {% endblock content %}
