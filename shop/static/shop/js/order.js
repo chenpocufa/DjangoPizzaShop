@@ -31,15 +31,14 @@ $(document).ready(function(){
 //     }});
 
 
-function addThisOrder (){
+let submitBtn = document.getElementById('order-submit');
+submitBtn.addEventListener('click', function(event){
+    event.preventDefault();
     let order = localStorage.getItem('order');
-    alert(order);
     let form = new FormData(document.querySelector("#order-form"));
     form.append("order", order);
-        debugger;
     postData("/order/", form);
-};
-//  'id': 'phone', , 'id': 'text', 'id': 'time', 'id': 'address', 'id': 'comment'
+});
 
 function postData(url = '', data = {}) {
     return fetch(url, {
@@ -47,8 +46,8 @@ function postData(url = '', data = {}) {
         redirect: 'manual',
         body: data,
     })
-        .then(localStorage.clear())
-       // .then(response => {window.location="/"});
+    .then(localStorage.clear())
+    .then(response => {window.location="/"});
 }
 
 

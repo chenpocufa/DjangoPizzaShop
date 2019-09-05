@@ -5,18 +5,9 @@ import string
 
 
 class OrderForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['phone'].widget.attrs.update({'class': 'form-control', 'type': 'phone', 'placeholder': '(xx)xx-xx-xx'})
-        self.fields['name'].widget.attrs.update({'class': 'form-control is-valid', 'type': 'text', 'placeholder': 'Имя'})
-    #   self.fields['delivery_date'].widget.attrs.update({'class': 'form-control datetimepicker-input', 'type': 'text', 'id': 'datetimepicker9', 'placeholder': 'Дата доставки', 'data-toggle': 'datetimepicker', 'data-target': '#datetimepicker9'})
-        self.fields['delivery_time'].widget.attrs.update({'class': 'form-control', 'type': '', 'placeholder': 'Время доставки'})
-        self.fields['address'].widget.attrs.update({'class': 'form-control', 'type': 'text', 'placeholder': 'Адрес'})
-        self.fields['comment'].widget.attrs.update({'class': 'form-control', 'type': 'text', 'rows': '5', 'placeholder': 'Комментарий'})
-
     class Meta:
         model = Order
-        fields = ['phone', 'name', 'delivery_date', 'delivery_time', 'address', 'comment']
+        fields = ['phone', 'name', 'delivery_date', 'delivery_time']
 
     def clean(self):
         phone = self.cleaned_data.get('phone')

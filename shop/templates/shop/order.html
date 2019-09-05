@@ -1,70 +1,29 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% block content %}
-
-<div class="container mt-5">
-
-    <div class="container mt-5">
-
-        <h3>Заполните данные</h3>
-
-        <hr>
-
+    <h1>Order details:</h1>
+    <div class="container">
         <form action="/order/" method="POST" id="order-form">
             {% csrf_token %}
-            <div class="form">
-                <div class="col-md-4 mb-3 form-group">
-                    <label for="phone">Телефон</label>
-                        {{ form.phone }}
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="name">Имя</label>
-                        {{ form.name }}
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="address">Адрес</label>
-                    {{ form.address }}
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="time">Время</label>
-                            {{ form.delivery_time }}
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="datetimepicker9">Дата</label>
-                            <div>
-                                <div class="row">
-                                    {{ form.delivery_date }}
-                                </div>
-<!--                                <script type="text/javascript">-->
-<!--                                    $(function () {-->
-<!--                                        $('#datetimepicker9').datetimepicker({-->
-<!--                                            daysOfWeekDisabled: [0, 6],-->
-<!--                                            format: 'DD/MM/YYYY'-->
-<!--                                        });-->
-<!--                                    });-->
-<!--                                </script>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="comment">Комментарий</label>
-                    {{ form.comment }}
-                </div>
+            <div>
+            {{ form.phone }}
             </div>
-            <div class="form-group">
-                <button class="btn order-submit" onclick="addThisOrder()" type="">Подтвердить Заказ</button>
+            <div>
+            {{ form.name }}
+            </div>
+            <div>
+            {{ form.delivery_date }}
+            </div>
+            <div>
+            {{ form.delivery_time }}
+            </div>
+            <div>
+                <button id="order-submit" class="btn btn-secondary" type="submit">Submit</button>
             </div>
         </form>
-        <hr>
     </div>
-</div>
-
 {% endblock content %}
 
-{% block head_extra %}
-    <script type="text/javascript" src="{% static 'shop/js/order.js'%}" defer='defer'></script>
-{% endblock head_extra %}
+{% block body_extra %}
+    <script type="text/javascript" src="{% static 'shop/js/order.js'%}"></script>
+{% endblock body_extra %}
