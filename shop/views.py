@@ -88,9 +88,9 @@ def profile(request):
 
 
 def order(request):
+    form = OrderForm(request.user, request.POST)
     if request.method == 'POST':
         mutable_request_data = request.POST.copy()
-        print(mutable_request_data)
         order_items = json.loads(mutable_request_data.pop('order')[0])
         order_details = OrderForm(mutable_request_data)
 
@@ -114,7 +114,7 @@ def order(request):
         user = request.user
         form = OrderForm()
         if not user.is_anonymous and user.is_authenticated:
-            form = OrderForm(initial={'phone': user.phone, 'name': user.first_name})
+            form = OrderForm(initial={'phone': user.phone, 'first_name': user.first_name})
     return render(request, 'shop/order.html', {'form': form})
 
 

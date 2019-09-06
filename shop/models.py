@@ -28,14 +28,14 @@ class Order(models.Model):
         ('18-18.30', '18-18.30'),
     ]
     phone = models.CharField(max_length=100, verbose_name=_('Phone'))
-    name = models.CharField(max_length=100, verbose_name=pgettext_lazy('Order|Name', 'Order'))
+    first_name = models.CharField(max_length=100, verbose_name=pgettext_lazy('Order|Name', 'Order'))
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created at'))
     delivery_date = models.DateField(verbose_name=_('Delivery date'))
     delivery_time = models.CharField(
         max_length=10,
         choices=DELIVERY_TIME_CHOICES,
-        verbose_name=_('Delivery time')
+        verbose_name=_('Delivery time'),
     )
     address = models.CharField(max_length=100, verbose_name=_('Address'))
     comment = models.CharField(max_length=100, verbose_name=_('Comment'), blank=True, null=True)

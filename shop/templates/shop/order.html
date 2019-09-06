@@ -5,18 +5,7 @@
     <div class="container">
         <form action="/order/" method="POST" id="order-form">
             {% csrf_token %}
-            <div>
-            {{ form.phone }}
-            </div>
-            <div>
-            {{ form.name }}
-            </div>
-            <div>
-            {{ form.delivery_date }}
-            </div>
-            <div>
-            {{ form.delivery_time }}
-            </div>
+            {{ form.as_p }}
             <div>
                 <button id="order-submit" class="btn btn-secondary" type="submit">Submit</button>
             </div>
