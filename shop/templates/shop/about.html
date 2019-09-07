@@ -1,14 +1,168 @@
 {% extends "shop/base.html" %}
 {% block content %}
 
-<div class="container mt-5">
-    <h1>About page</h1>
-    <p>{{ text1 }}</p>
-    <P>asd</P>
-<div>
-    <button type="button" class="add-cart btn" autocomplete="on">
-        Добавить в корзину
-    </button>
+<div class="container">
+
+<div class="row">
+    <div class="carousel-item active">
+        <img src="/media/hardcode/slide1.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+            <h5 class="font-weight-bold" >Пекарня ПЕЧОРИН приветствует вас!</h5>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+    </div>
+</div>
+
+
+	<div class="container mt-4">
+		<div class="row justify-content-center">
+			<div class="col-xs-12 balloons ballons-center">
+				<div></div>
+				<div></div>
+			</div>
+
+			<h5 class="row main-row-title row-title-center text-warning font-weight-bold">
+				О нас
+			</h5>
+		</div>
+
+		<div class="row about-row">
+			<article class="col-lg-8 about-info">
+Пекарня Печорин предлагает Вам выпечку по оригинальным рецептам, основанных на классической славянской кухне. Тонкое, легкое тесто, много разнообразной начинки, это и есть настоящие, правильные пирожки. Мы предлагаем только свежую выпечку, Всё готовится из свежих, натуральных продуктов, и выпекается непосредственно перед доставкой.
+Вы можете самостоятельно собрать набор из нашего ассортимента для любого случая. Накрыть стол для друзей, коллег по работе, организовать фуршет, каждый найдет в нашем ассортименте пирог по своему вкусу.
+			</article>
+			<div class="col-lg-4">
+				<div class="flex">
+					<div class="flex about-mosaic">
+						<div class="">
+							<img src="/media/hardcode/about/7.jpg">
+						</div>
+						<div class="">
+							<img src="/media/hardcode/about/8.jpg">
+						</div>
+						<div class="">
+							<img src="/media/hardcode/about/10.jpg">
+						</div>
+						<div class="">
+							<img src="/media/hardcode/about/12.jpg">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row about-row">
+
+			<div class="col-md-5" style="height:500px;">
+				<img src="/media/hardcode/about/12.jpg">
+			</div>
+
+			<div class="col-md-7" style="padding-left: 60px;">
+
+				<div class="about-info-title" >
+					<img alt="" src="/media/hardcode/about-about.png"> О сервисе
+				</div>
+
+				<div class="about-info">
+					Мы осуществляем бесплатную доставку в пределах МКАД при заказе от 20руб.
+
+				</div>
+
+				<div class="about-info-title about-info-title-two" >
+					<img alt="" src="/media/hardcode/about-times.png"> Заказы
+				</div>
+
+				<article class="about-info">
+					Мы работаем с пн.-пт., выходной сб.-вс.
+Заказы сегодня на сегодня принимаются до 12-30, только по телефону. Заказы на последующие дни принимаются до 19-00.
+				</article>
+
+			</div>
+
+		</div>
+
+		<hr>
+
+		<div class="row about-row">
+
+			<div class="col-md-7">
+
+				<div class="about-info-title" >
+					<img alt="" src="/media/hardcode/about-pay.png"> Оплата
+				</div>
+
+				<article class="about-info">
+					Оплатить заказ можно банковской карточкой онлайн, прямо на нашем сайте. Либо оплатить наличными или карточкой, при получении заказа.
+				</article>
+
+			</div>
+
+			<div class="col-md-5" style="height:500px;">
+					<img src="/media/hardcode/about/12.jpg">
+			</div>
+
+		</div>
+
+		<div class="row about-row">
+
+			<div class="col-lg-6">
+				<div class="flex">
+					<div class="flex about-mosaic">
+						<div class="">
+							<img src="/media/hardcode/about/7.jpg">
+						</div>
+						<div class="">
+							<img src="/media/hardcode/about/8.jpg">
+						</div>
+						<div class="">
+							<img src="/media/hardcode/about/10.jpg">
+						</div>
+						<div class="">
+							<img src="/media/hardcode/about/12.jpg">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<!--			<div class="col-md-5 about-mosaic about-mosaic-left">-->
+
+<!--				<div class="col-md-6 col-sm-3 col-xs-6 about-mosaic-2-1">-->
+<!--					<img src="/media/hardcode/about/7.jpg">-->
+<!--				</div>-->
+<!--				<div class="col-md-6 col-sm-3 col-xs-6 about-mosaic-2-2">-->
+<!--					<img src="/media/hardcode/about/7.jpg">-->
+<!--				</div>-->
+<!--				<div class="col-md-6 col-sm-3 col-xs-6 about-mosaic-2-3">-->
+<!--					<img src="/media/hardcode/about/7.jpg">-->
+<!--				</div>-->
+<!--				<div class="col-md-6 col-sm-3 col-xs-6 about-mosaic-2-4">-->
+<!--					<img src="/media/hardcode/about/7.jpg">-->
+<!--				</div>-->
+
+<!--			</div>-->
+
+			<div class="col-lg-6">
+				<div class="about-info-title" >
+					<img alt="" src="/media/hardcode/about-delivery.png"> Доставка
+				</div>
+
+				<article class="about-info">
+				Доставка  осуществляется нашими курьерами с 9-00 до 18-30.
+				</article>
+
+				<div class="about-link">
+					<a href="./0">Посмотреть меню <i class="icon ion-arrow-right-c"></i></a>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+
+
 </div>
 
 </div>

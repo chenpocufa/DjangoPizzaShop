@@ -14,7 +14,6 @@ class OrderForm(forms.ModelForm):
         digits = set(string.digits)             # To validate phone
         first_name = self.cleaned_data.get('first_name')
         letters = set(string.ascii_letters)     # To validate name
-        address = self.cleaned_data.get('address')
         '''
         name validation
         '''
@@ -31,8 +30,3 @@ class OrderForm(forms.ModelForm):
         for i in phone:
             if i not in digits:
                 raise forms.ValidationError('Only digits in phone please')
-        '''
-        address validation
-        '''
-        if len(phone) < 5:
-            raise forms.ValidationError('Address is too short')

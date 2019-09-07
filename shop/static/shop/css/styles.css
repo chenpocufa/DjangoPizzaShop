@@ -748,5 +748,28 @@ body * {
     outline: none;
     height: 4rem;
 }
-
-
+.row-title-center {
+    -webkit-text-emphasis-style: circle;
+    font-size: 2rem;
+}
+.text-warning{
+    color: #ff6500!important;
+}
+.about-mosaic {
+    flex-wrap: wrap;
+    display: inline-flex;
+}
+.about-mosaic > div {
+    overflow: hidden;
+    border-radius: 5%;
+    border: 1px solid #adb5bd;
+    width: 8rem!important;
+    height: 8rem;
+    margin: 0.2rem;
+}
+.about-mosaic > div > img {
+    height: 9rem;
+}
+.about-row {
+    max-height: 20rem;
+}

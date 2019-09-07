@@ -63,8 +63,8 @@ def profile(request):
     """
     template_name = 'shop/profile.html'
 
-    if not User.is_authenticated:
-        return redirect(reverse('accounts:login'))
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
 
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -88,10 +88,14 @@ def profile(request):
 
 
 def order(request):
-    form = OrderForm(request.user, request.POST)
+    form = OrderForm(data=request.POST, initial={
+        'phone': request.user.phone,
+        'first_name': request.user.first_name
+    })
     if request.method == 'POST':
         mutable_request_data = request.POST.copy()
         order_items = json.loads(mutable_request_data.pop('order')[0])
+        print(order_items)
         order_details = OrderForm(mutable_request_data)
 
         if order_details.is_valid():
@@ -101,6 +105,7 @@ def order(request):
 
                 # create object OrderItem item for each item in the order
                 for order_item in order_items:
+                    print(order_item)
                     item = Pizza.objects.get(id=order_item['id'])
                     params = dict(
                         order=order_obj,
