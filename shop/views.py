@@ -89,8 +89,8 @@ def profile(request):
 
 def order(request):
     form = OrderForm(data=request.POST, initial={
-        'phone': request.user.phone,
-        'first_name': request.user.first_name
+        'phone': User.phone,
+        'first_name': User.first_name
     })
     if request.method == 'POST':
         mutable_request_data = request.POST.copy()

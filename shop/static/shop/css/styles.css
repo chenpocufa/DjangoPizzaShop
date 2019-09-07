@@ -758,18 +758,43 @@ body * {
 .about-mosaic {
     flex-wrap: wrap;
     display: inline-flex;
+    max-height: 28rem!important;
 }
 .about-mosaic > div {
     overflow: hidden;
     border-radius: 5%;
     border: 1px solid #adb5bd;
-    width: 8rem!important;
-    height: 8rem;
-    margin: 0.2rem;
+    width: 9rem!important;
+    height: 9rem;
+    margin: 0.3rem;
 }
 .about-mosaic > div > img {
     height: 9rem;
 }
 .about-row {
     max-height: 20rem;
+}
+
+.box-image {
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    height: 22rem;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #adb5bd;
+    border-radius: 6px;
+    outline: 22px solid white;
+    outline-color: rgba(255,255,255, 0.5);
+    outline-offset: -2px;
+}
+.about-info-title{
+    align-items: flex-end;
+    margin: 1rem;
+}
+.about-info-title > h4{
+    padding-left: 1rem;
+    color: #ff6500;
+    font-weight: 500;
 }
