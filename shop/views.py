@@ -40,8 +40,11 @@ def about(request):
     template_name = 'shop/about.html'
     path = request.path.strip('/')
     text_group = PageTextGroup.objects.filter(page_name=path).first()
-    variables = [(text.text_name, text.text) for text in text_group.texts.all()]
-    context = {'text': text_group, **dict(variables)}
+    if text_group is None:
+        context = {'text': text_group}
+    else:
+        variables = [(text.text_name, text.text) for text in text_group.texts.all()]
+        context = {'text': text_group, **dict(variables)}
     return render(request, template_name, context)
 
 

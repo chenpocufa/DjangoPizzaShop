@@ -92,40 +92,18 @@
                                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                                     <ul class="navbar-nav mr-auto bg-alert centering row justify-content-between">
 
-                                        {% if user.is_authenticated %}
-
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'shop-profile' %}">{% trans 'Hello, ' %}{{ user.first_name }}!</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'logout' %}">(Log out)</a>
-                                        </li>
-
-                                        {% else %}
-
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'shop-register' %}">Register</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'login' %}">(Log in)</a>
-                                        </li>
-
-                                        {% endif %}
-
                                         <li class="nav-item">
                                             <a class="nav-link" href="/">{% trans 'Menu' %}<span class="sr-only">(current)</span></a>
                                         </li>
+
                                         <li class="nav-item">
                                             <a class="nav-link centering" href="{% url 'shop-about' %}">{% trans 'About' %}</a>
                                         </li>
 
-
                                         <li class="centering">
                                             <div class="container information_On-navbar centering">
-                                                <p>Доставка рожок в пирожок</p>
-                                                <p>8 800 302-00-60</p>
+                                                <p>Заказ можно сделать по телефону:</p>
+                                                <p>+375 (33) 658-02-20</p>
                                             </div>
 
                                         </li>
@@ -247,23 +225,6 @@
                 <img alt="bepaid" src="/media/hardcode/bePaid.png">
             </a>
         </div>
-
-        <hr>
-
-        <!-- Social buttons -->
-        <ul class="list-unstyled list-inline text-center">
-            <li class="list-inline-item">
-                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#"><i class="icon-social-google" title="Google"></i></a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
-            </li>
-
-        </ul>
-        <!-- Social buttons -->
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2019 Copyright:

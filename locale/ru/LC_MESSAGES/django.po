@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-31 01:44+0300\n"
+"POT-Creation-Date: 2019-09-08 03:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,11 +107,11 @@ msgstr "Пирожок"
 msgid "Pizzas"
 msgstr "Пирожки"
 
-#: .\catalog\models.py:56
+#: .\catalog\models.py:56 .\shop\templates\shop\home.html:180
 msgid "Small"
 msgstr "Фуршетные (5 по 70 гр.)"
 
-#: .\catalog\models.py:57
+#: .\catalog\models.py:57 .\shop\templates\shop\home.html:182
 msgid "Large"
 msgstr "Сытный (135 гр.)"
 
@@ -252,13 +252,21 @@ msgstr "Текст"
 msgid "Text name"
 msgstr "Название текста"
 
-#: .\shop\templates\shop\base.html:36
+#: .\shop\templates\shop\base.html:40
 msgid "Page title"
 msgstr "Пекарня Печорин"
 
-#: .\shop\templates\shop\base.html:68 .\shop\templates\shop\home.html:61
+#: .\shop\templates\shop\base.html:70 .\shop\templates\shop\home.html:61
 msgid "Cart"
 msgstr "Корзина"
+
+#: .\shop\templates\shop\base.html:96
+msgid "Menu"
+msgstr "Меню"
+
+#: .\shop\templates\shop\base.html:100
+msgid "About"
+msgstr "О нас"
 
 #: .\timetable\apps.py:7
 msgid "Timetable"
