@@ -38,7 +38,7 @@ class Order(models.Model):
         verbose_name=_('Delivery time'),
     )
     address = models.CharField(max_length=100, verbose_name=_('Address'))
-    comment = models.CharField(max_length=100, verbose_name=_('Comment'), blank=True, null=True)
+    comment = models.TextField(max_length=100, verbose_name=_('Comment'), blank=True, null=True)
 
     @property
     def total_price(self):

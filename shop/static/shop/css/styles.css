@@ -714,6 +714,19 @@ body * {
     border-color: rgba(255, 159, 0, 0.99);
     cursor: pointer;
 }
+.confirm-order:disabled {
+    display: block;
+    max-width: 6em;
+    min-width: min-content;
+    padding: 0.4rem 1rem!important;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: rgba(249, 249, 249, 0.73);
+    color: #ff9f00;
+    border-color: rgba(255, 159, 0, 0.99);
+    cursor: auto;
+    text-shadow: none;
+}
 .confirm-order href{
     padding: 5px 5px;
     font-weight: 600;

@@ -91,15 +91,12 @@ def profile(request):
 
 
 def order(request):
-    form = OrderForm(data=request.POST, initial={
-        'phone': User.phone,
-        'first_name': User.first_name
-    })
+    form = OrderForm(data=request.POST)
     if request.method == 'POST':
         mutable_request_data = request.POST.copy()
         order_items = json.loads(mutable_request_data.pop('order')[0])
-        print(order_items)
         order_details = OrderForm(mutable_request_data)
+        print(mutable_request_data)
 
         if order_details.is_valid():
 
@@ -108,7 +105,6 @@ def order(request):
 
                 # create object OrderItem item for each item in the order
                 for order_item in order_items:
-                    print(order_item)
                     item = Pizza.objects.get(id=order_item['id'])
                     params = dict(
                         order=order_obj,
@@ -117,12 +113,8 @@ def order(request):
                         quantity=order_item['quantity'],
                     )
                     OrderItem.objects.create(**params)
-
     else:
-        user = request.user
         form = OrderForm()
-        if not user.is_anonymous and user.is_authenticated:
-            form = OrderForm(initial={'phone': user.phone, 'first_name': user.first_name})
     return render(request, 'shop/order.html', {'form': form})
 
 

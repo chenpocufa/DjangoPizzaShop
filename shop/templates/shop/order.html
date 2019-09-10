@@ -1,81 +1,73 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% block content %}
-<h1>Order details:</h1>
-<div class="container">
-    <form action="/order/" method="POST" id="order-form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div>
-            <button id="order-submit" class="btn btn-secondary" type="submit">Submit</button>
-        </div>
 
+<div class="container mt-5">
+    <h1>Order details:</h1>
+    <div class="container">
+        <form action="/order/" method="POST" id="order-form">
+            {% csrf_token %}
 
-    </form>
-</div>
-
-<hr>
-
-<form>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationServer013">First name</label>
-            <input type="text" class="form-control is-valid" id="validationServer013" placeholder="First name"
-                   value="Mark" required>
-            <div class="valid-feedback">
-                Looks good!
+            <div class="col-md-4 mb-3">
+                <label for="phone">Номер телефона</label>
+                {{ form.phone }}
+                <div class="invalid-feedback">
+                    Номер должен содержать 9 цифр!
+                </div>
             </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationServer023">Last name</label>
-            <input type="text" class="form-control is-valid" id="validationServer023" placeholder="Last name"
-                   value="Otto" required>
-            <div class="valid-feedback">
-                Looks good!
+            <div class="col-md-4 mb-3">
+                <label for="first_name">Имя</label>
+                {{ form.first_name }}
+                <div class="invalid-feedback">
+                    Минимум 3 символа
+                </div>
             </div>
-        </div>
-        <div class="col-md-4 mb-3">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col-md-6 mb-3">
-            <label for="datetimepicker6">Date</label>
-            <input type="text" class="form-control datetimepicker-input is-invalid" id="datetimepicker6"
-                   placeholder="Date" data-toggle="datetimepicker" data-target="#datetimepicker6"
-                   required>
-            <script type="text/javascript">
+            <div class="col-md-3 mb-3">
+                <label for="delivery_date">Дата доставки заказа</label>
+                {{ form.delivery_date }}
+                <script type="text/javascript">
             $(function () {
-                $('#datetimepicker6').datetimepicker({
+                $('#delivery_date').datetimepicker({
                     format: 'L',
                     daysOfWeekDisabled: [0, 6],
-                    format: 'DD/MM/YYYY',
-                    locale: 'ru-ru'
+                    format: 'YYYY-MM-DD',
+                    locale: 'ru'
                 });
             });
-            </script>
-            <div class="invalid-feedback">
-                Please provide a valid city.
-            </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="validationServer043">State</label>
-            <input type="text" class="form-control is-invalid" id="validationServer043" placeholder="State"
-                   required>
-            <div class="invalid-feedback">
-                Please provide a valid state.
-            </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="validationServer053">Zip</label>
-            <input type="text" class="form-control is-invalid" id="validationServer053" placeholder="Zip"
-                   required>
-            <div class="invalid-feedback">
-                Please provide a valid zip.
-            </div>
-        </div>
-    </div>
-</form>
 
+                </script>
+                <div class="invalid-feedback">
+                    Please provide a valid city.
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="delivery_time">Время доставки</label>
+                {{ form.delivery_time }}
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+
+            <div class="col-md-5 mb-3">
+                <label for="address">Адрес доставки</label>
+                {{ form.address }}
+                <div class="invalid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-5 mb-3">
+                <label for="comment">Комментарий</label>
+                {{ form.comment }}
+            </div>
+
+            <hr>
+
+            <div class="d-flex justify-content-end">
+                <button id="order-submit" class="btn confirm-order" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock content %}
 
 {% block body_extra %}
