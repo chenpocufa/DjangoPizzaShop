@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container mt-5">
-    <h1>Order details:</h1>
+    <h2>Подтвердить заказ</h2>
     <div class="container">
         <form action="/order/" method="POST" id="order-form">
             {% csrf_token %}
@@ -44,7 +44,7 @@
                 <label for="delivery_time">Время доставки</label>
                 {{ form.delivery_time }}
                 <div class="invalid-feedback">
-                    Please provide a valid zip.
+                    Выберите время доставки
                 </div>
             </div>
 
@@ -52,7 +52,7 @@
                 <label for="address">Адрес доставки</label>
                 {{ form.address }}
                 <div class="invalid-feedback">
-                    Looks good!
+                    Введите полный адрес
                 </div>
             </div>
             <div class="col-md-5 mb-3">
@@ -63,7 +63,7 @@
             <hr>
 
             <div class="d-flex justify-content-end">
-                <button id="order-submit" class="btn confirm-order" type="submit">Submit</button>
+                <button id="order-submit" class="btn confirm-order" type="submit">Заказать</button>
             </div>
         </form>
     </div>
