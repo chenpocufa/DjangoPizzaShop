@@ -16,23 +16,23 @@ def check_phone(sender, instance, **kwargs):
 
 class Order(models.Model):
     DELIVERY_TIME_CHOICES = [
-        ('09-10', '09-10'),
-        ('10-11', '10-11'),
-        ('11-12', '11-12'),
-        ('12-13', '12-13'),
-        ('13-14', '13-14'),
-        ('14-15', '14-15'),
-        ('15-16', '15-16'),
-        ('16-17', '16-17'),
-        ('17-18', '17-18'),
-        ('18-18.30', '18-18.30'),
+        (0, '09-10'),
+        (1, '10-11'),
+        (2, '11-12'),
+        (3, '12-13'),
+        (4, '13-14'),
+        (5, '14-15'),
+        (6, '15-16'),
+        (7, '16-17'),
+        (8, '17-18'),
+        (9, '18-18.30'),
     ]
     phone = models.CharField(max_length=100, verbose_name=_('Phone'))
     first_name = models.CharField(max_length=100, verbose_name=pgettext_lazy('Order|Name', 'Order'))
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created at'))
     delivery_date = models.DateField(verbose_name=_('Delivery date'))
-    delivery_time = models.CharField(
+    delivery_time = models.SmallIntegerField(
         max_length=10,
         choices=DELIVERY_TIME_CHOICES,
         verbose_name=_('Delivery time'),
@@ -40,15 +40,10 @@ class Order(models.Model):
     address = models.CharField(max_length=100, verbose_name=_('Address'))
     comment = models.TextField(max_length=100, verbose_name=_('Comment'), blank=True, null=True)
 
-    @property
     def total_price(self):
         return sum([item.price for item in self.orderitem_set.all()])
 
-    "Property admin panel translation"
-    def total_price_admin(self):
-        return self.total_price
-
-    total_price_admin.short_description = _('Total price')
+    total_price.short_description = _('Total price')
 
     def __str__(self):
         return f""

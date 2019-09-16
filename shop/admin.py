@@ -35,7 +35,7 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'first_name', 'total_price_admin')
+    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'first_name', 'total_price')
     exclude = ('user',)
     inlines = (OrderItemInline,)
 
@@ -56,7 +56,7 @@ class PageTextInline(admin.TabularInline):
     formset = PageTextFormset
     list_display = ('page_name',)
     extra = 0
-    min_num = 2
+    min_num = 1
 
 
 class PageTextAdmin(admin.ModelAdmin):

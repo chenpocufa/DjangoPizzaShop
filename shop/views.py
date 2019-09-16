@@ -96,7 +96,6 @@ def order(request):
         mutable_request_data = request.POST.copy()
         order_items = json.loads(mutable_request_data.pop('order')[0])
         order_details = OrderForm(mutable_request_data)
-        print(mutable_request_data)
 
         if order_details.is_valid():
 
