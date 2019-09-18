@@ -33,7 +33,6 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created at'))
     delivery_date = models.DateField(verbose_name=_('Delivery date'))
     delivery_time = models.SmallIntegerField(
-        max_length=10,
         choices=DELIVERY_TIME_CHOICES,
         verbose_name=_('Delivery time'),
     )

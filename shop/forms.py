@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput, DateField, IntegerField
+from django.forms import TextInput, DateInput, IntegerField
 
 from .models import Order
 import string
@@ -21,14 +21,14 @@ class OrderForm(forms.ModelForm):
             'oninput': 'validateName()',
             'onsubmit': 'return validationAll()',
             'placeholder': 'Имя'}))
-    # delivery_date = forms.DateField(widget=DateField(attrs={
-    #         'id': 'delivery_date',
-    #         'type': 'text',
-    #         'onchange': 'validateDate()',
-    #         'class': 'form-control datetimepicker-input',
-    #         'data-toggle': 'datetimepicker',
-    #         'data-target': '#delivery_date',
-    #         'placeholder': 'Выберите дату'}))
+    delivery_date = forms.DateField(widget=DateInput(attrs={
+            'id': 'delivery_date',
+            'type': 'text',
+            'onchange': 'validateDate()',
+            'class': 'form-control datetimepicker-input',
+            'data-toggle': 'datetimepicker',
+            'data-target': '#delivery_date',
+            'placeholder': 'Выберите дату'}))
     # delivery_time = forms.IntegerField(widget=IntegerField(attrs={
     #         'id': 'delivery_time',
     #         'onchange': 'validateTime()',
@@ -52,15 +52,6 @@ class OrderForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(OrderForm, self).__init__(*args, **kwargs)
-
-        self.fields['delivery_date'].widget.attrs.update({
-                'id': 'delivery_date',
-                'type': 'text',
-                'onchange': 'validateDate()',
-                'class': 'form-control datetimepicker-input',
-                'data-toggle': 'datetimepicker',
-                'data-target': '#delivery_date',
-                'placeholder': 'Выберите дату'})
         self.fields['delivery_time'].widget.attrs.update({
                 'id': 'delivery_time',
                 'onchange': 'validateTime()',
