@@ -24,7 +24,7 @@ class OrderInline(admin.TabularInline):
     formset = UserOrders
     extra = 0
     show_change_link = True
-    readonly_fields = ('created_at', 'name', 'delivery_date', 'delivery_time', 'total_price')
+    readonly_fields = ('created_at', 'first_name', 'delivery_date', 'delivery_time', 'total_price')
     exclude = ('phone',)
 
     def has_add_permission(self, request):

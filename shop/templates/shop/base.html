@@ -14,9 +14,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+
     <!-- Bootstrap JS -->
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -26,6 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
 
     <!--    Custom styles-->
+    <link href="https://fonts.googleapis.com/css?family=Pattaya|Vollkorn&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
 
     <!--    Custom styles and scripts from another pages-->
@@ -44,7 +48,7 @@
             <div class="col-brand_Special small_Screen-hide">
                 <a class="brand-block" href="/">
                     <div class="size-max_150">
-                        <img src="/media/images/logo.svg" class="" alt="logo">
+                        <img src="/media/hardcode/logo.svg" class="" alt="logo">
                     </div>
                 </a>
             </div>
@@ -58,17 +62,15 @@
 
                                         {% if request.path == '/cart/' %}
 
-                                        <p class=" row instruction"> 1 -- 2 -- 3</p>
-
                                         {% else %}
 
                                         <span class="nav-item">
-                                        <a id="cart" class="nav-link cart flex-row mr-3 justify-content-around"
-                                           href="/cart">
-                                            <span class="pr-2">{% trans 'Cart' %}</span>
-                                            <span class="totalQuantity pl-2"> </span>
-                                        </a>
-                                    </span>
+                                            <a id="cart" class="cart flex-row mr-3 justify-content-around"
+                                               href="/cart">
+                                                <span class="pr-2">{% trans 'Cart' %}</span>
+                                                <span class="totalQuantity pl-2"> </span>
+                                            </a>
+                                        </span>
 
                                         {% endif %}
 
@@ -89,38 +91,19 @@
                             <div class="navbar-content_Custom">
                                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                                     <ul class="navbar-nav mr-auto bg-alert centering row justify-content-between">
+
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'shop-about' %}">About</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'shop-cart' %}">cart</a>
-                                        </li>
-                                        {% if user.is_authenticated %}
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'shop-profile' %}">Hi {{
-                                                user.first_name }}!</a>
+                                            <a class="nav-link" href="/">{% trans 'Menu' %}<span class="sr-only">(current)</span></a>
                                         </li>
 
                                         <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'logout' %}">(Log out)</a>
+                                            <a class="nav-link centering" href="{% url 'shop-about' %}">{% trans 'About' %}</a>
                                         </li>
-                                        {% else %}
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'shop-register' %}">Register</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link centering" href="{% url 'login' %}">(Log in)</a>
-                                        </li>
-                                        {% endif %}
 
                                         <li class="centering">
                                             <div class="container information_On-navbar centering">
-                                                <p>Доставка рожок в пирожок</p>
-                                                <p>8 800 302-00-60</p>
+                                                <p>Заказ можно сделать по телефону:</p>
+                                                <p>+375 (33) 658-02-20</p>
                                             </div>
 
                                         </li>
@@ -243,38 +226,6 @@
             </a>
         </div>
 
-        <hr>
-
-        <!-- Social buttons -->
-        <ul class="list-unstyled list-inline text-center">
-            <li class="list-inline-item">
-                <a class="btn-floating btn-fb mx-1" href="/">
-                    <i class="fab fa-facebook-f"> </i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a class="btn-floating btn-tw mx-1" href="/">
-                    <i class="fab fa-twitter"> </i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a class="btn-floating btn-gplus mx-1" href="/">
-                    <i class="fab fa-google-plus-g"> </i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a class="btn-floating btn-li mx-1" href="/">
-                    <i class="fab fa-linkedin-in"> </i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a class="btn-floating btn-dribbble mx-1" href="/">
-                    <i class="fab fa-dribbble"> </i>
-                </a>
-            </li>
-        </ul>
-        <!-- Social buttons -->
-
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2019 Copyright:
             <a href="http://pechorin.by/"> pechorin.by</a>
@@ -292,7 +243,7 @@
 <!--    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer='defer'></script>-->
 <!--    Fall back to a local copy of jQuery if the CDN fails-->
 
-<script src="{% static 'shop/js/base.js' %}"></script>
+<script type="text/javascript" src="{% static 'shop/js/base.js' %}"></script>
 {% block body_extra %}{% endblock body_extra %}
 
 </body>

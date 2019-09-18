@@ -19,21 +19,21 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/media/images/slide1.png" class="d-block w-100" alt="...">
+                    <img src="/media/hardcode/slide1.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/media/images/slide1.png" class="d-block w-100" alt="...">
+                    <img src="/media/hardcode/slide1.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Second slide label</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/media/images/slide1.png" class="d-block w-100" alt="...">
+                    <img src="/media/hardcode/slide1.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -68,16 +68,22 @@
 <!-- Control buttons -->
 <div id="category-filter" class="container border-Custom_bottom margin-top mt-2">
     <div class="mr-3 ml-2">
-        <button class="btn active custom-btn_filter" filter="all"> Show all</button>
+        <button class="btn active custom-btn_filter" filter="all">Все</button>
     </div>
     <div class="mr-3 ml-2">
-        <button class="btn" filter="classic"> Classic</button>
+        <button class="btn" filter="мясные">Мясные</button>
     </div>
     <div class="mr-3 ml-2">
-        <button class="btn" filter="vegetarian"> Vegetarian</button>
+        <button class="btn" filter="овощные">Овощные</button>
     </div>
     <div class="mr-3 ml-2">
-        <button class="btn" filter="spicy"> Spicy</button>
+        <button class="btn" filter="сладкие">Сладкие</button>
+    </div>
+    <div class="mr-3 ml-2">
+        <button class="btn" filter="рыбные">Рыбные</button>
+    </div>
+    <div class="mr-3 ml-2">
+        <button class="btn" filter="наборы">Наборы</button>
     </div>
 
 </div>
@@ -109,8 +115,6 @@
                          aria-hidden="true" id="modal-{{ pizza.id }}"
                          data-id="{{ pizza.id }}"
                          data-name="{{ pizza.name }}"
-                         data-quantity="1"
-                         data-size="small"
                          data-dscription="{{ pizza.description }}"
                          data-price="{{ pizza.default_price }}">
                         <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
@@ -163,20 +167,25 @@
                         <p class="card-text">{{ pizza.content }}</p>
 
                     </div>
+                    {% if pizza.sizes.all|length > 1 %}
 
                     <div class="size btn-group shadow-sm border-Usual_color row" role="group"
                          aria-label="Basic example">
-                        {% if pizza.sizes.all|length > 1 %}
                         {% for size in pizza.sizes.all %}
                         <button type="button"
                                 class="btn btn-size {% if size.active %}active{% endif %}{% if size.price == 0 %}disabled{% endif %} {% if size.price > 0 %}notDisabled{% endif %}"
                                 data-size="{{ size.type }}"
                                 data-price="{{ size.price }}">
-                            {{ size.type }}
+                            {% if size.type == 'small' %}
+                            {% trans "Small" %}
+                            {% elif size.type == 'large' %}
+                            {% trans "Large" %}
+                            {% endif %}
                         </button>
                         {% endfor %}
-                        {% endif %}
                     </div>
+
+                    {% endif %}
 
                     <div class="pizza_calculator-item table container">
                         <div class="calculator row" id="{{ pizza.id }}">

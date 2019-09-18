@@ -12,7 +12,7 @@ from .models import OrderItem, Order, PageText, PageTextGroup
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     exclude = ('phone',)
-    readonly_fields = ('price',)
+    readonly_fields = ('price_admin',)
     extra = 0
 
     def formfield_for_dbfield(self, db_field, *args, **kwargs):
@@ -35,14 +35,9 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'name')
+    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'first_name', 'total_price')
     exclude = ('user',)
     inlines = (OrderItemInline,)
-
-    def total_price(self):
-        return sum([item.price for item in self.orderitem_set.all()])
-
-    total_price.short_description = _('Total price')
 
 
 class PageTextFormset(BaseInlineFormSet):
@@ -61,12 +56,12 @@ class PageTextInline(admin.TabularInline):
     formset = PageTextFormset
     list_display = ('page_name',)
     extra = 0
-    min_num = 2
+    min_num = 1
 
 
 class PageTextAdmin(admin.ModelAdmin):
     model = PageTextGroup
-    list_display = ('page_name', 'id')
+    list_display = ('title',)
     inlines = (PageTextInline,)
 
 

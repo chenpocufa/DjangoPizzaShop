@@ -1,34 +1,3 @@
-// $(function () {
-//     let order = JSON.parse(localStorage.getItem('order'))
-//         console.log(localStorage);
-// //        console.log(Object.keys(order).length);
-//     let totalPrice = 0;
-//     for (let i in order){
-//         let pizza = order[i];
-//         let pizzaPrice = pizza.quantity * pizza.price
-//         totalPrice = totalPrice + pizzaPrice
-//         $("table").append(
-//               "<tr>" +
-//                 `<td>${pizza.name}</td>` +
-//                 `<td>${pizza.size}</td>` +
-//                 `<td>${pizza.quantity}</td>` +
-//                 `<td>${pizzaPrice.toFixed(2)}</td>` +
-//               "</tr>"
-//         )};
-//     $('div .totalPrice').append(totalPrice.toFixed(2));
-//
-//    $(".confirm-order").click(function() {
-//        localStorage.setItem('total', totalPrice);
-//    });
-// });
-
-
-
-
-
-
-
-
 var shoppingCart = (function() {
     cart = [];
 
@@ -77,8 +46,8 @@ var shoppingCart = (function() {
         for(var item in cart) {
             if(cart[item].id === id && cart[item].size === size) {
                 cart[item].quantity --;
-                if(cart[item].quantity === 0) {
-                    cart.splice(item, 1);
+                if(cart[item].quantity <= 1) {
+                    cart[item].quantity = 1;
                 }
                 break;
             }
@@ -138,17 +107,6 @@ var shoppingCart = (function() {
         return cartCopy;
     }
 
-    // cart : Array
-    // Item : Object/Class
-    // addItemToCart : Function
-    // removeItemFromCart : Function
-    // removeItemFromCartAll : Function
-    // clearCart : Function
-    // countCart : Function
-    // totalCart : Function
-    // listCart : Function
-    // saveCart : Function
-    // loadCart : Function
     return obj;
 })();
 
@@ -157,18 +115,17 @@ function displayCart() {
     var output = "";
     for(var i in cartArray) {
         output += "<tr class='cart-row'>"
-            + "<td class='align-middle'><img class=\"rounded mx-auto d-block small-Img\" src=" + cartArray[i].image + "></td>"
-            + "<td class='align-middle'><div><h5>" + cartArray[i].name + "</h5><p class='font-italic'>" + cartArray[i].size + "</p></div></td>"
+            + "<td class='align-middle'><div class=\"small-Img\"><img src=" + cartArray[i].image + "></div></td>"
+            + "<td><div class='text-al-justif mt-3'><h5>" + cartArray[i].name + "</h5><p class='font-italic text-black-50'>" + cartArray[i].size + "</p></div></td>"
             + "<td class='align-middle'>" + cartArray[i].price + "</td>"
-            + "<td class='align-middle'><div class='input-group'><span class='minus-item btn btn-small font-weight-bold'" +
+            + "<td class='align-middle'><div class='input-group mr-3'><span class='minus-item font-weight-bold'" +
             " data-id=" + cartArray[i].id + " data-size=" + cart[i].size + ">-</span>"
             + "<span type='number' " +
             "class='item-count font-weight-bold' data-id='" + cartArray[i].id + "'>" + cartArray[i].quantity + "</span>"
             + "<span " +
-            "class='plus-item btn btn-small font-weight-bold' data-id=" + cartArray[i].id + "" +
+            "class='plus-item font-weight-bold' data-id=" + cartArray[i].id + "" +
             " data-size=" + cartArray[i].size + ">+</span></div></td>"
-            + "<td class='align-middle font-weight-bold'>" + cartArray[i].total + "</td>"
-            + "<td class='align-middle byn-text'>\ BYN \</td>"
+            + "<td class='align-middle font-weight-bold for-font_sht'>" + cartArray[i].total + "</td>"
             + "<td class='align-middle'><button class='delete-item' data-id=" + cartArray[i].id + "" +
             " data-size=" + cart[i].size + ">X</button></td>"
             +  "</tr>"

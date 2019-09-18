@@ -40,8 +40,11 @@ def about(request):
     template_name = 'shop/about.html'
     path = request.path.strip('/')
     text_group = PageTextGroup.objects.filter(page_name=path).first()
-    variables = [(text.text_name, text.text) for text in text_group.texts.all()]
-    context = {'text': text_group, **dict(variables)}
+    if text_group is None:
+        context = {'text': text_group}
+    else:
+        variables = [(text.text_name, text.text) for text in text_group.texts.all()]
+        context = {'text': text_group, **dict(variables)}
     return render(request, template_name, context)
 
 
@@ -63,8 +66,8 @@ def profile(request):
     """
     template_name = 'shop/profile.html'
 
-    if not User.is_authenticated:
-        return redirect(reverse('accounts:login'))
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
 
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -88,6 +91,7 @@ def profile(request):
 
 
 def order(request):
+    form = OrderForm(data=request.POST)
     if request.method == 'POST':
         mutable_request_data = request.POST.copy()
         order_items = json.loads(mutable_request_data.pop('order')[0])
@@ -108,12 +112,8 @@ def order(request):
                         quantity=order_item['quantity'],
                     )
                     OrderItem.objects.create(**params)
-
     else:
-        user = request.user
         form = OrderForm()
-        if not user.is_anonymous and user.is_authenticated:
-            form = OrderForm(initial={'phone': user.phone, 'name': user.first_name})
     return render(request, 'shop/order.html', {'form': form})
 
 
