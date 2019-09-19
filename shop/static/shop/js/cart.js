@@ -134,6 +134,7 @@ function displayCart() {
     $('.show-cart').html(output);
     $('.total-cart').html(shoppingCart.totalCart());
     $('.total-count').html(shoppingCart.totalCount());
+
 }
 
 // Delete item button
@@ -165,5 +166,11 @@ displayCart();
 
 $(".confirm-order").click(function() {
     var totalPrice = shoppingCart.totalCart();
-    localStorage.setItem('total', totalPrice.toFixed(2));
+        if (totalPrice <= 15) {
+            document.getElementById("alert-message").style.display = 'block';
+        } else {
+            localStorage.setItem('total', totalPrice.toFixed(2));
+            window.location="/order"
+        }
+
 });

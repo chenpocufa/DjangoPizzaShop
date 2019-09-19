@@ -811,3 +811,6 @@ body * {
     color: #ff6500;
     font-weight: 500;
 }
+.text-danger {
+    display: none;
+}

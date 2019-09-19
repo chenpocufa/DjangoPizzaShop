@@ -25,6 +25,7 @@ class OrderForm(forms.ModelForm):
             'id': 'delivery_date',
             'type': 'text',
             'onchange': 'validateDate()',
+            'required pattern': '[0-9_-]*',
             'class': 'form-control datetimepicker-input',
             'data-toggle': 'datetimepicker',
             'data-target': '#delivery_date',
