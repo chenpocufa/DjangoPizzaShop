@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
+from django.conf.global_settings import DATABASES
+
 from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -84,23 +87,8 @@ WSGI_APPLICATION = 'DjangoPizzaShop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DjangoPizzaShopDB',
-        'USER': 'postgres',
-        'PASSWORD': '1234qwer',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+DATABASES['default'] = dj_database_url.config(
+    default=os.environ.get('DJANGO_DB'))
 
 
 # Password validation
