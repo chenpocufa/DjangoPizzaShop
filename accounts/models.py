@@ -56,7 +56,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=100, unique=True, verbose_name=_('Phone'))
     username = models.CharField(max_length=150, unique=False, blank=True, null=True)
     first_name = models.CharField(max_length=30, verbose_name=pgettext_lazy('User|Name', 'Name'))
-    language = models.CharField(max_length=20, choices=settings.LANGUAGES, verbose_name=_('Language'))
+    language = models.CharField(max_length=20, choices=settings.LANGUAGES, default='ru', verbose_name=_('Language'))
 
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name']
