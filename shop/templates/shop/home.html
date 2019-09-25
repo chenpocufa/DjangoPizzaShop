@@ -67,7 +67,8 @@
 
 <!-- Control buttons -->
 <div id="category-filter" class="container border-Custom_bottom margin-top mt-2">
-    <div class="mr-3 ml-2">
+    <div class="row">
+         <div class="mr-3 ml-2">
         <button class="btn active custom-btn_filter" filter="all">Все</button>
     </div>
     <div class="mr-3 ml-2">
@@ -79,11 +80,15 @@
     <div class="mr-3 ml-2">
         <button class="btn" filter="сладкие">Сладкие</button>
     </div>
-    <div class="mr-3 ml-2">
+    </div>
+
+    <div class="row">
+        <div class="mr-3 ml-2">
         <button class="btn" filter="рыбные">Рыбные</button>
     </div>
     <div class="mr-3 ml-2">
         <button class="btn" filter="наборы">Наборы</button>
+    </div>
     </div>
 
 </div>
@@ -101,7 +106,11 @@
                  data-id="{{ pizza.id }}"
                  data-name="{{ pizza.name }}"
                  data-quantity="1"
-                 data-size="small"
+                 {% for size in pizza.sizes.all %}
+                    {% if size.active %}
+                    data-size="{{ size.type }}"
+                    {% endif %}
+                 {% endfor %}
                  data-image="{{ pizza.photo.url }}"
                  data-price="{{ pizza.default_price }}">
 

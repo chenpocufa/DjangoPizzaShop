@@ -114,9 +114,19 @@ function displayCart() {
     var cartArray = shoppingCart.listCart();
     var output = "";
     for(var i in cartArray) {
+        let sizeDisplayname = '';
+
+            if (cartArray[i].size === 'small'){
+             sizeDisplayname = 'Фуршетные';
+            } else if (cartArray[i].size === 'large') {
+                sizeDisplayname = 'Сытные';
+            } else {
+                sizeDisplayname = '';
+            }
+
         output += "<tr class='cart-row'>"
             + "<td class='align-middle'><div class=\"small-Img\"><img src=" + cartArray[i].image + "></div></td>"
-            + "<td><div class='text-al-justif mt-3'><h5>" + cartArray[i].name + "</h5><p class='font-italic text-black-50'>" + cartArray[i].size + "</p></div></td>"
+            + "<td><div class='text-al-justif mt-3'><h5>" + cartArray[i].name + "</h5><p class='font-italic text-black-50'>" + sizeDisplayname + "</p></div></td>"
             + "<td class='align-middle'>" + cartArray[i].price + "</td>"
             + "<td class='align-middle'><div class='input-group mr-3'><span class='minus-item font-weight-bold'" +
             " data-id=" + cartArray[i].id + " data-size=" + cart[i].size + ">-</span>"

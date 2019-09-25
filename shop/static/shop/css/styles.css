@@ -407,8 +407,6 @@ body * {
 
 /*adding line under filter buttons*/
 .border-Custom_bottom{
-    display: flex;
-    flex-direction: row;
     border-bottom: #4f4f4f solid 2px!important;
 }
 @media (max-width: 600px) {
@@ -561,18 +559,18 @@ body * {
     border-radius: 7px!important;
     border: 1px solid #ffedeb;
     margin: 0;
-    color: #7f2e00;
-    background-color: rgba(255, 219, 115, 0.16) !important;
+    color: rgba(63, 63, 63, 0.42);
+    background-color: rgba(255, 219, 115, 0.06) !important;
 
 }
 .btn-size.active{
     background-color: #ffffff!important;
     color: #ff5500;
     font-weight: bold;
+    border: 1px solid #ffbc80;
 }
 .btn-size:hover{
     font-weight: bold;
-    border: 1px solid #ffbc80;
     color: #8a3300;
 }
 .btn-size.disabled{
@@ -581,8 +579,15 @@ body * {
     color: rgba(63, 63, 63, 0.42);
     border: 1px solid #ffedeb;
 }
+.btn-size.disabled:hover{
+    font-weight: bold;
+    background-color: #ffffff!important;
+    color: rgba(63, 63, 63, 0.42);
+    border: 1px solid #ffedeb;
+    text-shadow:0px 0px 0px rgba(63, 63, 63, 0.02);
+}
 .btn-size.disabled:focus {
-    border: inherit;
+    border: 1px solid #ffedeb;
     color: rgba(63, 63, 63, 0.42);
 }
 .btn-size.disabled:hover{
