@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput, DateInput, IntegerField
+from django.forms import TextInput, DateInput
 
 from .models import Order
 import string
@@ -49,7 +49,7 @@ class OrderForm(forms.ModelForm):
 
     class Meta:
         model = Order
-        fields = ['phone', 'first_name', 'delivery_date', 'delivery_time', 'address', 'comment']
+        fields = ['phone', 'first_name', 'delivery_date', 'delivery_time', 'address', 'payment', 'comment']
 
     def __init__(self, *args, **kwargs):
         super(OrderForm, self).__init__(*args, **kwargs)
