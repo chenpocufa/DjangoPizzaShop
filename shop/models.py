@@ -27,6 +27,11 @@ class Order(models.Model):
         (8, '17-18'),
         (9, '18-18.30'),
     ]
+    PAYMENT_CHOICES = [
+        (0, _('Cash')),
+        (1, _('Card')),
+        (2, _('Online')),
+    ]
     phone = models.CharField(max_length=100, verbose_name=_('Phone'))
     first_name = models.CharField(max_length=100, verbose_name=pgettext_lazy('Order|Name', 'Order'))
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -38,6 +43,11 @@ class Order(models.Model):
     )
     address = models.CharField(max_length=100, verbose_name=_('Address'))
     comment = models.TextField(max_length=100, verbose_name=_('Comment'), blank=True, null=True)
+    payment = models.SmallIntegerField(
+        choices=PAYMENT_CHOICES,
+        verbose_name=_('Payment method'),
+    )
+    status = models.BooleanField(default=0, verbose_name=_('Payment confirmed'))
 
     def total_price(self):
         return sum([item.price for item in self.orderitem_set.all()])
@@ -45,7 +55,7 @@ class Order(models.Model):
     total_price.short_description = _('Total price')
 
     def __str__(self):
-        return f""
+        return f"№ {self.id}"
 
     class Meta:
         verbose_name = _('Order')

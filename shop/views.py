@@ -3,6 +3,7 @@ Page views.
 """
 import json
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -10,14 +11,15 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
+from .bepaid import Bepaid
 from .models import OrderItem
+from .models import Order
+from .models import PageTextGroup
 from .forms import OrderForm
 
 from catalog.models import Pizza
 from accounts.models import User
 from accounts.forms import UserCreationForm
-from .models import Order
-from .models import PageTextGroup
 from timetable.models import Date
 
 
@@ -75,7 +77,7 @@ def profile(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('shop-home')
+            return redirect('shop:shop-home')
         else:
             messages.error(request, f'Please correct errors {form.errors}.')
     else:
@@ -98,6 +100,8 @@ def order(request):
         order_details = OrderForm(mutable_request_data)
 
         if order_details.is_valid():
+            if settings.DEBUG:
+                print('valid')
 
             with transaction.atomic():
                 order_obj = order_details.save()
@@ -112,6 +116,15 @@ def order(request):
                         quantity=order_item['quantity'],
                     )
                     OrderItem.objects.create(**params)
+
+                total_price = int(Order.objects.all().last().total_price()*100)
+                bepaid = Bepaid()
+                bepaid.bp_token(total_price)
+        # else:
+        #     print('invalid')
+        #     print(form.errors)
+        #     print(form.non_field_errors)
+
     else:
         form = OrderForm()
     return render(request, 'shop/order.html', {'form': form})
@@ -124,7 +137,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, f'You can log in now')
-            return redirect('shop-home')
+            return redirect('shop:shop-home')
 
     else:
         form = UserCreationForm()

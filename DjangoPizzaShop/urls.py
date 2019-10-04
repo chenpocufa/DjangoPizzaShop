@@ -32,7 +32,7 @@ from django.utils.translation import gettext_lazy as _
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
-    path('', include('shop.urls')),
+    path('', include('shop.urls', namespace='shop')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

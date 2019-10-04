@@ -45,7 +45,7 @@ function validateDate() {
 
 function validateTime() {
     validTime = document.querySelector('#delivery_time').value;
-    validateField(validTime, "delivery_time", 2);
+    validateField(validTime, "delivery_time", 1);
 }
 
 function validateAddress() {

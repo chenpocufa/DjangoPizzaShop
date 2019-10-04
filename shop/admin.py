@@ -35,7 +35,8 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone', 'first_name', 'total_price')
+    list_display = ('created_at', 'delivery_date', 'delivery_time', 'phone',
+                    'first_name', 'total_price', 'payment', 'status')
     exclude = ('user',)
     inlines = (OrderItemInline,)
 
