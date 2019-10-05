@@ -45,7 +45,7 @@ class OrderForm(forms.ModelForm):
             'id': 'comment',
             'class': 'form-control',
             'type': 'textarea',
-            'rows': '5'}))
+            'rows': '5'}), required=False)
 
     class Meta:
         model = Order
