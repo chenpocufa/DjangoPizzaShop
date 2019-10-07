@@ -808,3 +808,22 @@ body * {
 .text-danger {
     display: none;
 }
+.btn-success{
+    padding: 0.4rem!important;
+    border-radius: 5px;
+    color: white;
+}
+
+.btn-success:hover{
+    padding: 0.4rem!important;
+    border-radius: 5px;
+    color: white;
+}
+
+hr {
+  display: block;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  margin-left: auto;
+  margin-right: auto;
+}
