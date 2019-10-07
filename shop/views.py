@@ -120,8 +120,8 @@ def order(request):
 
                 total_price = int(Order.objects.all().last().total_price()*100)
                 bepaid = Bepaid()
-                data = {'redirect_url': bepaid.bp_token(total_price)}
-            return HttpResponse(data, content_type='application/json')
+                response_data = bepaid.bp_token(total_price)
+            return HttpResponse(response_data, content_type='application/json')
 
         # else:
         #     print('invalid')

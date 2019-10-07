@@ -25,6 +25,7 @@ class OrderForm(forms.ModelForm):
             'id': 'delivery_date',
             'type': 'text',
             'onchange': 'validateDate()',
+            'autocomplete': 'off',
             'required pattern': '[0-9_-]*',
             'class': 'form-control datetimepicker-input',
             'data-toggle': 'datetimepicker',
@@ -45,6 +46,7 @@ class OrderForm(forms.ModelForm):
             'id': 'comment',
             'class': 'form-control',
             'type': 'textarea',
+            'size': '40',
             'rows': '5'}), required=False)
 
     class Meta:
@@ -58,6 +60,11 @@ class OrderForm(forms.ModelForm):
                 'onchange': 'validateTime()',
                 'class': 'form-control',
                 'placeholder': 'Выберите время'})
+        self.fields['payment'].widget.attrs.update({
+                'id': 'payment',
+                'onchange': 'validatePaymentWay()',
+                'class': 'form-control',
+                'placeholder': 'Выберите способ оплаты'})
 
     def clean(self):
         phone = self.cleaned_data.get('phone')

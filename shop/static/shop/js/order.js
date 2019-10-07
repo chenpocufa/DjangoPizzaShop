@@ -9,6 +9,7 @@ function validationAll() {
         && document.getElementById("delivery_date").classList.contains('is-valid')
         && document.getElementById("delivery_time").classList.contains('is-valid')
         && document.getElementById("address").classList.contains('is-valid')
+        && document.getElementById("payment").classList.contains('is-valid')
     ) {
         document.getElementById("order-submit").disabled = false;
         document.getElementById("alert-message").style.display = 'none';
@@ -46,6 +47,10 @@ function validateDate() {
 function validateTime() {
     validTime = document.querySelector('#delivery_time').value;
     validateField(validTime, "delivery_time", 1);
+}
+function validatePaymentWay() {
+    validPayment = document.querySelector('#payment').value;
+    validateField(validPayment, "payment", 1);
 }
 
 function validateAddress() {
