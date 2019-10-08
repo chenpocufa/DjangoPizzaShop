@@ -72,10 +72,7 @@
         <button class="btn active custom-btn_filter" filter="all">Все</button>
     </div>
     <div class="mr-3 ml-2">
-        <button class="btn" filter="мясные">Мясные</button>
-    </div>
-    <div class="mr-3 ml-2">
-        <button class="btn" filter="овощные">Овощные</button>
+        <button class="btn" filter="сытные">Сытные</button>
     </div>
     <div class="mr-3 ml-2">
         <button class="btn" filter="сладкие">Сладкие</button>
@@ -84,7 +81,7 @@
         <button class="btn" filter="рыбные">Рыбные</button>
     </div>
     </div>
-
+    <hr>
     <div class="row">
         <div class="mr-3 ml-2">
         <button class="btn" filter="135гр">Обеденные (135 гр.)</button>
@@ -92,8 +89,10 @@
     <div class="mr-3 ml-2">
         <button class="btn" filter="70гр">Фуршетные (5 по 70 гр.)</button>
     </div>
+    <div class="mr-3 ml-2">
+        <button class="btn" filter="сеты">Наборы (25 по 70 гр.)</button>
     </div>
-
+    </div>
 </div>
 
 
@@ -116,8 +115,6 @@
                  {% endfor %}
                  data-image="{{ pizza.photo.url }}"
                  data-price="{{ pizza.default_price }}">
-
-
 
                 <!--  Card with styles -->
                 <div class="card-body row">

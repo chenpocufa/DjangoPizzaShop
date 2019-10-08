@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'timetable.apps.TimetableConfig',
     'rest_framework',
+    'django.contrib.sites',
+    'absoluteuri',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -175,3 +177,7 @@ EMAIL_PORT = os.environ.get('DJANGO_EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('DJANGO_EMAIL_HOST_USER')
 
 EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_HOST_PASSWORD')
+
+ABSOLUTEURI_PROTOCOL = 'https'
+
+SITE_ID = 1

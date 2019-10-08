@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    // $('#date').mask('00-00-0000');
     $('#phone').mask('+375(00)000-00-00');
 });
+
 function validationAll() {
     if (
         document.getElementById("phone").classList.contains('is-valid')
@@ -9,6 +9,7 @@ function validationAll() {
         && document.getElementById("delivery_date").classList.contains('is-valid')
         && document.getElementById("delivery_time").classList.contains('is-valid')
         && document.getElementById("address").classList.contains('is-valid')
+        && document.getElementById("payment").classList.contains('is-valid')
     ) {
         document.getElementById("order-submit").disabled = false;
         document.getElementById("alert-message").style.display = 'none';
@@ -47,6 +48,10 @@ function validateTime() {
     validTime = document.querySelector('#delivery_time').value;
     validateField(validTime, "delivery_time", 1);
 }
+function validatePaymentWay() {
+    validPayment = document.querySelector('#payment').value;
+    validateField(validPayment, "payment", 1);
+}
 
 function validateAddress() {
     let address = document.getElementById("address").value;
@@ -70,6 +75,7 @@ submitBtn.addEventListener('click', function(event){
     event.preventDefault();
     let order = localStorage.getItem('order');
     phoneNumberToDigits();
+    let redirectLink = '';
     let form = new FormData(document.querySelector("#order-form"));
     form.append("order", order);
     postData("/order/", form);
@@ -81,16 +87,34 @@ function postData(url = '', data = {}) {
         redirect: 'manual',
         body: data,
     })
-       .then(localStorage.clear())
-       .then(response => {$('#ModalCenteredSucces').modal('show')});
+        .then(function(response) {
+           return response.text();
+        })
+        .then(function(data) {
+        let validPayment = document.querySelector('#payment').value;
+            if (validPayment === '2'){
+                if(data !== "error") {
+                    return window.location.href=data;
+                } else {
+                    $('#ModalCenteredWarning').modal('show');
+                    return error = true;
+                }
+            } else {
+                $('#ModalCenteredSucces').modal('show');
+                localStorage.clear();
+            }
+        })
 }
-
 $('#ModalCenteredSucces').on('hidden.bs.modal', function (e) {
-window.location="/"})
+    window.location="/"
+});
+$('#ModalCenteredWarning').on('hidden.bs.modal', function (e) {
+    window.location="/"
+});
 
 //! moment.js locale configuration
 
-;(function (global, factory) {
+(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
        && typeof require === 'function' ? factory(require('../moment')) :
    typeof define === 'function' && define.amd ? define(['../moment'], factory) :

@@ -1,30 +1,31 @@
 import requests
+import absoluteuri
 from django.urls import reverse
-# from . import views
 from django.conf import settings
 from requests.auth import HTTPBasicAuth
 
 
 class Bepaid:
-    # @staticmethod
+    def __init__(self):
+        self.test = settings.DEBUG
+        self.redirect_page = reverse('shop:shop-home')
+        self.redirect = absoluteuri.build_absolute_uri(self.redirect_page)
+        self.url = 'https://checkout.bepaid.by/ctp/api/checkouts'
+        self.auth = ('user', 'passwd')
+
     def bp_token(self, total_price):
-        redirect = reverse('shop:shop-home')
-        url = 'https://envo9ugiz6sh.x.pipedream.net/'
-        test = 'true'
-        if not settings.DEBUG:
-            test = 'false'
         payload = {
             "checkout": {
                 "version": 2.1,
-                "test": test,
+                "test": self.test,
                 "transaction_type": "payment",
                 "attempts": 3,
                 "settings": {
-                    "success_url": redirect,
-                    "decline_url": redirect,
-                    "fail_url": redirect,
-                    "cancel_url": redirect,
-                    "notification_url": redirect,
+                    "success_url": self.redirect,
+                    "decline_url": self.redirect,
+                    "fail_url": self.redirect,
+                    "cancel_url": self.redirect,
+                    "notification_url": self.redirect,
                     "button_text": "Привязать карту",
                     "button_next_text": "Вернуться в магазин",
                     "language": "ru",
@@ -32,12 +33,12 @@ class Bepaid:
                 "order": {
                     "currency": "BYN",
                     "amount": total_price,
-                    "description": 'Заказ в перкарне "Печорин"'
+                    "description": 'После совершения оплаты, мы перезвоним Вам для подтверждения заказа. Пекарня "Печорин"'
                 },
             }
         }
-        r = requests.post(url, json=payload)
-        r.json()
-
-    # def bp_redirect(self):
-
+        response = requests.post(self.url, json=payload, headers={'Accept': 'application/json'}, auth=HTTPBasicAuth('3013', '85b45d21923689cae8026b90a5f832f2221bede68265b566b86cdfd7ba21de41'))
+        response.json()
+        if settings.DEBUG:
+            print(f"bepaid redirection link: "+response.json().get('checkout').get('redirect_url'))
+        return response.json().get('checkout').get('redirect_url')

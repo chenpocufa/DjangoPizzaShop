@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.db import transaction
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -101,7 +102,7 @@ def order(request):
 
         if order_details.is_valid():
             if settings.DEBUG:
-                print('valid')
+                print('order is valid')
 
             with transaction.atomic():
                 order_obj = order_details.save()
@@ -119,7 +120,9 @@ def order(request):
 
                 total_price = int(Order.objects.all().last().total_price()*100)
                 bepaid = Bepaid()
-                bepaid.bp_token(total_price)
+                response_data = bepaid.bp_token(total_price)
+            return HttpResponse(response_data, content_type='application/json')
+
         # else:
         #     print('invalid')
         #     print(form.errors)
