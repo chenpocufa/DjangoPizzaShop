@@ -9,7 +9,8 @@ class Bepaid:
     def __init__(self):
         self.test = settings.DEBUG
         self.redirect_page = reverse('shop:shop-home')
-        self.redirect = absoluteuri.build_absolute_uri(self.redirect_page)
+        # self.redirect = absoluteuri.build_absolute_uri(self.redirect_page)
+        self.redirect = 'http://pechorin.by'
         self.url = 'https://checkout.bepaid.by/ctp/api/checkouts'
         self.auth = ('user', 'passwd')
 
