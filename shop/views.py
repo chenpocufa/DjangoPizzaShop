@@ -101,10 +101,11 @@ def order(request):
         order_details = OrderForm(mutable_request_data)
 
         if order_details.is_valid():
-            if settings.DEBUG:
-                print('order is valid')
 
             with transaction.atomic():
+                if settings.DEBUG:
+                    print('order is valid')
+
                 order_obj = order_details.save()
 
                 # create object OrderItem item for each item in the order
@@ -122,6 +123,11 @@ def order(request):
                 bepaid = Bepaid()
                 response_data = bepaid.bp_token(total_price)
             return HttpResponse(response_data, content_type='application/json')
+
+        else:
+            if settings.DEBUG:
+                print('order is NOT valid')
+            return HttpResponse('error', content_type='application/json')
 
         # else:
         #     print('invalid')

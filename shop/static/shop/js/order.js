@@ -32,11 +32,10 @@ function validateField(field, fieldId, count) {
 }
 
 function validatePhone() {
-    let phoneMasked = document.getElementById("phone").value;
-    var thenum = phoneMasked.match(/\d+/g).map(Number);
-    var thenumSh = thenum.shift();
-    phoneMasked = thenum.join('');
-    validateField(phoneMasked, "phone", 9);
+    let phoneMasked = document.getElementById("phone").value.substring(4);
+    var numb = phoneMasked.match(/\d/g);
+    numb = numb.join("");
+    validateField(numb, "phone", 9);
 }
 
 function validateDate() {
@@ -94,6 +93,7 @@ function postData(url = '', data = {}) {
         let validPayment = document.querySelector('#payment').value;
             if (validPayment === '2'){
                 if(data !== "error") {
+                    localStorage.clear();
                     return window.location.href=data;
                 } else {
                     $('#ModalCenteredWarning').modal('show');
