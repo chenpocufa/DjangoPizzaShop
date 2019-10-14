@@ -102,7 +102,7 @@ class PageTextGroup(models.Model):
 
 
 class PageText(models.Model):
-    text = models.TextField(max_length=255, verbose_name=_('Text'))
+    text = models.TextField(max_length=2000, verbose_name=_('Text'))
     text_name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Text name'))
     group = models.ForeignKey(PageTextGroup, on_delete=models.CASCADE, related_name='texts')
 
