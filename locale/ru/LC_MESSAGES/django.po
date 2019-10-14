@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-08 03:23+0300\n"
+"POT-Creation-Date: 2019-10-14 17:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\DjangoPizzaShop\settings.py:122
+#: .\DjangoPizzaShop\settings.py:131
 msgid "English"
 msgstr "English"
 
-#: .\DjangoPizzaShop\settings.py:123
+#: .\DjangoPizzaShop\settings.py:132
 msgid "Russian"
 msgstr "Русский"
 
@@ -52,7 +52,7 @@ msgstr "Доступы"
 msgid "Users"
 msgstr "Пользователи"
 
-#: .\accounts\models.py:56 .\shop\models.py:30
+#: .\accounts\models.py:56 .\shop\models.py:35
 msgid "Phone"
 msgstr "Телефон"
 
@@ -107,11 +107,11 @@ msgstr "Пирожок"
 msgid "Pizzas"
 msgstr "Пирожки"
 
-#: .\catalog\models.py:56 .\shop\templates\shop\home.html:180
+#: .\catalog\models.py:56 .\shop\templates\shop\home.html:175
 msgid "Small"
 msgstr "Фуршетные (5 по 70 гр.)"
 
-#: .\catalog\models.py:57 .\shop\templates\shop\home.html:182
+#: .\catalog\models.py:57 .\shop\templates\shop\home.html:177
 msgid "Large"
 msgstr "Сытный (135 гр.)"
 
@@ -123,7 +123,7 @@ msgstr "Отсутствует"
 msgid "Type"
 msgstr "Тип"
 
-#: .\catalog\models.py:61 .\shop\models.py:78
+#: .\catalog\models.py:61 .\shop\models.py:82
 msgid "Price"
 msgstr "Цена"
 
@@ -131,7 +131,7 @@ msgstr "Цена"
 msgid "Active"
 msgstr "Основной"
 
-#: .\catalog\models.py:66 .\shop\models.py:67
+#: .\catalog\models.py:66 .\shop\models.py:71
 msgid "Size"
 msgstr "Размер"
 
@@ -167,11 +167,11 @@ msgstr "Группы промо кодов"
 msgid "Code"
 msgstr "Код"
 
-#: .\shop\admin.py:48
+#: .\shop\admin.py:49
 msgid "Text names must be unique"
 msgstr "Текст должен быть уникален"
 
-#: .\shop\admin.py:51
+#: .\shop\admin.py:52
 msgid "Text name must consist of small letters and digits"
 msgstr "Текст должен состоять только из маленьких латинских букв и цифр"
 
@@ -180,75 +180,95 @@ msgid "Shop"
 msgstr "Магазин"
 
 #: .\shop\models.py:31
+msgid "Cash"
+msgstr "Наличными курьеру"
+
+#: .\shop\models.py:32
+msgid "Card"
+msgstr "Картой курьеру"
+
+#: .\shop\models.py:33
+msgid "Online"
+msgstr "Картой на сайте"
+
+#: .\shop\models.py:36
 msgctxt "Order|Name"
 msgid "Order"
 msgstr "Имя"
 
-#: .\shop\models.py:33
+#: .\shop\models.py:38
 msgid "Created at"
 msgstr "Время создания"
 
-#: .\shop\models.py:34
+#: .\shop\models.py:39
 msgid "Delivery date"
 msgstr "Дата доставки"
 
-#: .\shop\models.py:38
+#: .\shop\models.py:42
 msgid "Delivery time"
 msgstr "Время доставки"
 
-#: .\shop\models.py:40
+#: .\shop\models.py:44
 msgid "Address"
 msgstr "Адрес"
 
-#: .\shop\models.py:41
+#: .\shop\models.py:45
 msgid "Comment"
 msgstr "Комментарий"
 
-#: .\shop\models.py:51
+#: .\shop\models.py:48
+msgid "Payment method"
+msgstr "Метод оплаты"
+
+#: .\shop\models.py:50
+msgid "Payment confirmed"
+msgstr "Подтверждён"
+
+#: .\shop\models.py:55
 msgid "Total price"
 msgstr "Общая стоимость"
 
-#: .\shop\models.py:57 .\shop\models.py:65
+#: .\shop\models.py:61 .\shop\models.py:69
 msgid "Order"
 msgstr "Заказ"
 
-#: .\shop\models.py:58
+#: .\shop\models.py:62
 msgid "Orders"
 msgstr "Заказы"
 
-#: .\shop\models.py:66 .\shop\models.py:84
+#: .\shop\models.py:70 .\shop\models.py:88
 msgid "Item"
 msgstr "Товар"
 
-#: .\shop\models.py:68
+#: .\shop\models.py:72
 msgid "Quantity"
 msgstr "Количество"
 
-#: .\shop\models.py:85
+#: .\shop\models.py:89
 msgid "Items"
 msgstr "Товары"
 
-#: .\shop\models.py:89
+#: .\shop\models.py:93
 msgid "Page name"
 msgstr "Заголовок страницы"
 
-#: .\shop\models.py:90
+#: .\shop\models.py:94
 msgid "Title"
 msgstr "Название страницы"
 
-#: .\shop\models.py:96 .\shop\models.py:109
+#: .\shop\models.py:100 .\shop\models.py:113
 msgid "Page text"
 msgstr "Текст HTML"
 
-#: .\shop\models.py:97 .\shop\models.py:110
+#: .\shop\models.py:101 .\shop\models.py:114
 msgid "Page texts"
 msgstr "Текст HTML"
 
-#: .\shop\models.py:101
+#: .\shop\models.py:105
 msgid "Text"
 msgstr "Текст"
 
-#: .\shop\models.py:102
+#: .\shop\models.py:106
 msgid "Text name"
 msgstr "Название текста"
 

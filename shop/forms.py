@@ -65,25 +65,3 @@ class OrderForm(forms.ModelForm):
                 'onchange': 'validatePaymentWay()',
                 'class': 'form-control',
                 'placeholder': 'Выберите способ оплаты'})
-
-    def clean(self):
-        phone = self.cleaned_data.get('phone')
-        digits = set(string.digits)             # To validate phone
-        first_name = self.cleaned_data.get('first_name')
-        letters = set(string.ascii_letters)     # To validate name
-        '''
-        name validation
-        '''
-        if len(first_name) < 2:
-            raise forms.ValidationError('Name is too short')
-        for i in first_name:
-            if i not in letters:
-                raise forms.ValidationError('Only letters in name please')
-        '''
-        phone validation
-        '''
-        if len(phone) < 2:
-            raise forms.ValidationError('Phone is too short')
-        for i in phone:
-            if i not in digits:
-                raise forms.ValidationError('Only digits in phone please')
