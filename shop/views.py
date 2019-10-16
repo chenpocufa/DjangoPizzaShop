@@ -138,7 +138,7 @@ def order(request):
         date = str(d).replace('-', '/')
         dates_list.append(date)
     js_data = json.dumps(dates_list)
-    return render(request, 'shop/order.html', {'form': form, "my_data": js_data})
+    return render(request, 'shop/order.html', {'form': form, "dates": js_data})
 
 
 def register(request):

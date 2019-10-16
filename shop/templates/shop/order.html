@@ -76,6 +76,8 @@
                 {{ form.delivery_date }}
                 <script type="text/javascript">
                     $(function () {
+                    let dates = {{ dates|safe }};
+                    console.log(dates);
                     let today = new Date();
                     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
                         $('#delivery_date').datetimepicker({
