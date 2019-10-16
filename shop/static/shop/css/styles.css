@@ -428,7 +428,7 @@ body * {
 }
 
 .card-body {
-    height: 35rem;
+    height: 31rem;
     margin: 0;
     justify-content: center;
     padding: 15px 8px 5px 8px;
@@ -826,4 +826,7 @@ body * {
     padding: 0.4rem!important;
     border-radius: 5px;
     color: white;
+}
+.btn-filter {
+    font-size: 1.2rem;
 }
