@@ -13,6 +13,7 @@ class Filter {
         this.categoryBtn.on('click', this.processFilterClick);
     }
 
+
     processFilterClick(event) {
         // Get clicked element from `event.target` as `this` is overrided by Filter object
         var clickedBtn = $(event.target);
@@ -70,8 +71,6 @@ class Pizza {
         let plusButtons = pizza.find(this.plusBtn);
         let calculatorPrice = data.price;
 
-
-
         if (Btn.is(".btn-size.notDisabled")){
             let sizeChoice = Btn.closest('.size');
             sizeChoice.find('button').removeClass('active');
@@ -128,7 +127,7 @@ class Pizza {
 $(function () {
 
     let filter = new Filter('#category-filter .btn', '#catalog .filterDiv');
-    filter.filterSelection('all');  // do initial filtering
+    filter.filterSelection('сеты');  // do initial filtering
 
     new Pizza();
 });

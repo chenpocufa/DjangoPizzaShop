@@ -119,7 +119,7 @@ function displayCart() {
             if (cartArray[i].size === 'small'){
              sizeDisplayname = 'Фуршетные';
             } else if (cartArray[i].size === 'large') {
-                sizeDisplayname = 'Сытные';
+                sizeDisplayname = 'Большие';
             } else {
                 sizeDisplayname = '';
             }
@@ -176,7 +176,7 @@ displayCart();
 
 $(".confirm-order").click(function() {
     var totalPrice = shoppingCart.totalCart();
-        if (totalPrice <= 15) {
+        if (totalPrice <= 20) {
             document.getElementById("alert-message").style.display = 'block';
         } else {
             localStorage.setItem('total', totalPrice.toFixed(2));

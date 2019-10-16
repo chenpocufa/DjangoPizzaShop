@@ -2,8 +2,6 @@ from django import forms
 from django.forms import TextInput, DateInput
 
 from .models import Order
-import string
-# from django.utils.translation import gettext_lazy as _
 
 
 class OrderForm(forms.ModelForm):
@@ -13,7 +11,7 @@ class OrderForm(forms.ModelForm):
             'class': 'form-control',
             'onsubmit': 'return validationAll()',
             'onchange': 'validatePhone()',
-            'placeholder': '+375(xx)xxx-xx-xx'}))
+            'placeholder': '(xx)xxx-xx-xx'}))
     first_name = forms.CharField(widget=TextInput(attrs={
             'id': 'first_name',
             'type': 'name',

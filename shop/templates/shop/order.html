@@ -75,20 +75,22 @@
                 <p class="small">Внимание! Заказы сегодня на сегодня принимаются до 12-30, и только по телефону!</p>
                 {{ form.delivery_date }}
                 <script type="text/javascript">
-            $(function () {
-            let today = new Date();
-            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
-                $('#delivery_date').datetimepicker({
-                    format: 'L',
-                    daysOfWeekDisabled: [0, 6],
-                    format: 'YYYY-MM-DD',
-                    locale: 'ru',
-                    minDate: date,
-                    defaultDate: false,
-                    useCurrent: false,
-                });
-            });
-
+                    $(function () {
+                    let dates = {{ dates|safe }};
+                    let datesToMoments = dates.map(d => { return (moment(d))})
+                    let today = new Date();
+                    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
+                        $('#delivery_date').datetimepicker({
+                            format: 'L',
+        <!--                    daysOfWeekDisabled: [0, 6],-->
+                            format: 'YYYY-MM-DD',
+                            locale: 'ru',
+                            minDate: date,
+                            defaultDate: false,
+                            useCurrent: false,
+                            disabledDates: datesToMoments,
+                        });
+                    });
                 </script>
                 <div class="invalid-feedback">
                     Please provide a valid city.
