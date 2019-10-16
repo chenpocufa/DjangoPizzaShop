@@ -2,7 +2,6 @@ from django import forms
 from django.forms import TextInput, DateInput
 
 from .models import Order
-from timetable.models import Date
 
 
 class OrderForm(forms.ModelForm):
@@ -20,11 +19,6 @@ class OrderForm(forms.ModelForm):
             'oninput': 'validateName()',
             'onsubmit': 'return validationAll()',
             'placeholder': 'Имя'}))
-    dates = Date.objects.all()
-    dates_list = []
-    for d in dates:
-        date = str(d).replace('-', '/')
-        dates_list.append(date)
     delivery_date = forms.DateField(widget=DateInput(attrs={
             'id': 'delivery_date',
             'type': 'text',
@@ -34,8 +28,7 @@ class OrderForm(forms.ModelForm):
             'class': 'form-control datetimepicker-input',
             'data-toggle': 'datetimepicker',
             'data-target': '#delivery_date',
-            'placeholder': 'Выберите дату',
-            'data-dates': dates_list}))
+            'placeholder': 'Выберите дату'}))
     # delivery_time = forms.IntegerField(widget=IntegerField(attrs={
     #         'id': 'delivery_time',
     #         'onchange': 'validateTime()',
