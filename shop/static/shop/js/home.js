@@ -71,8 +71,6 @@ class Pizza {
         let plusButtons = pizza.find(this.plusBtn);
         let calculatorPrice = data.price;
 
-
-
         if (Btn.is(".btn-size.notDisabled")){
             let sizeChoice = Btn.closest('.size');
             sizeChoice.find('button').removeClass('active');

@@ -20,13 +20,11 @@ class OrderForm(forms.ModelForm):
             'oninput': 'validateName()',
             'onsubmit': 'return validationAll()',
             'placeholder': 'Имя'}))
-
     dates = Date.objects.all()
     dates_list = []
     for d in dates:
         date = str(d).replace('-', '/')
         dates_list.append(date)
-    print(dates_list)
     delivery_date = forms.DateField(widget=DateInput(attrs={
             'id': 'delivery_date',
             'type': 'text',
@@ -37,7 +35,7 @@ class OrderForm(forms.ModelForm):
             'data-toggle': 'datetimepicker',
             'data-target': '#delivery_date',
             'placeholder': 'Выберите дату',
-            'dates': dates_list}))
+            'data-dates': dates_list}))
     # delivery_time = forms.IntegerField(widget=IntegerField(attrs={
     #         'id': 'delivery_time',
     #         'onchange': 'validateTime()',
