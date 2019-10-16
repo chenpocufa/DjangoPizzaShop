@@ -11,13 +11,12 @@ app_name = 'shop'
 
 urlpatterns = [
     path('', views.home, name='shop-home'),
-    path('api', include(router.urls)),
+    # path('api', include(router.urls)),
     path('about/', views.about, name='shop-about'),
     path('cart/', views.cart, name='shop-cart'),
     path('order/', views.order, name='shop-order'),
-    path('register/', views.register, name='shop-register'),
-    path('profile/', views.profile, name='shop-profile'),
-    path('timetable/', views.timetable, name='shop-timetable'),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # path('register/', views.register, name='shop-register'),
+    # path('profile/', views.profile, name='shop-profile'),
+    # path('accounts/', include('django.contrib.auth.urls')),
+    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

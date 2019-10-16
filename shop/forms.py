@@ -2,8 +2,7 @@ from django import forms
 from django.forms import TextInput, DateInput
 
 from .models import Order
-import string
-# from django.utils.translation import gettext_lazy as _
+from timetable.models import Date
 
 
 class OrderForm(forms.ModelForm):
@@ -13,7 +12,7 @@ class OrderForm(forms.ModelForm):
             'class': 'form-control',
             'onsubmit': 'return validationAll()',
             'onchange': 'validatePhone()',
-            'placeholder': '+375(xx)xxx-xx-xx'}))
+            'placeholder': '(xx)xxx-xx-xx'}))
     first_name = forms.CharField(widget=TextInput(attrs={
             'id': 'first_name',
             'type': 'name',
@@ -21,6 +20,13 @@ class OrderForm(forms.ModelForm):
             'oninput': 'validateName()',
             'onsubmit': 'return validationAll()',
             'placeholder': 'Имя'}))
+
+    dates = Date.objects.all()
+    dates_list = []
+    for d in dates:
+        date = str(d).replace('-', '/')
+        dates_list.append(date)
+    print(dates_list)
     delivery_date = forms.DateField(widget=DateInput(attrs={
             'id': 'delivery_date',
             'type': 'text',
@@ -30,7 +36,8 @@ class OrderForm(forms.ModelForm):
             'class': 'form-control datetimepicker-input',
             'data-toggle': 'datetimepicker',
             'data-target': '#delivery_date',
-            'placeholder': 'Выберите дату'}))
+            'placeholder': 'Выберите дату',
+            'dates': dates_list}))
     # delivery_time = forms.IntegerField(widget=IntegerField(attrs={
     #         'id': 'delivery_time',
     #         'onchange': 'validateTime()',

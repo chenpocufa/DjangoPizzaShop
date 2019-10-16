@@ -129,11 +129,6 @@ def order(request):
                 print('order is NOT valid')
             return HttpResponse('error', content_type='application/json')
 
-        # else:
-        #     print('invalid')
-        #     print(form.errors)
-        #     print(form.non_field_errors)
-
     else:
         form = OrderForm()
     return render(request, 'shop/order.html', {'form': form})
@@ -151,15 +146,3 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'shop/registration.html', {'form': form})
-
-
-def timetable(request):
-    """
-    Timetable page view.
-    """
-    template_name = 'shop/timetable.html'
-    dates = Date.objects.all()
-    context = {
-        'dates': dates
-    }
-    return render(request, template_name, context)

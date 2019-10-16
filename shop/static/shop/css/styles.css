@@ -252,6 +252,9 @@ body * {
 }
 
 @media (max-width: 375px) {
+    .container {
+        max-width: 350px;
+    }
     .cards-images{
         flex-direction: column!important;
     }
@@ -765,7 +768,7 @@ body * {
 .about-mosaic {
     flex-wrap: wrap;
     display: inline-flex;
-    max-height: 28rem!important;
+    max-width: 20rem;
 }
 .about-mosaic > div {
     overflow: hidden;
@@ -775,11 +778,16 @@ body * {
     height: 9rem;
     margin: 0.3rem;
 }
+@media (max-width: 993px) {
+    .box-image {
+        display: none!important;
+    }
+}
 .about-mosaic > div > img {
     height: 9rem;
 }
 .about-row {
-    max-height: 20rem;
+
 }
 
 .box-image {
@@ -792,9 +800,9 @@ body * {
     overflow: hidden;
     border: 1px solid #adb5bd;
     border-radius: 6px;
-    outline: 22px solid white;
-    outline-color: rgba(255,255,255, 0.5);
-    outline-offset: -2px;
+}
+.box-image > img {
+
 }
 .about-info-title{
     align-items: flex-end;

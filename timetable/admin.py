@@ -6,4 +6,4 @@ class DateAdmin(admin.ModelAdmin):
     model = Date
 
 
-# admin.site.register(Date, DateAdmin)
+admin.site.register(Date, DateAdmin)

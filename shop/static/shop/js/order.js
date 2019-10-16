@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#phone').mask('+375(00)000-00-00');
+    $('#phone').mask('(00)000-00-00');
 });
 
 function validationAll() {
@@ -32,7 +32,7 @@ function validateField(field, fieldId, count) {
 }
 
 function validatePhone() {
-    let phoneMasked = document.getElementById("phone").value.substring(4);
+    let phoneMasked = document.getElementById("phone").value;
     var numb = phoneMasked.match(/\d/g);
     numb = numb.join("");
     validateField(numb, "phone", 9);
@@ -64,9 +64,9 @@ function validateName() {
 
 function phoneNumberToDigits() {
     let phoneMasked = document.getElementById("phone").value;
-    var thenum = phoneMasked.match(/\d+/g).map(Number);
-    var thenumSh = thenum.shift();
-    document.getElementById('phone').value = thenum.join('');
+    var numb = phoneMasked.match(/\d/g);
+    numb = numb.join("");
+    document.getElementById('phone').value = numb;
 }
 
 let submitBtn = document.getElementById('order-submit');
