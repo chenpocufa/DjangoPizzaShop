@@ -56,6 +56,8 @@ class Order(models.Model):
     def total_price(self):
         return sum([item.price for item in self.orderitem_set.all()])
 
+    total_price.allow_tags = True
+
     total_price.short_description = _('Total price')
 
     def __str__(self):
