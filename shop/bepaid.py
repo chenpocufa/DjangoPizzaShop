@@ -27,7 +27,7 @@ class Bepaid:
                     "fail_url": self.redirect,
                     "cancel_url": self.redirect,
                     "notification_url": self.redirect,
-                    "button_text": "Привязать карту",
+                    "button_text": "Оплатить",
                     "button_next_text": "Вернуться в магазин",
                     "language": "ru",
                 },

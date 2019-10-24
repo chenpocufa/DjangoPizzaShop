@@ -1,9 +1,13 @@
+from django.core.mail import send_mail
 from django.db import models
-from django.db.models.signals import pre_save
+from django.db.models import signals
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _, pgettext_lazy
+from django.core.mail import EmailMultiAlternatives
 
-from catalog.models import Pizza, Size
 from accounts.models import User
+from catalog.models import Pizza, Size
 
 
 def check_phone(sender, instance, **kwargs):
@@ -63,6 +67,21 @@ class Order(models.Model):
 
 
 pre_save.connect(check_phone, sender=Order)
+
+
+def order_update(sender, instance, created, **kwargs):
+    subject = 'Новый заказ'
+    from_email = 'Печорин'
+    to = 'pechorinby@gmail.com'
+    text_content = f'http://127.0.0.1:8000/admin/shop/order/{instance.id}/change'
+    html_content = f'<a href=http://127.0.0.1:8000/admin/shop/order/{instance.id}/change>Новый заказ</a>'
+    msg = EmailMultiAlternatives(subject,
+                                 text_content, from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send(fail_silently=False)
+
+
+post_save.connect(order_update, sender=Order)
 
 
 class OrderItem(models.Model):
