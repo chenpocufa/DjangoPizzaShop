@@ -5,6 +5,7 @@ from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from django.core.mail import EmailMultiAlternatives
+from django.contrib.sites.models import Site
 
 from accounts.models import User
 from catalog.models import Pizza, Size
@@ -75,8 +76,8 @@ def order_update(sender, instance, created, **kwargs):
     subject = 'Новый заказ'
     from_email = 'Печорин'
     to = 'pechorinby@gmail.com'
-    text_content = f'http://127.0.0.1:8000/admin/shop/order/{instance.id}/change'
-    html_content = f'<a href=http://127.0.0.1:8000/admin/shop/order/{instance.id}/change>Новый заказ</a>'
+    text_content = f'http://pechorin.by/admin/shop/order/{instance.id}/change'
+    html_content = f'<a href=http://pechorin.by/admin/shop/order/{instance.id}/change>Новый заказ</a>'
     msg = EmailMultiAlternatives(subject,
                                  text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
