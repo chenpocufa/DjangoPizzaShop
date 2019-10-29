@@ -78,8 +78,7 @@ def order_update(sender, instance, created, **kwargs):
     to = 'pechorinby@gmail.com'
     text_content = f'http://pechorin.by/admin/shop/order/{instance.id}/change'
     html_content = f'<a href=http://pechorin.by/admin/shop/order/{instance.id}/change>Новый заказ</a>'
-    msg = EmailMultiAlternatives(subject,
-                                 text_content, from_email, [to])
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
     msg.send(fail_silently=False)
 
