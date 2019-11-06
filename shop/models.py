@@ -72,18 +72,19 @@ class Order(models.Model):
 pre_save.connect(check_phone, sender=Order)
 
 
-# def order_update(sender, instance, created, **kwargs):
-#     subject = 'Новый заказ'
-#     from_email = 'Печорин'
-#     to = 'pechorinby@gmail.com'
-#     text_content = f'http://pechorin.by/admin/shop/order/{instance.id}/change'
-#     html_content = f'<a href=http://pechorin.by/admin/shop/order/{instance.id}/change>Новый заказ</a>'
-#     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-#     msg.attach_alternative(html_content, "text/html")
-#     msg.send(fail_silently=False)
-#
-#
-# post_save.connect(order_update, sender=Order)
+def order_update(sender, instance, created, **kwargs):
+    subject = 'Новый заказ'
+    from_email = 'Печорин'
+    to = 'pechorinby@gmail.com'
+    site = Site.objects.get()
+    text_content = f'{site.domain}/admin/shop/order/{instance.id}/change'
+    html_content = f'<a href={site.domain}/admin/shop/order/{instance.id}/change>Новый заказ</a>'
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send(fail_silently=False)
+
+
+post_save.connect(order_update, sender=Order)
 
 
 class OrderItem(models.Model):
