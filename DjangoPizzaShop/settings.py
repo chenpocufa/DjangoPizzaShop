@@ -166,7 +166,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Email settings
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = os.environ.get('DJANGO_EMAIL_HOST')
 

@@ -84,9 +84,10 @@ def order_update(sender, instance, created, **kwargs):
         site = Site.objects.get()
         text_content = f'{site.domain}/admin/shop/order/{instance.id}/change'
         html_content = f'<a href={site.domain}/admin/shop/order/{instance.id}/change>Новый заказ</a>'
-        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-        msg.attach_alternative(html_content, "text/html")
-        msg.send(fail_silently=False)
+        # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        # msg.attach_alternative(html_content, "text/html")
+        # msg.send(fail_silently=False)
+        send_mail(subject, text_content, from_email, [to], fail_silently=False, html_message=html_content)
     except Exception as ex:
         log.error(ex)
 
