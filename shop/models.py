@@ -1,3 +1,5 @@
+import logging
+
 from django.core.mail import send_mail
 from django.db import models
 from django.db.models import signals
@@ -10,13 +12,15 @@ from django.contrib.sites.models import Site
 from accounts.models import User
 from catalog.models import Pizza, Size
 
+log = logging.getLogger(__name__)
 
-def check_phone(sender, instance, **kwargs):
-    user = User.objects.filter(phone=instance.phone).first()
-    if user:
-        instance.user = user
-    else:
-        instance.user = None
+
+# def check_phone(sender, instance, **kwargs):
+#     user = User.objects.filter(phone=instance.phone).first()
+#     if user:
+#         instance.user = user
+#     else:
+#         instance.user = None
 
 
 class Order(models.Model):
@@ -69,19 +73,22 @@ class Order(models.Model):
         verbose_name_plural = _('Orders')
 
 
-pre_save.connect(check_phone, sender=Order)
+# pre_save.connect(check_phone, sender=Order)
 
 
 def order_update(sender, instance, created, **kwargs):
-    subject = 'Новый заказ'
-    from_email = 'Печорин'
-    to = 'pechorinby@gmail.com'
-    site = Site.objects.get()
-    text_content = f'{site.domain}/admin/shop/order/{instance.id}/change'
-    html_content = f'<a href={site.domain}/admin/shop/order/{instance.id}/change>Новый заказ</a>'
-    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-    msg.attach_alternative(html_content, "text/html")
-    msg.send(fail_silently=False)
+    try:
+        subject = 'Новый заказ'
+        from_email = 'Печорин'
+        to = 'pechorinby@gmail.com'
+        site = Site.objects.get()
+        text_content = f'{site.domain}/admin/shop/order/{instance.id}/change'
+        html_content = f'<a href={site.domain}/admin/shop/order/{instance.id}/change>Новый заказ</a>'
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send(fail_silently=False)
+    except Exception as ex:
+        log.error(ex)
 
 
 post_save.connect(order_update, sender=Order)
