@@ -71,6 +71,7 @@ function phoneNumberToDigits() {
 
 let submitBtn = document.getElementById('order-submit');
 submitBtn.addEventListener('click', function(event){
+    document.getElementById("order-submit").disabled = true;
     event.preventDefault();
     let order = localStorage.getItem('order');
     phoneNumberToDigits();
@@ -98,6 +99,7 @@ function postData(url = '', data = {}) {
     })
         .then(function(response) {
            return response.text();
+           document.getElementById("order-submit").disabled = false;
         })
         .then(function(data) {
         let validPayment = document.querySelector('#payment').value;

@@ -73,23 +73,21 @@ class Order(models.Model):
         verbose_name_plural = _('Orders')
 
 
-# pre_save.connect(check_phone, sender=Order)
-
-
 def order_update(sender, instance, created, **kwargs):
-    try:
-        subject = 'Новый заказ'
-        from_email = 'Печорин'
-        to = 'pechorinby@gmail.com'
-        site = Site.objects.get()
-        text_content = f'{site.domain}/admin/shop/order/{instance.id}/change'
-        html_content = f'<a href={site.domain}/admin/shop/order/{instance.id}/change>Новый заказ</a>'
-        # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-        # msg.attach_alternative(html_content, "text/html")
-        # msg.send(fail_silently=False)
-        send_mail(subject, text_content, from_email, [to], fail_silently=False, html_message=html_content)
-    except Exception as ex:
-        log.error(ex)
+    if created:
+        try:
+            subject = 'Новый заказ'
+            from_email = 'Печорин'
+            to = 'pechorinby@gmail.com'
+            site = Site.objects.get()
+            text_content = f'{site.domain}/admin/shop/order/{instance.id}/change'
+            html_content = f'<a href={site.domain}/admin/shop/order/{instance.id}/change>Новый заказ</a>'
+            # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            # msg.attach_alternative(html_content, "text/html")
+            # msg.send(fail_silently=False)
+            send_mail(subject, text_content, from_email, [to], fail_silently=False, html_message=html_content)
+        except Exception as ex:
+            log.error(ex)
 
 
 post_save.connect(order_update, sender=Order)
