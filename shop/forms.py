@@ -43,6 +43,7 @@ class OrderForm(forms.ModelForm):
     comment = forms.CharField(widget=TextInput(attrs={
             'id': 'comment',
             'class': 'form-control',
+            'oninput': 'validateComment()',
             'type': 'textarea',
             'size': '40',
             'rows': '5'}), required=False)

@@ -1,7 +1,7 @@
 $(document).ready(function(){
+    $('#date').mask('0000-00-00');
     $('#phone').mask('(00)000-00-00');
 });
-
 function validationAll() {
     if (
         document.getElementById("phone").classList.contains('is-valid')
@@ -9,7 +9,6 @@ function validationAll() {
         && document.getElementById("delivery_date").classList.contains('is-valid')
         && document.getElementById("delivery_time").classList.contains('is-valid')
         && document.getElementById("address").classList.contains('is-valid')
-        && document.getElementById("payment").classList.contains('is-valid')
     ) {
         document.getElementById("order-submit").disabled = false;
         document.getElementById("alert-message").style.display = 'none';
@@ -21,8 +20,8 @@ function validationAll() {
 validationAll();
 
 
-function validateField(field, fieldId, count) {
-    if (field.length < count) {
+function validateField(field, fieldId, minCount, maxCount) {
+    if (field.length < minCount || field.length >= maxCount) {
         document.getElementById(fieldId).className = 'form-control is-invalid';
         validationAll();
     } else {
@@ -31,47 +30,62 @@ function validateField(field, fieldId, count) {
     }
 }
 
+function validatePaymentWay() {
+    validPayment = document.querySelector('#payment').value;
+    validateField(validPayment, "payment", 1, 2);
+}
+
 function validatePhone() {
     let phoneMasked = document.getElementById("phone").value;
     var numb = phoneMasked.match(/\d/g);
     numb = numb.join("");
-    validateField(numb, "phone", 9);
+    validateField(numb, "phone", 9, 10);
 }
 
 function validateDate() {
     let dateField = document.getElementById("delivery_date").value;
-        validateField(dateField, "delivery_date", 3);
+    var thenum = dateField.match(/\d+/g).map(Number).join('');
+    validateField(dateField, "delivery_date", 10, 11);
 }
 
 function validateTime() {
     validTime = document.querySelector('#delivery_time').value;
-    validateField(validTime, "delivery_time", 1);
-}
-function validatePaymentWay() {
-    validPayment = document.querySelector('#payment').value;
-    validateField(validPayment, "payment", 1);
+    validateField(validTime, "delivery_time", 1, 2);
 }
 
 function validateAddress() {
     let address = document.getElementById("address").value;
-    validateField(address, "address", 5);
+    validateField(address, "address", 5, 100);
 }
 
 function validateName() {
     let nameField = document.getElementById("first_name").value;
-    validateField(nameField, "first_name", 3);
+    validateField(nameField, "first_name", 3, 100);
+}
+
+function validateComment() {
+    let commentField = document.getElementById("comment");
+    if (commentField.value.length >= 100) {
+        commentField.className = 'form-control is-invalid';
+        validationAll();
+    } else {
+        commentField.className = 'form-control is-valid';
+        validationAll();
+    }
 }
 
 function phoneNumberToDigits() {
     let phoneMasked = document.getElementById("phone").value;
-    var numb = phoneMasked.match(/\d/g);
-    numb = numb.join("");
-    document.getElementById('phone').value = numb;
+    var thenum = phoneMasked.match(/\d+/g).map(Number);
+    var thenumSh = thenum.shift();
+    document.getElementById('phone').value = thenum.join('');
 }
 
 let submitBtn = document.getElementById('order-submit');
+
 submitBtn.addEventListener('click', function(event){
     document.getElementById("order-submit").disabled = true;
+    submitBtn.innerHTML = ('Ожидайте');
     event.preventDefault();
     let order = localStorage.getItem('order');
     phoneNumberToDigits();
@@ -82,24 +96,13 @@ submitBtn.addEventListener('click', function(event){
 });
 
 function postData(url = '', data = {}) {
-//    var csrftoken = Cookies.get('csrftoken');
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-//    console.log(csrftoken);
-//    const headers = new Headers();
-//    console.log(headers);
-//    headers.append('X-CSRFToken', csrftoken);
-//    console.log(headers);
     return fetch(url, {
         method: 'POST',
         redirect: 'manual',
-        headers: {
-          'X-CSRFToken': csrftoken
-        },
         body: data,
     })
         .then(function(response) {
            return response.text();
-           document.getElementById("order-submit").disabled = false;
         })
         .then(function(data) {
         let validPayment = document.querySelector('#payment').value;
@@ -116,17 +119,24 @@ function postData(url = '', data = {}) {
                 localStorage.clear();
             }
         })
+        .catch( (e) => {
+            if (e.message) {
+                alertString.innerHTML = (e.message);
+                document.getElementById("alert-message").style.display = 'block';
+            } else {
+                alertString.innerHTML = ('Ошибка соединения');
+                document.getElementById("alert-message").style.display = 'block';
+            }
+       })
 }
+
 $('#ModalCenteredSucces').on('hidden.bs.modal', function (e) {
-    window.location="/"
-});
-$('#ModalCenteredWarning').on('hidden.bs.modal', function (e) {
-    window.location="/"
-});
+window.location="/"})
+
 
 //! moment.js locale configuration
 
-(function (global, factory) {
+;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
        && typeof require === 'function' ? factory(require('../moment')) :
    typeof define === 'function' && define.amd ? define(['../moment'], factory) :

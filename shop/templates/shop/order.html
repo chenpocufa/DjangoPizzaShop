@@ -93,7 +93,7 @@
                     });
                 </script>
                 <div class="invalid-feedback">
-                    Please provide a valid city.
+                    Пожалуйста, выберите дату
                 </div>
             </div>
             <div class="col-md-3 mb-3">
@@ -121,6 +121,9 @@
             <div class="col-md-5 mb-3">
                 <label for="comment">Комментарий</label>
                 {{ form.comment }}
+                <div class="invalid-feedback">
+                    Не более 100 символов
+                </div>
             </div>
 
             <hr>
