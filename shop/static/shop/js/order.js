@@ -79,7 +79,6 @@ function validateComment() {
 function phoneNumberToDigits() {
     let phoneMasked = document.getElementById("phone").value;
     var thenum = phoneMasked.match(/\d+/g).map(Number);
-    var thenumSh = thenum.shift();
     document.getElementById('phone').value = thenum.join('');
 }
 
