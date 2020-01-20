@@ -9,6 +9,8 @@ function validationAll() {
         && document.getElementById("delivery_date").classList.contains('is-valid')
         && document.getElementById("delivery_time").classList.contains('is-valid')
         && document.getElementById("address").classList.contains('is-valid')
+        && document.getElementById("payment").classList.contains('is-valid')
+        && document.getElementById("delivery_time").classList.contains('is-valid')
     ) {
         document.getElementById("order-submit").disabled = false;
         document.getElementById("alert-message").style.display = 'none';
